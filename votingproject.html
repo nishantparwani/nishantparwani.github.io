@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q54VJBZQ85');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nishant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a2e;
+            --accent-cyan: #00ffff;
+            --accent-blue: #0080ff;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --danger-red: #ff4757;
+            --danger-dark: #cc2e3d;
+            --coalition-color: #ff6b6b;
+            --other-color: #4ecdc4;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, #16213e 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: textGlow 3s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(0, 128, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+            }
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+        }
+
+        .glow-bar {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-blue), transparent);
+            margin: 1rem auto;
+            width: 200px;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: pulseWidth 3s infinite alternate;
+        }
+
+        @keyframes pulseWidth {
+            0% {
+                width: 200px;
+            }
+            100% {
+                width: 250px;
+            }
+        }
+
+        /* Controls Section */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            color: var(--primary-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, var(--danger-red), var(--danger-dark));
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: nowrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            animation: cardAppear 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .protocol-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: iconFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .protocol-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--accent-cyan);
+        }
+
+        .vote-count {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0.8rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .vote-count {
+            transform: scale(1.05);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0.8rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+            width: 0%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Pie Chart Section */
+        .chart-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        /* Coalition Section */
+        .coalition-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .coalition-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--coalition-color), #ff8e8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coalition-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .coalition-stat {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            min-width: 150px;
+        }
+
+        .coalition-stat.other {
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .coalition-stat .stat-value {
+            color: var(--coalition-color);
+        }
+
+        .coalition-stat.other .stat-value {
+            color: var(--other-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal h3 {
+            color: var(--danger-red);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .modal-btn:hover::before {
+            left: 100%;
+        }
+
+        .modal-btn-cancel {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-btn-confirm {
+            background: var(--danger-red);
+            color: white;
+        }
+
+        .modal-btn-confirm:hover {
+            background: var(--danger-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-cyan);
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Loading and Status */
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Input Styles */
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+            outline: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.1);
+        }
+
+        .reveal-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 6px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .reveal-btn:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1280px) {
+            .stats-grid {
+                gap: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1.2rem;
+                min-width: 200px;
+            }
+            
+            .protocol-icon {
+                font-size: 2.2rem;
+                height: 50px;
+            }
+            
+            .vote-count {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .stat-card {
+                min-width: 180px;
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .main-content {
+                margin-top: 120px;
+                padding: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                min-width: 160px;
+                padding: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .coalition-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Nishant</h1>
+                <div class="glow-bar"></div>
+                <p>Real-time protocol voting statistics</p>
+            </div>
+
+            <div class="controls">
+                <a href="https://nishantp.netlify.app" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <button class="btn btn-danger" onclick="openResetModal()">
+                    <i class="fas fa-trash"></i> Delete All Votes
+                </button>
+                <button class="btn btn-primary" onclick="simulateVote()">
+                    <i class="fas fa-vote-yea"></i> Simulate Vote
+                </button>
+            </div>
+
+            <div id="loading" class="loading">
+                <i class="fas fa-sync-alt fa-spin"></i> Loading voting data...
+            </div>
+
+            <div class="stats-grid" id="statsGrid" style="display: none;">
+                <!-- Protocol cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Pie Chart Section -->
+            <div class="chart-section">
+                <h2 class="chart-title">Vote Distribution</h2>
+                <div class="chart-container">
+                    <canvas id="voteChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Coalition Section -->
+            <div class="coalition-section">
+                <h2 class="coalition-title">Coalition Results</h2>
+                <div class="coalition-stats">
+                    <div class="coalition-stat">
+                        <div class="stat-value" id="coalitionVotes">0</div>
+                        <div class="stat-label">Coalition Votes</div>
+                    </div>
+                    <div class="coalition-stat other">
+                        <div class="stat-value" id="otherVotes">0</div>
+                        <div class="stat-label">Other Candidates</div>
+                    </div>
+                    <div class="coalition-stat">
+                        <div class="stat-value" id="coalitionPercentage">0%</div>
+                        <div class="stat-label">Coalition Share</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="last-updated">
+                <i class="fas fa-clock"></i> Last updated: <span id="lastUpdated">Never</span>
+            </div>
+        </div>
+    </main>
+
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Reset All Votes</h3>
+            <p>Enter the admin password to confirm deleting all voting data. This action cannot be undone.</p>
+
+            <div style="position:relative; margin-bottom:1.5rem;">
+                <input type="password" id="deletePassword" placeholder="Enter password">
+                <button class="reveal-btn" onclick="togglePassword()">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeResetModal()">Cancel</button>
+                <button class="modal-btn modal-btn-confirm" onclick="verifyPasswordAndDelete()">
+                    <i class="fas fa-trash"></i> Delete All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="https://nishantp.netlify.app" class="logo">NISHANT</a>
+            
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 Nishant. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            databaseURL: "https://nishantvoting-default-rtdb.firebaseio.com/"
+        };
+
+        // Updated candidate data with underscores
+        const protocols = [
+            { name: "Abhik_Sengupta", displayName: "Abhik Sengupta", icon: "fa-user", color: "#00ffff" },
+            { name: "Harsh_Pujara", displayName: "Harsh Pujara", icon: "fa-user", color: "#0080ff" },
+            { name: "Vraj_Parikh", displayName: "Vraj Parikh", icon: "fa-user", color: "#00ff80" },
+            { name: "Yashwardhan_Prasad", displayName: "Yashwardhan Prasad", icon: "fa-user", color: "#ff0080" }
+        ];
+
+        let totalVotes = 0;
+        let voteChart = null;
+
+        // Confetti configuration
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        let confettiParticles = [];
+
+        // Modal functions
+        function openResetModal() {
+            document.getElementById('resetModal').style.display = 'flex';
+        }
+
+        function closeResetModal() {
+            document.getElementById('resetModal').style.display = 'none';
+        }
+
+        // Reset all votes function
+        async function resetAllVotes() {
+            const confirmBtn = document.querySelector('.modal-btn-confirm');
+            const originalText = confirmBtn.innerHTML;
+            
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+            confirmBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${firebaseConfig.databaseURL}/votes.json`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    closeResetModal();
+                    showNotification('All votes have been reset successfully!', 'success');
+                    setTimeout(fetchVotes, 1000);
+                } else {
+                    throw new Error('Failed to reset votes');
+                }
+            } catch (error) {
+                console.error('Error resetting votes:', error);
+                showNotification('Error resetting votes. Please try again.', 'error');
+            } finally {
+                confirmBtn.innerHTML = originalText;
+                confirmBtn.disabled = false;
+            }
+        }
+
+        // Notification function
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: 600;
+                z-index: 3000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                backdrop-filter: blur(10px);
+            `;
+
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(45deg, #00b894, #00a085)';
+                notification.style.border = '1px solid rgba(0, 184, 148, 0.3)';
+            } else {
+                notification.style.background = 'linear-gradient(45deg, #ff4757, #cc2e3d)';
+                notification.style.border = '1px solid rgba(255, 71, 87, 0.3)';
+            }
+
+            notification.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                ${message}
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize Firebase
+        async function fetchVotes() {
+            try {
+                const response = await fetch(`${firebaseConfig.databaseURL}/votes.json`);
+                const data = await response.json();
+                
+                if (data) {
+                    updateDisplay(data);
+                } else {
+                    // Initialize with zeros if no data exists
+                    const initialData = {
+                        "Abhik_Sengupta": 8,
+                        "Harsh_Pujara": 9,
+                        "Vraj_Parikh": 12,
+                        "Yashwardhan_Prasad": 17
+                    };
+                    updateDisplay(initialData);
+                }
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('statsGrid').style.display = 'flex';
+                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('loading').innerHTML = 
+                    '<i class="fas fa-exclamation-triangle"></i> Error loading data. Please refresh.';
+            }
+        }
+
+        function updateDisplay(voteData) {
+            totalVotes = Object.values(voteData).reduce((sum, votes) => sum + votes, 0);
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = '';
+
+            protocols.forEach((protocol, index) => {
+                const votes = voteData[protocol.name] || 0;
+                const percentage = totalVotes > 0 ? (votes / totalVotes) * 100 : 0;
+                
+                const card = document.createElement('div');
+                card.className = 'stat-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.innerHTML = `
+                    <div class="protocol-icon">
+                        <i class="fas ${protocol.icon}" style="color: ${protocol.color}"></i>
+                    </div>
+                    <div class="protocol-name">${protocol.displayName}</div>
+                    <div class="vote-count">${votes}</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${percentage}%"></div>
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                        ${percentage.toFixed(1)}% of total votes
+                    </div>
+                `;
+                statsGrid.appendChild(card);
+            });
+
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+            updateChart(voteData);
+            updateCoalitionStats(voteData);
+        }
+
+        function updateChart(voteData) {
+            const ctx = document.getElementById('voteChart').getContext('2d');
+            
+            // Destroy existing chart if it exists
+            if (voteChart) {
+                voteChart.destroy();
+            }
+            
+            const coalitionVotes = (voteData.Abhik_Sengupta || 0) + (voteData.Harsh_Pujara || 0);
+            const otherVotes = (voteData.Vraj_Parikh || 0) + (voteData.Yashwardhan_Prasad || 0);
+            
+            voteChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Coalition (Abhik + Harsh)', 'Other Candidates'],
+                    datasets: [{
+                        data: [coalitionVotes, otherVotes],
+                        backgroundColor: [
+                            'rgba(255, 107, 107, 0.8)',
+                            'rgba(78, 205, 196, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 107, 107, 1)',
+                            'rgba(78, 205, 196, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: 'white',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value} votes (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        }
+
+        function updateCoalitionStats(voteData) {
+            const coalitionVotes = (voteData.Abhik_Sengupta || 0) + (voteData.Harsh_Pujara || 0);
+            const otherVotes = (voteData.Vraj_Parikh || 0) + (voteData.Yashwardhan_Prasad || 0);
+            const total = coalitionVotes + otherVotes;
+            const coalitionPercentage = total > 0 ? Math.round((coalitionVotes / total) * 100) : 0;
+            
+            document.getElementById('coalitionVotes').textContent = coalitionVotes;
+            document.getElementById('otherVotes').textContent = otherVotes;
+            document.getElementById('coalitionPercentage').textContent = `${coalitionPercentage}%`;
+        }
+
+        // Confetti functions
+        function createConfetti() {
+            const colors = ['#00ffff', '#0080ff', '#ff0080', '#ff6b6b', '#4ecdc4', '#ffe66d'];
+            
+            for (let i = 0; i < 150; i++) {
+                confettiParticles.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: -10,
+                    size: Math.random() * 10 + 5,
+                    speed: Math.random() * 3 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5
+                });
+            }
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            
+            for (let i = 0; i < confettiParticles.length; i++) {
+                const p = confettiParticles[i];
+                
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                
+                ctx.restore();
+                
+                p.y += p.speed;
+                p.rotation += p.rotationSpeed;
+                
+                // Remove particles that are off screen
+                if (p.y > confettiCanvas.height) {
+                    confettiParticles.splice(i, 1);
+                    i--;
+                }
+            }
+            
+            if (confettiParticles.length > 0) {
+                requestAnimationFrame(drawConfetti);
+            }
+        }
+
+        function triggerConfetti() {
+            createConfetti();
+            drawConfetti();
+        }
+
+        // Simulate a vote (for demonstration)
+        function simulateVote() {
+            // Randomly select a candidate
+            const randomIndex = Math.floor(Math.random() * protocols.length);
+            const candidate = protocols[randomIndex].name;
+            
+            // Trigger confetti
+            triggerConfetti();
+            
+            // Show notification
+            showNotification(`Vote recorded for ${protocols[randomIndex].displayName}!`, 'success');
+            
+            // In a real implementation, you would update Firebase here
+            // For demo purposes, we'll just refetch the data
+            setTimeout(fetchVotes, 500);
+        }
+
+        // Refresh data every 5 seconds
+        function startAutoRefresh() {
+            fetchVotes();
+            setInterval(fetchVotes, 5000);
+        }
+
+        // Start the application
+        startAutoRefresh();
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('resetModal');
+            if (event.target === modal) {
+                closeResetModal();
+            }
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("deletePassword");
+            const icon = event.target.closest("button").querySelector("i");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+
+        async function verifyPasswordAndDelete() {
+            const inputPassword = document.getElementById("deletePassword").value.trim();
+            const correctPassword = "dldisbest";
+
+            if (inputPassword !== correctPassword) {
+                showNotification("Incorrect password! Access denied.", "error");
+                return;
+            }
+
+            await resetAllVotes();
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+            
+            if (voteChart) {
+                voteChart.resize();
+            }
+        });
+    </script>
+</body>
+</html>

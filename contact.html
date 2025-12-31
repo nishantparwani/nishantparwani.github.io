@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q54VJBZQ85');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Nishant Parwani</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+    <style>
+        /* ========== PSYCHOLOGY-OPTIMIZED BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #fe4dae;
+            --accent-light: #2d76e2;
+            --accent-blue: #4d5afe;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --menu-bg: rgba(10, 10, 10, 0.3);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            position: relative;
+            min-height: 100vh;
+            opacity: 1 !important;
+            font-size: 16px;
+        }
+
+        /* ========== PRESERVED WEBGL BACKGROUND ========== */
+        #webgl-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========== FITT'S LAW OPTIMIZED MENU ========== */
+        .menu-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(254, 77, 174, 0.3);
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 2px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== NAVIGATION MENU ========== */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--menu-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .nav-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            text-decoration: none;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item:hover {
+            color: var(--accent-blue);
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(77, 90, 254, 0.7);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover::after {
+            width: 120%;
+        }
+
+        /* ========== NAVIGATION VIDEO PREVIEWS ========== */
+        /* Adjust nav items for previews */
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 50px; /* Space for preview on right side */
+        }
+
+        .nav-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Preview container - hidden by default */
+        .nav-preview {
+            position: absolute;
+            right: -200px; /* Position to the right of text */
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 250px;
+            height: 200px;
+            background: var(--primary);
+            border-radius: 14px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--accent-light);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+        }
+
+        /* Video styling */
+        .preview-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            filter: brightness(1.05) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        /* Overlay for better visibility */
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(10, 10, 10, 0.3) 0%,
+                rgba(10, 10, 10, 0.1) 50%,
+                rgba(10, 10, 10, 0.4) 100%
+            );
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        /* Hover effects - show preview */
+        .nav-item:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) scale(1);
+            right: -450px;
+        }
+
+        .nav-item:hover .preview-video {
+            filter: brightness(1.15) contrast(1.2);
+        }
+
+        /* Add play indicator */
+        .nav-preview::before {
+            content: '▶ Preview';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        /* Glow effect on active preview */
+        .nav-item:hover .nav-preview {
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(45, 118, 226, 0.4);
+        }
+
+        /* Hide previews on mobile/tablet */
+        @media (max-width: 1024px) {
+            .nav-item {
+                padding-right: 0 !important;
+            }
+            
+            .nav-preview {
+                display: none !important;
+            }
+        }
+
+        /* Adjust for responsive sizes */
+        @media (max-width: 768px) {
+            .nav-preview {
+                width: 240px;
+                height: 150px;
+                right: -260px;
+            }
+            
+            .nav-item:hover .nav-preview {
+                right: -240px;
+            }
+        }
+
+        /* ========== CONTACT HERO SECTION ========== */
+        .contact-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-intro {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-blue);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            min-width: 40px;
+        }
+
+        .info-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .info-content p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* ========== CONTACT FORM ========== */
+        .contact-form-container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(77, 90, 254, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-form-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .contact-form-container:hover::before {
+            left: 100%;
+        }
+
+        .form-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Form Styles from provided HTML */
+        .contact-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(77, 90, 254, 0.2);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.3rem;
+            opacity: 0.8;
+        }
+
+        /* reCAPTCHA Styling */
+        .g-recaptcha {
+            margin: 1.5rem 0;
+            transform: scale(0.95);
+            transform-origin: 0 0;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(77, 90, 254, 0.3);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Response Message */
+        .response-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            background: rgba(77, 90, 254, 0.1);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .response-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== DYNAMIC MOUSE SHADOW ========== */
+        #cursor-shadow {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(
+            circle,
+            transparent 0%,
+            var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
+            var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
+        );
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-inner {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--current-color, #ffffff);
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: background 0.5s ease;
+            box-shadow: 0 0 10px var(--current-color, #ffffff);
+        }
+
+        /* ========== UPDATED FOOTER ========== */
+        .follow-footer {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 500px;
+            background: rgba(71, 70, 70, 0);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            text-align: center;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            letter-spacing: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .follow-footer .follow-text {
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .follow-footer .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+            align-items: center;
+        }
+
+        .follow-footer .social-icons a {
+            color: #fff;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .follow-footer .social-icons a:hover {
+            color: var(--accent-blue);
+        }
+
+        .copyright {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            color: #aaa;
+            text-align: center;
+            padding: 0.4rem 0 0;
+            user-select: none;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1024px) {
+            .nav-item {
+                font-size: 4rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contact-form-container {
+                order: -1;
+            }
+            
+            .follow-footer {
+                width: 85%;
+                max-width: 450px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .nav-item {
+                font-size: 3rem;
+            }
+            
+            .contact-hero {
+                padding: 6rem 1rem 5rem;
+            }
+            
+            .contact-title {
+                font-size: clamp(2.5rem, 6vw, 3.5rem);
+            }
+            
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .follow-footer {
+                width: 90%;
+                max-width: 400px;
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                bottom: 1rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                font-size: 0.6rem;
+            }
+            
+            .g-recaptcha {
+                transform: scale(0.85);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-toggle {
+                top: 1rem;
+                left: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .nav-item {
+                font-size: 2.5rem;
+            }
+            
+            .contact-hero {
+                padding: 5rem 1rem 4rem;
+            }
+            
+            .contact-title {
+                font-size: 2.2rem;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .follow-footer {
+                width: 92%;
+                max-width: 350px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                bottom: 0.8rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .copyright {
+                font-size: 0.55rem;
+                color: #bbb;
+            }
+            
+            body {
+                font-size: 14px;
+            }
+            
+            .g-recaptcha {
+                transform: scale(0.75);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic Mouse Shadow -->
+    <div id="cursor-shadow"></div>
+    <div id="cursor-inner"></div>
+    
+    <!-- PRESERVED WebGL Background -->
+    <canvas id="webgl-bg"></canvas>
+    
+    <!-- Fitt's Law Optimized Menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- Navigation Menu with Video Previews -->
+    <div class="nav-menu" id="navMenu">
+        <div class="nav-items">
+            <!-- Home with preview -->
+            <a href="index.html" class="nav-item" data-preview="home">
+                <span class="nav-text">Home</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/index.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- About with preview -->
+            <a href="about.html" class="nav-item" data-preview="about">
+                <span class="nav-text">About</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/about.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Experience with preview -->
+            <a href="experience.html" class="nav-item" data-preview="experience">
+                <span class="nav-text">Experience</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/experience.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- CONTACT SECTION -->
+    <section class="contact-hero">
+        <div class="contact-container">
+            <div class="contact-intro">
+                <h1 class="contact-title">Get in Touch</h1>
+                <div class="contact-subtitle">
+                    Have a project in mind? Want to collaborate? Or just want to say hello?
+                    I'd love to hear from you. Fill out the form and I'll get back to you as soon as possible.
+                </div>
+                
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <p>nishantparwani2007@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Location</h4>
+                            <p>Mumbai, Maharashtra, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Response Time</h4>
+                            <p>Usually within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h2 class="form-title">Contact Form</h2>
+                <form id="contactForm" class="contact-form" action="https://formspree.io/f/mkgrlbyl" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your name" 
+                            required 
+                        />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="Enter phone number with country code"
+                            pattern="\d{8,12}"
+                            required 
+                        />
+                        <div class="form-hint">
+                            Enter country code + number (e.g., 91 followed by 6–10 digits)
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="4" 
+                            placeholder="Tell me about your project or inquiry..."
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="g-recaptcha" data-sitekey="6LdU9lYrAAAAADVv0b9gLq-FHaHLw3Z71CADroFU"></div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                <div id="contactResponse" class="response-message"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- UPDATED FOOTER -->
+    <footer class="follow-footer" id="followFooter" aria-label="Follow Nishant">
+        <div class="follow-text">FOLLOW NISHANT</div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/nishant_parwani/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:nishantparwani2007@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://x.com/nishant_parwani" target="_blank" rel="noopener noreferrer" aria-label="X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Nishant Parwani. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+    // ========== NAVIGATION VIDEO PREVIEWS ==========
+    function initNavVideoPreviews() {
+        const navItems = document.querySelectorAll('.nav-item');
+        let currentVideo = null;
+        let hoverTimer = null;
+        
+        navItems.forEach(item => {
+            const preview = item.querySelector('.nav-preview');
+            const video = item.querySelector('.preview-video');
+            
+            if (!preview || !video) return;
+            
+            // Mouse enter handler
+            item.addEventListener('mouseenter', () => {
+                // Clear any existing timer
+                clearTimeout(hoverTimer);
+                
+                // Pause current video if playing
+                if (currentVideo && currentVideo !== video) {
+                    currentVideo.pause();
+                    currentVideo.currentTime = 0;
+                }
+                
+                // Set hover timer for slight delay
+                hoverTimer = setTimeout(() => {
+                    // Play video
+                    video.currentTime = 0;
+                    video.play().catch(e => {
+                        console.log('Video play failed:', e);
+                        // If autoplay fails, mute and try again
+                        video.muted = true;
+                        video.play().catch(e => console.log('Muted play also failed:', e));
+                    });
+                    
+                    currentVideo = video;
+                }, 100); // 100ms delay before playing
+            });
+            
+            // Mouse leave handler
+            item.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimer);
+                
+                // Pause video
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        });
+        
+        // Pause all videos when menu closes
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                if (!navMenu.classList.contains('active')) {
+                    navItems.forEach(item => {
+                        const video = item.querySelector('.preview-video');
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    // ========== PRESERVED WEBGL BACKGROUND ==========
+    function initWebGLBackground() {
+        try {
+            const canvas = document.getElementById('webgl-bg');
+            if (!canvas) {
+                console.warn("WebGL canvas not found");
+                return;
+            }
+            
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) {
+                console.warn("WebGL not supported");
+                canvas.style.display = 'none';
+                return;
+            }
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas, 
+                alpha: true,
+                antialias: true
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Grid
+            const gridHelper = new THREE.GridHelper(200, 200, 0x4d5afe, 0x4d5afe);
+            gridHelper.material.opacity = 0.08;
+            gridHelper.material.transparent = true;
+            scene.add(gridHelper);
+            
+            // Pyramids - 70% blue, 30% red
+            const pyramids = [];
+            const pyramidCount = 40;
+            
+            for (let i = 0; i < pyramidCount; i++) {
+                const geometry = new THREE.ConeGeometry(0.6, 1.2, 4);
+                const isRed = i < Math.floor(pyramidCount * 0.3);
+                const color = isRed ? 0xfe4dae : 0x4d5afe;
+                
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: color,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.15 + Math.random() * 0.25
+                });
+                
+                const pyramid = new THREE.Mesh(geometry, material);
+                
+                pyramid.position.x = (Math.random() - 0.5) * 80;
+                pyramid.position.y = (Math.random() - 0.5) * 30;
+                pyramid.position.z = (Math.random() - 0.5) * 80;
+                
+                pyramid.rotation.x = Math.random() * Math.PI;
+                pyramid.rotation.y = Math.random() * Math.PI;
+                pyramid.rotation.z = Math.random() * Math.PI;
+                
+                pyramid.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.008,
+                    floatSpeed: 0.5 + Math.random() * 1,
+                    floatAmplitude: 0.2 + Math.random() * 0.6
+                };
+                
+                scene.add(pyramid);
+                pyramids.push(pyramid);
+            }
+            
+            // Cubes - all blue
+            const cubes = [];
+            const cubeCount = 25;
+            
+            for (let i = 0; i < cubeCount; i++) {
+                const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x6d7cff,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.08
+                });
+                
+                const cube = new THREE.Mesh(geometry, material);
+                
+                cube.position.x = (Math.random() - 0.5) * 90;
+                cube.position.y = (Math.random() - 0.5) * 30;
+                cube.position.z = (Math.random() - 0.5) * 90;
+                
+                cube.rotation.x = Math.random() * Math.PI;
+                cube.rotation.y = Math.random() * Math.PI;
+                
+                cube.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.006
+                };
+                
+                scene.add(cube);
+                cubes.push(cube);
+            }
+            
+            // Particles
+            const particleCount = 150;
+            const particleGeometry = new THREE.BufferGeometry();
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.04,
+                transparent: true,
+                opacity: 0.2,
+                blending: THREE.AdditiveBlending,
+                vertexColors: true
+            });
+            
+            const particlePositions = new Float32Array(particleCount * 3);
+            const particleColors = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                particlePositions[i] = (Math.random() - 0.5) * 200;
+                particlePositions[i + 1] = (Math.random() - 0.5) * 40;
+                particlePositions[i + 2] = (Math.random() - 0.5) * 200;
+                
+                const particleIndex = i / 3;
+                const isRed = Math.random() < 0.3;
+                
+                if (isRed) {
+                    particleColors[i] = 0.99;
+                    particleColors[i + 1] = 0.30;
+                    particleColors[i + 2] = 0.68;
+                } else {
+                    particleColors[i] = 0.30;
+                    particleColors[i + 1] = 0.35;
+                    particleColors[i + 2] = 1.00;
+                }
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+            
+            camera.position.z = 40;
+            camera.position.y = 10;
+            
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const time = Date.now() * 0.001;
+                
+                gridHelper.rotation.y += 0.0002;
+                
+                pyramids.forEach((pyramid, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ, floatSpeed, floatAmplitude } = pyramid.userData;
+                    
+                    pyramid.rotation.x += rotationSpeedX;
+                    pyramid.rotation.y += rotationSpeedY;
+                    pyramid.rotation.z += rotationSpeedZ;
+                    
+                    pyramid.position.y += Math.sin(time * floatSpeed + i) * 0.006 * floatAmplitude;
+                });
+                
+                cubes.forEach((cube, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ } = cube.userData;
+                    
+                    cube.rotation.x += rotationSpeedX;
+                    cube.rotation.y += rotationSpeedY;
+                    cube.rotation.z += rotationSpeedZ;
+                    
+                    cube.position.y += Math.sin(time * 0.5 + i) * 0.003;
+                });
+                
+                particles.rotation.y += 0.00015;
+                
+                camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 8 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+        } catch (error) {
+            console.error("WebGL initialization error:", error);
+            const canvas = document.getElementById('webgl-bg');
+            if (canvas) canvas.style.display = 'none';
+        }
+    }
+
+    // ========== PRESERVED MENU TOGGLE ==========
+    function initMenuToggle() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        if (!menuToggle || !navMenu) {
+            console.warn("Menu elements not found");
+            return;
+        }
+        
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                navItems.forEach((item, index) => {
+                    gsap.to(item, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: index * 0.15,
+                        ease: "power3.out"
+                    });
+                });
+            } else {
+                navItems.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.4,
+                        ease: "power2.in"
+                    });
+                });
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                navItems.forEach((navItem) => {
+                    gsap.to(navItem, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        ease: "power2.in"
+                    });
+                });
+                
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 300);
+                
+                const href = item.getAttribute('href');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 400);
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                
+                navItems.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        ease: "power2.in"
+                    });
+                });
+                
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 300);
+            }
+        });
+    }
+
+    // ========== CONTACT FORM HANDLING ==========
+    function initContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        const contactResponse = document.getElementById('contactResponse');
+        
+        if (!contactForm) return;
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate reCAPTCHA
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                showResponse('Please complete the Google reCAPTCHA first.', 'error');
+                return;
+            }
+            
+            // Validate phone number
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^\d{8,12}$/;
+            if (!phonePattern.test(phoneInput.value)) {
+                showResponse('Please enter a valid phone number (8-12 digits, no spaces or + sign).', 'error');
+                return;
+            }
+            
+            // Disable submit button
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+            
+            // Prepare form data
+            const formData = new FormData(contactForm);
+            
+            // Send the form
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showResponse('Thanks for getting in touch! I\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                    grecaptcha.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showResponse('Oops! Something went wrong. Please try again later.', 'error');
+            })
+            .finally(() => {
+                // Re-enable submit button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+        
+        function showResponse(message, type) {
+            contactResponse.textContent = message;
+            contactResponse.className = 'response-message show';
+            contactResponse.style.color = type === 'success' ? '#4CAF50' : '#ff4d4d';
+            
+            // Auto-hide message after 5 seconds
+            setTimeout(() => {
+                contactResponse.classList.remove('show');
+                setTimeout(() => {
+                    contactResponse.textContent = '';
+                }, 300);
+            }, 5000);
+        }
+        
+        // Add animation to form on load
+        gsap.fromTo('.contact-intro',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.2,
+                ease: "power3.out"
+            }
+        );
+        
+        gsap.fromTo('.contact-form-container',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.4,
+                ease: "power3.out"
+            }
+        );
+        
+        // Animate info items
+        const infoItems = document.querySelectorAll('.info-item');
+        infoItems.forEach((item, index) => {
+            gsap.fromTo(item,
+                { opacity: 0, x: -20 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.6,
+                    delay: 0.6 + (index * 0.1),
+                    ease: "power3.out"
+                }
+            );
+        });
+    }
+
+    // ========== ANIMATE FOOTER ==========
+    function animateFooter() {
+        const footer = document.getElementById('followFooter');
+        gsap.to(footer, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.8,
+            ease: "power3.out"
+        });
+    }
+
+    // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
+    function initDynamicMouseShadow() {
+        const cursorShadow = document.getElementById('cursor-shadow');
+        const cursorInner = document.getElementById('cursor-inner');
+        
+        if (!cursorShadow || !cursorInner) return;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let shadowX = 0;
+        let shadowY = 0;
+        let innerX = 0;
+        let innerY = 0;
+        
+        // Function to get complementary color
+        function getComplementaryColor(rgb) {
+            if (!rgb) return { r: 255, g: 255, b: 255 };
+            
+            // Convert to complementary
+            return {
+                r: 255 - rgb.r,
+                g: 255 - rgb.g,
+                b: 255 - rgb.b
+            };
+        }
+        
+        // Function to get color from element
+        function getColorFromElement(element) {
+            if (!element) return { r: 255, g: 255, b: 255 };
+            
+            // Try to get computed color
+            const style = window.getComputedStyle(element);
+            let color = style.color || style.backgroundColor || '#ffffff';
+            
+            // Parse color to RGB
+            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (match) {
+                return {
+                    r: parseInt(match[1]),
+                    g: parseInt(match[2]),
+                    b: parseInt(match[3])
+                };
+            }
+            
+            // Try hex color
+            const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
+            if (hexMatch) {
+                return {
+                    r: parseInt(hexMatch[1], 16),
+                    g: parseInt(hexMatch[2], 16),
+                    b: parseInt(hexMatch[3], 16)
+                };
+            }
+            
+            // Default white
+            return { r: 255, g: 255, b: 255 };
+        }
+        
+        // Function to update cursor colors
+        function updateCursorColors(color) {
+            const complementary = getComplementaryColor(color);
+            
+            // Update CSS variables
+            document.documentElement.style.setProperty(
+                '--current-color',
+                `rgb(${color.r}, ${color.g}, ${color.b})`
+            );
+            document.documentElement.style.setProperty(
+                '--complementary-color',
+                `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
+            );
+        }
+        
+        // Mouse move handler
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Get element under cursor
+            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+            
+            if (elementUnderCursor) {
+                // Skip cursor elements themselves
+                if (elementUnderCursor.id === 'cursor-shadow' || 
+                    elementUnderCursor.id === 'cursor-inner') return;
+                
+                // Get color from element
+                const color = getColorFromElement(elementUnderCursor);
+                
+                // Update cursor colors
+                updateCursorColors(color);
+                
+                // Size based on element type
+                const tagName = elementUnderCursor.tagName.toLowerCase();
+                const isInteractive = elementUnderCursor.onclick || 
+                                     elementUnderCursor.tagName === 'A' || 
+                                     elementUnderCursor.tagName === 'BUTTON';
+                
+                if (isInteractive) {
+                    cursorShadow.style.width = '80px';
+                    cursorShadow.style.height = '80px';
+                } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+                    cursorShadow.style.width = '70px';
+                    cursorShadow.style.height = '70px';
+                } else {
+                    cursorShadow.style.width = '60px';
+                    cursorShadow.style.height = '60px';
+                }
+            }
+        });
+        
+        // Animation loop
+        function animateCursor() {
+            // Smooth shadow movement (slower)
+            shadowX += (mouseX - shadowX) * 0.08;
+            shadowY += (mouseY - shadowY) * 0.08;
+            
+            // Smooth inner movement (faster)
+            innerX += (mouseX - innerX) * 0.2;
+            innerY += (mouseY - innerY) * 0.2;
+            
+            // Apply positions
+            cursorShadow.style.left = shadowX + 'px';
+            cursorShadow.style.top = shadowY + 'px';
+            
+            cursorInner.style.left = innerX + 'px';
+            cursorInner.style.top = innerY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        // Initialize cursor positions
+        cursorShadow.style.left = mouseX + 'px';
+        cursorShadow.style.top = mouseY + 'px';
+        cursorInner.style.left = mouseX + 'px';
+        cursorInner.style.top = mouseY + 'px';
+        
+        // Hide cursor on elements that don't need it
+        const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
+        noCursorElements.forEach(el => {
+            el.style.cursor = 'none';
+        });
+        
+        // Hide default cursor on entire page
+        document.body.style.cursor = 'none';
+        
+        // Start animation
+        animateCursor();
+        
+        // Handle mouse leave window
+        document.addEventListener('mouseleave', () => {
+            cursorShadow.style.opacity = '0';
+            cursorInner.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursorShadow.style.opacity = '1';
+            cursorInner.style.opacity = '1';
+        });
+    }
+
+    // ========== INITIALIZE EVERYTHING ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Initializing Contact page...");
+        
+        // Initialize WebGL background
+        initWebGLBackground();
+        
+        // Initialize menu toggle
+        initMenuToggle();
+        
+        // Initialize video previews
+        initNavVideoPreviews();
+        
+        // Initialize dynamic mouse shadow
+        initDynamicMouseShadow();
+        
+        // Initialize contact form
+        initContactForm();
+        
+        // Animate footer on load
+        setTimeout(animateFooter, 500);
+        
+        console.log("Contact page initialized successfully");
+    });
+
+    // Fallback for WebGL
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWebGLBackground);
+    } else {
+        initWebGLBackground();
+    }
+    </script>
+</body>
+</html>

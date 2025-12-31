@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="description" content="Portfolio website of Nishant Parwani, showcasing experience, projects and contact info.">
+<meta property="og:title" content="Nishant Parwani | Portfolio" />
+<meta property="og:image" content="link-to-hero.jpg" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="Nishant Parwani, NishantP, Nishant Parwani portfolio, Nishant developer">
+<meta name="author" content="Nishant Parwani">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q54VJBZQ85');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishant Parwani | Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #fe4dae;
+            --accent-light: #2d76e2;
+            --accent-dark: #535cda;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --menu-bg: rgba(10, 10, 10, 0.3);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== DYNAMIC WEBGL BACKGROUND ========== */
+        #webgl-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========== MENU BUTTON ========== */
+        .menu-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(254, 77, 174, 0.3);
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 2px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== NAVIGATION MENU ========== */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--menu-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .nav-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            text-decoration: none;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item:hover {
+            color: var(--accent-light);
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(45, 118, 226, 0.7);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover::after {
+            width: 120%;
+        }
+        /* ========== NAVIGATION VIDEO PREVIEWS ========== */
+/* Adjust nav items for previews */
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 280px; /* Space for preview on right side */
+}
+
+.nav-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Preview container - hidden by default */
+.nav-preview {
+    position: absolute;
+    right: -300px; /* Position to the right of text */
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    width: 250px;
+    height: 180px;
+    background: var(--primary);
+    border-radius: 14px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--accent-light);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+}
+
+/* Video styling */
+.preview-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: brightness(1.05) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+/* Overlay for better visibility */
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(10, 10, 10, 0.3) 0%,
+        rgba(10, 10, 10, 0.1) 50%,
+        rgba(10, 10, 10, 0.4) 100%
+    );
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+/* Hover effects - show preview */
+.nav-item:hover .nav-preview {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+    right: -280px;
+}
+
+.nav-item:hover .preview-video {
+    filter: brightness(1.15) contrast(1.2);
+}
+
+/* Add play indicator */
+.nav-preview::before {
+    content: '▶ Preview';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+/* Glow effect on active preview */
+.nav-item:hover .nav-preview {
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(45, 118, 226, 0.4);
+}
+
+/* Hide previews on mobile/tablet */
+@media (max-width: 1024px) {
+    .nav-item {
+        padding-right: 0 !important;
+    }
+    
+    .nav-preview {
+        display: none !important;
+    }
+}
+
+/* Adjust for responsive sizes */
+@media (max-width: 768px) {
+    .nav-preview {
+        width: 240px;
+        height: 150px;
+        right: -260px;
+    }
+    
+    .nav-item:hover .nav-preview {
+        right: -240px;
+    }
+}
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .greeting {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(20px);
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle-separator {
+            color: var(--text);
+            margin: 0 1rem;
+            font-weight: 300;
+        }
+
+        /* ========== TYPEWRITER CURSOR ========== */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        /* ========== FOOTER ========== */
+        .follow-footer {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 500px;
+            background: rgba(71, 70, 70, 0); /* 85% transparent */
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            text-align: center;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            letter-spacing: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Lighter border */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .follow-footer .follow-text {
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .follow-footer .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+            align-items: center;
+        }
+
+        .follow-footer .social-icons a {
+            color: #fff;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .follow-footer .social-icons a:hover {
+            color: #e75454;
+        }
+
+        .copyright {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            color: #aaa; /* Lighter color for more visibility on transparent background */
+            text-align: center;
+            padding: 0.4rem 0 0;
+            user-select: none;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .nav-item {
+                font-size: 4rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(3.5rem, 9vw, 6rem);
+            }
+            
+            .greeting {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .follow-footer {
+                width: 85%;
+                max-width: 450px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .nav-item {
+                font-size: 3rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(3rem, 11vw, 4.5rem);
+                margin-bottom: 1rem;
+            }
+            
+            .greeting {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle-separator {
+                margin: 0 0.5rem;
+            }
+            
+            .follow-footer {
+                width: 90%;
+                max-width: 400px;
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                bottom: 1rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-toggle {
+                top: 1rem;
+                left: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .nav-item {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 13vw, 3.5rem);
+            }
+            
+            .greeting {
+                font-size: 1.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .subtitle-separator {
+                display: block;
+                margin: 0.3rem 0;
+            }
+            
+            .follow-footer {
+                width: 92%;
+                max-width: 350px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                bottom: 0.8rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .copyright {
+                font-size: 0.55rem;
+                color: #bbb; /* Even lighter for mobile */
+            }
+        }
+        /* ========== DYNAMIC MOUSE SHADOW ========== */
+#cursor-shadow {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(
+    circle,
+    transparent 0%,
+    var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
+    var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
+);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
+    mix-blend-mode: difference;
+}
+
+#cursor-inner {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--current-color, #ffffff);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: background 0.5s ease;
+    box-shadow: 0 0 10px var(--current-color, #ffffff);
+}
+    </style>
+</head>
+<body>
+    <!-- Dynamic Mouse Shadow -->
+<div id="cursor-shadow"></div>
+<div id="cursor-inner"></div>
+    <!-- WebGL Background -->
+    <canvas id="webgl-bg"></canvas>
+    
+    <!-- Menu Button -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+        <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <div class="nav-items">
+            <!-- About with preview -->
+            <a href="about.html" class="nav-item" data-preview="about">
+                <span class="nav-text">About</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/about.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Experience with preview -->
+            <a href="experience.html" class="nav-item" data-preview="experience">
+                <span class="nav-text">Experience</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/experience.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Contact with preview -->
+            <a href="contact.html" class="nav-item" data-preview="contact">
+                <span class="nav-text">Contact</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/contact.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="hero">
+        <div class="greeting" id="greetingText">Hi I am,</div>
+        <h1 class="hero-title" id="nameText">Nishant Parwani</h1>
+        <div class="hero-subtitle" id="subtitleText">
+            <span id="line1">Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai</span>
+            <span class="subtitle-separator">|</span>
+            <span id="line2">Student Council Contingent Leader</span>
+            <span class="subtitle-separator">|</span>
+            <span id="line3">USFC '24</span>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="follow-footer" id="followFooter" aria-label="Follow Nishant">
+        <div class="follow-text">FOLLOW NISHANT</div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/nishant_parwani/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:nishantparwani2007@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://x.com/nishant_parwani" target="_blank" rel="noopener noreferrer" aria-label="X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Nishant Parwani. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // ========== INFINITE WEBGL BACKGROUND ==========
+        function initWebGLBackground() {
+            const canvas = document.getElementById('webgl-bg');
+            if (!canvas) return;
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas, 
+                alpha: true,
+                antialias: true
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Grid back to blue
+            const gridHelper = new THREE.GridHelper(200, 200, 0x4d5afe, 0x4d5afe);
+            gridHelper.material.opacity = 0.08;
+            gridHelper.material.transparent = true;
+            scene.add(gridHelper);
+            
+            // Create pyramids - 70% blue, 30% red
+            const pyramids = [];
+            const pyramidCount = 40;
+            
+            for (let i = 0; i < pyramidCount; i++) {
+                const geometry = new THREE.ConeGeometry(0.6, 1.2, 4);
+                
+                // 70% blue, 30% red
+                const isRed = i < Math.floor(pyramidCount * 0.3); // 30% red
+                const color = isRed ? 0xfe4dae : 0x4d5afe; // Red for 30%, Blue for 70%
+                
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: color,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.15 + Math.random() * 0.25
+                });
+                
+                const pyramid = new THREE.Mesh(geometry, material);
+                
+                pyramid.position.x = (Math.random() - 0.5) * 80;
+                pyramid.position.y = (Math.random() - 0.5) * 30;
+                pyramid.position.z = (Math.random() - 0.5) * 80;
+                
+                pyramid.rotation.x = Math.random() * Math.PI;
+                pyramid.rotation.y = Math.random() * Math.PI;
+                pyramid.rotation.z = Math.random() * Math.PI;
+                
+                pyramid.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.008,
+                    floatSpeed: 0.5 + Math.random() * 1,
+                    floatAmplitude: 0.2 + Math.random() * 0.6
+                };
+                
+                scene.add(pyramid);
+                pyramids.push(pyramid);
+            }
+            
+            // Add floating cubes - all blue
+            const cubes = [];
+            const cubeCount = 25;
+            
+            for (let i = 0; i < cubeCount; i++) {
+                const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x6d7cff, // Blue
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.08
+                });
+                
+                const cube = new THREE.Mesh(geometry, material);
+                
+                cube.position.x = (Math.random() - 0.5) * 90;
+                cube.position.y = (Math.random() - 0.5) * 30;
+                cube.position.z = (Math.random() - 0.5) * 90;
+                
+                cube.rotation.x = Math.random() * Math.PI;
+                cube.rotation.y = Math.random() * Math.PI;
+                
+                cube.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.006
+                };
+                
+                scene.add(cube);
+                cubes.push(cube);
+            }
+            
+            // Add floating particles - mix of blue and red
+            const particleCount = 150;
+            const particleGeometry = new THREE.BufferGeometry();
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.04,
+                transparent: true,
+                opacity: 0.2,
+                blending: THREE.AdditiveBlending,
+                vertexColors: true // Enable vertex colors
+            });
+            
+            const particlePositions = new Float32Array(particleCount * 3);
+            const particleColors = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                // Position
+                particlePositions[i] = (Math.random() - 0.5) * 200;
+                particlePositions[i + 1] = (Math.random() - 0.5) * 40;
+                particlePositions[i + 2] = (Math.random() - 0.5) * 200;
+                
+                // Color - 70% blue, 30% red
+                const particleIndex = i / 3;
+                const isRed = Math.random() < 0.3; // 30% chance red
+                
+                if (isRed) {
+                    // Red particles
+                    particleColors[i] = 0.99;     // R
+                    particleColors[i + 1] = 0.30; // G
+                    particleColors[i + 2] = 0.68; // B
+                } else {
+                    // Blue particles
+                    particleColors[i] = 0.30;     // R
+                    particleColors[i + 1] = 0.35; // G
+                    particleColors[i + 2] = 1.00; // B
+                }
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+            
+            camera.position.z = 40;
+            camera.position.y = 10;
+            
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const time = Date.now() * 0.001;
+                
+                // Rotate grid slowly
+                gridHelper.rotation.y += 0.0002;
+                
+                // Animate pyramids
+                pyramids.forEach((pyramid, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ, floatSpeed, floatAmplitude } = pyramid.userData;
+                    
+                    pyramid.rotation.x += rotationSpeedX;
+                    pyramid.rotation.y += rotationSpeedY;
+                    pyramid.rotation.z += rotationSpeedZ;
+                    
+                    pyramid.position.y += Math.sin(time * floatSpeed + i) * 0.006 * floatAmplitude;
+                });
+                
+                // Animate cubes
+                cubes.forEach((cube, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ } = cube.userData;
+                    
+                    cube.rotation.x += rotationSpeedX;
+                    cube.rotation.y += rotationSpeedY;
+                    cube.rotation.z += rotationSpeedZ;
+                    
+                    cube.position.y += Math.sin(time * 0.5 + i) * 0.003;
+                });
+                
+                // Rotate particles
+                particles.rotation.y += 0.00015;
+                
+                // Camera movement based on mouse
+                camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 8 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        // ========== MENU TOGGLE ==========
+        function initMenuToggle() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            if (!menuToggle || !navMenu) return;
+            
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                if (navMenu.classList.contains('active')) {
+                    navItems.forEach((item, index) => {
+                        gsap.to(item, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.6,
+                            delay: index * 0.15,
+                            ease: "power3.out"
+                        });
+                    });
+                } else {
+                    navItems.forEach((item) => {
+                        gsap.to(item, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.4,
+                            ease: "power2.in"
+                        });
+                    });
+                }
+            });
+            
+            // Close menu when clicking on nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    navItems.forEach((navItem) => {
+                        gsap.to(navItem, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
+                    });
+                    
+                    setTimeout(() => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }, 300);
+                    
+                    const href = item.getAttribute('href');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 400);
+                });
+            });
+            
+            // Close menu when clicking anywhere
+            document.addEventListener('click', (e) => {
+                if (navMenu.classList.contains('active') && 
+                    !navMenu.contains(e.target) && 
+                    !menuToggle.contains(e.target)) {
+                    
+                    navItems.forEach((item) => {
+                        gsap.to(item, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
+                    });
+                    
+                    setTimeout(() => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }, 300);
+                }
+            });
+        }
+
+        // ========== TYPEWRITER EFFECT ==========
+        function initTypewriter() {
+            const greetingText = "Hi I am,";
+            const nameText = "Nishant Parwani";
+            const subtitleText = "Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai | Student Council Contingent Leader | USFC '24";
+            
+            // Type greeting first
+            setTimeout(() => {
+                const element = document.getElementById('greetingText');
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < greetingText.length) {
+                        element.innerHTML = greetingText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = greetingText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Start typing name after greeting
+                        setTimeout(typeName, 150);
+                    }
+                }, 100);
+            }, 500);
+            
+            function typeName() {
+                const element = document.getElementById('nameText');
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < nameText.length) {
+                        element.innerHTML = nameText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = nameText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Start typing subtitle after name
+                        setTimeout(typeSubtitle, 150);
+                    }
+                }, 120);
+            }
+            
+            function typeSubtitle() {
+                const element = document.getElementById('subtitleText');
+                element.style.opacity = 1;
+                
+                // Type the full subtitle in one go
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < subtitleText.length) {
+                        element.innerHTML = subtitleText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = subtitleText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Animate footer after subtitle
+                        setTimeout(animateFooter, 300);
+                    }
+                }, 40);
+            }
+        }
+
+        // ========== ANIMATE FOOTER ==========
+        function animateFooter() {
+            const footer = document.getElementById('followFooter');
+            gsap.to(footer, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+        }
+
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            initWebGLBackground();
+            initMenuToggle();
+            // In the DOMContentLoaded event or initialization function:
+initDynamicMouseShadow();
+initNavVideoPreviews();
+            // Start typewriter after everything loads
+            setTimeout(initTypewriter, 250);
+        });
+        // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
+function initDynamicMouseShadow() {
+    const cursorShadow = document.getElementById('cursor-shadow');
+    const cursorInner = document.getElementById('cursor-inner');
+    
+    if (!cursorShadow || !cursorInner) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let shadowX = 0;
+    let shadowY = 0;
+    let innerX = 0;
+    let innerY = 0;
+    
+    // Function to get complementary color
+    function getComplementaryColor(rgb) {
+        if (!rgb) return { r: 255, g: 255, b: 255 };
+        
+        // Convert to complementary
+        return {
+            r: 255 - rgb.r,
+            g: 255 - rgb.g,
+            b: 255 - rgb.b
+        };
+    }
+    
+    // Function to get color from element
+    function getColorFromElement(element) {
+        if (!element) return { r: 255, g: 255, b: 255 };
+        
+        // Try to get computed color
+        const style = window.getComputedStyle(element);
+        let color = style.color || style.backgroundColor || '#ffffff';
+        
+        // Parse color to RGB
+        const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        if (match) {
+            return {
+                r: parseInt(match[1]),
+                g: parseInt(match[2]),
+                b: parseInt(match[3])
+            };
+        }
+        
+        // Try hex color
+        const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
+        if (hexMatch) {
+            return {
+                r: parseInt(hexMatch[1], 16),
+                g: parseInt(hexMatch[2], 16),
+                b: parseInt(hexMatch[3], 16)
+            };
+        }
+        
+        // Default white
+        return { r: 255, g: 255, b: 255 };
+    }
+    
+    // Function to update cursor colors
+    function updateCursorColors(color) {
+        const complementary = getComplementaryColor(color);
+        
+        // Update CSS variables
+        document.documentElement.style.setProperty(
+            '--current-color',
+            `rgb(${color.r}, ${color.g}, ${color.b})`
+        );
+        document.documentElement.style.setProperty(
+            '--complementary-color',
+            `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
+        );
+    }
+    
+    // Mouse move handler
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Get element under cursor
+        const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+        
+        if (elementUnderCursor) {
+            // Skip cursor elements themselves
+            if (elementUnderCursor.id === 'cursor-shadow' || 
+                elementUnderCursor.id === 'cursor-inner') return;
+            
+            // Get color from element
+            const color = getColorFromElement(elementUnderCursor);
+            
+            // Update cursor colors
+            updateCursorColors(color);
+            
+            // Size based on element type
+            const tagName = elementUnderCursor.tagName.toLowerCase();
+            const isInteractive = elementUnderCursor.onclick || 
+                                 elementUnderCursor.tagName === 'A' || 
+                                 elementUnderCursor.tagName === 'BUTTON';
+            
+            if (isInteractive) {
+                cursorShadow.style.width = '80px';
+                cursorShadow.style.height = '80px';
+            } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+                cursorShadow.style.width = '70px';
+                cursorShadow.style.height = '70px';
+            } else {
+                cursorShadow.style.width = '60px';
+                cursorShadow.style.height = '60px';
+            }
+        }
+    });
+    
+    // Animation loop
+    function animateCursor() {
+        // Smooth shadow movement (slower)
+        shadowX += (mouseX - shadowX) * 0.08;
+        shadowY += (mouseY - shadowY) * 0.08;
+        
+        // Smooth inner movement (faster)
+        innerX += (mouseX - innerX) * 0.2;
+        innerY += (mouseY - innerY) * 0.2;
+        
+        // Apply positions
+        cursorShadow.style.left = shadowX + 'px';
+        cursorShadow.style.top = shadowY + 'px';
+        
+        cursorInner.style.left = innerX + 'px';
+        cursorInner.style.top = innerY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    }
+    
+    // Initialize cursor positions
+    cursorShadow.style.left = mouseX + 'px';
+    cursorShadow.style.top = mouseY + 'px';
+    cursorInner.style.left = mouseX + 'px';
+    cursorInner.style.top = mouseY + 'px';
+    
+    // Hide cursor on elements that don't need it
+    const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
+    noCursorElements.forEach(el => {
+        el.style.cursor = 'none';
+    });
+    
+    // Hide default cursor on entire page
+    document.body.style.cursor = 'none';
+    
+    // Start animation
+    animateCursor();
+    
+    // Handle mouse leave window
+    document.addEventListener('mouseleave', () => {
+        cursorShadow.style.opacity = '0';
+        cursorInner.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursorShadow.style.opacity = '1';
+        cursorInner.style.opacity = '1';
+    });
+}
+// ========== NAVIGATION VIDEO PREVIEWS ==========
+function initNavVideoPreviews() {
+    const navItems = document.querySelectorAll('.nav-item');
+    let currentVideo = null;
+    let hoverTimer = null;
+    
+    navItems.forEach(item => {
+        const preview = item.querySelector('.nav-preview');
+        const video = item.querySelector('.preview-video');
+        
+        if (!preview || !video) return;
+        
+        // Mouse enter handler
+        item.addEventListener('mouseenter', () => {
+            // Clear any existing timer
+            clearTimeout(hoverTimer);
+            
+            // Pause current video if playing
+            if (currentVideo && currentVideo !== video) {
+                currentVideo.pause();
+                currentVideo.currentTime = 0;
+            }
+            
+            // Set hover timer for slight delay
+            hoverTimer = setTimeout(() => {
+                // Play video
+                video.currentTime = 0;
+                video.play().catch(e => {
+                    console.log('Video play failed:', e);
+                    // If autoplay fails, mute and try again
+                    video.muted = true;
+                    video.play().catch(e => console.log('Muted play also failed:', e));
+                });
+                
+                currentVideo = video;
+            }, 100); // 100ms delay before playing
+        });
+        
+        // Mouse leave handler
+        item.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimer);
+            
+            // Pause video
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+    });
+    
+    // Pause all videos when menu closes
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            if (!navMenu.classList.contains('active')) {
+                navItems.forEach(item => {
+                    const video = item.querySelector('.preview-video');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                });
+            }
+        });
+    }
+}
+    </script>
+</body>
+</html>

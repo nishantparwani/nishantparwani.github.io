@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q54VJBZQ85');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Nishant Parwani</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== PSYCHOLOGY-OPTIMIZED BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #fe4dae;
+            --accent-light: #2d76e2;
+            --accent-blue: #4d5afe;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --menu-bg: rgba(10, 10, 10, 0.3);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            position: relative;
+            min-height: 100vh;
+            opacity: 1 !important;
+            font-size: 16px; /* Optimal readability */
+        }
+
+        /* ========== PRESERVED WEBGL BACKGROUND ========== */
+        #webgl-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========== FITT'S LAW OPTIMIZED MENU ========== */
+        .menu-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(254, 77, 174, 0.3);
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 2px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== NAVIGATION MENU ========== */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--menu-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .nav-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            text-decoration: none;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item:hover {
+            color: var(--accent-blue);
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(77, 90, 254, 0.7);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover::after {
+            width: 120%;
+        }
+
+        /* ========== NAVIGATION VIDEO PREVIEWS ========== */
+        /* Adjust nav items for previews */
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 280px; /* Space for preview on right side */
+        }
+
+        .nav-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Preview container - hidden by default */
+        .nav-preview {
+            position: absolute;
+            right: --200px; /* Position to the right of text */
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 450px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 14px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--accent-light);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+        }
+
+        /* Video styling */
+        .preview-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            filter: brightness(1.05) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        /* Overlay for better visibility */
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(10, 10, 10, 0.3) 0%,
+                rgba(10, 10, 10, 0.1) 50%,
+                rgba(10, 10, 10, 0.4) 100%
+            );
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        /* Hover effects - show preview */
+        .nav-item:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) scale(1);
+            right: -280px;
+        }
+
+        .nav-item:hover .preview-video {
+            filter: brightness(1.15) contrast(1.2);
+        }
+
+        /* Add play indicator */
+        .nav-preview::before {
+            content: '▶ Preview';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        /* Glow effect on active preview */
+        .nav-item:hover .nav-preview {
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(45, 118, 226, 0.4);
+        }
+
+        /* Hide previews on mobile/tablet */
+        @media (max-width: 1024px) {
+            .nav-item {
+                padding-right: 0 !important;
+            }
+            
+            .nav-preview {
+                display: none !important;
+            }
+        }
+
+        /* Adjust for responsive sizes */
+        @media (max-width: 768px) {
+            .nav-preview {
+                width: 240px;
+                height: 150px;
+                right: -260px;
+            }
+            
+            .nav-item:hover .nav-preview {
+                right: -240px;
+            }
+        }
+
+        /* ========== VERTICAL CONTENT STACK ========== */
+        .vertical-stack {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 10rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== SECTION 1: HERO (ABOVE THE FOLD) ========== */
+        .hero-section {
+            min-height: calc(100vh - 8rem);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        /* Hero Stats Grid - Zeigarnik Effect */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.8rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(77, 90, 254, 0.2);
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Hero Visual - Curiosity Gap */
+        .hero-visual {
+            opacity: 0;
+            transform: translateY(20px);
+            perspective: 1000px;
+        }
+
+        .floating-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            transform-style: preserve-3d;
+            transform: rotateY(-8deg) rotateX(4deg);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-card:hover {
+            transform: rotateY(0deg) rotateX(0deg);
+            border-color: var(--accent-blue);
+        }
+
+        .floating-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .card-content {
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* ========== SECTION 2: ABOUT (200px SCROLL) ========== */
+        .about-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* About Visual Cards - Partial Reveal */
+        .about-visual {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .visual-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .visual-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(77, 90, 254, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .visual-card:hover {
+            transform: translateY(-5px) scale(1);
+            border-color: var(--accent-blue);
+        }
+
+        .visual-card:hover::before {
+            left: 100%;
+        }
+
+        .visual-icon {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .visual-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .visual-desc {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* About Content */
+        .about-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            background: rgba(254, 77, 174, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .about-text p::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Download Button - Completion Desire */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(254, 77, 174, 0.4);
+        }
+
+        /* ========== SECTION 3: PROJECTS (400px SCROLL) ========== */
+        .projects-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Projects Grid - Stagger Reveal */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(77, 90, 254, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) rotateX(2deg);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 30px rgba(77, 90, 254, 0.15);
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            background: rgba(77, 90, 254, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(77, 90, 254, 0.15);
+            color: var(--accent-blue);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            border: 1px solid rgba(77, 90, 254, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(77, 90, 254, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ========== SECTION 4: SKILLS (600px SCROLL) ========== */
+        .skills-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Skill Dials - Spin on Proximity */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-dial-container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .skill-dial-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 77, 174, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .skill-dial-container:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .skill-dial-container:hover::before {
+            left: 100%;
+        }
+
+        .skill-dial {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .dial-bg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dial-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%);
+            background: conic-gradient(var(--accent) 0%, var(--accent-blue) 100%);
+            opacity: 0.3;
+            transform: rotate(0deg);
+        }
+
+        .dial-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .skill-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-category {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ========== SECTION 5: COMPETENCIES (800px SCROLL) ========== */
+        .competencies-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .competency-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: rotateY(15deg);
+        }
+
+        .competency-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 77, 174, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .competency-card:hover {
+            transform: rotateY(0deg);
+            border-color: var(--accent);
+        }
+
+        .competency-card:hover::before {
+            left: 100%;
+        }
+
+        .competency-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: rgba(254, 77, 174, 0.1);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .competency-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .competency-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .competency-desc {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* ========== HICK'S LAW PROGRESS INDICATOR ========== */
+        .scroll-progress {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-dots {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--text-dim);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .progress-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .progress-dot:hover {
+            background: var(--accent-blue);
+            transform: scale(1.2);
+        }
+
+        /* ========== UPDATED FOOTER (FROM PROVIDED CODE) ========== */
+        .follow-footer {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 500px;
+            background: rgba(71, 70, 70, 0); /* 85% transparent */
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            text-align: center;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            letter-spacing: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Lighter border */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .follow-footer .follow-text {
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .follow-footer .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+            align-items: center;
+        }
+
+        .follow-footer .social-icons a {
+            color: #fff;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .follow-footer .social-icons a:hover {
+            color: #e75454;
+        }
+
+        .copyright {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            color: #aaa; /* Lighter color for more visibility on transparent background */
+            text-align: center;
+            padding: 0.4rem 0 0;
+            user-select: none;
+        }
+
+        /* ========== DYNAMIC MOUSE SHADOW ========== */
+        #cursor-shadow {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(
+            circle,
+            transparent 0%,
+            var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
+            var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
+        );
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-inner {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--current-color, #ffffff);
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: background 0.5s ease;
+            box-shadow: 0 0 10px var(--current-color, #ffffff);
+        }
+
+        /* ========== PSYCHOLOGY RESPONSIVE BREAKPOINTS ========== */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-item {
+                font-size: 4rem;
+            }
+            
+            .hero-section,
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-visual,
+            .about-visual {
+                order: -1;
+            }
+            
+            .vertical-stack {
+                padding: 7rem 1.5rem 8rem;
+            }
+            
+            .follow-footer {
+                width: 85%;
+                max-width: 450px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                top: 1.5rem;
+                left: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .nav-item {
+                font-size: 3rem;
+            }
+            
+            .vertical-stack {
+                padding: 6rem 1rem 7rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 6vw, 3.5rem);
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid,
+            .skills-grid,
+            .competencies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-visual {
+                grid-template-columns: 1fr;
+            }
+            
+            .scroll-progress {
+                width: 200px;
+            }
+            
+            .follow-footer {
+                width: 90%;
+                max-width: 400px;
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                bottom: 1rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-toggle {
+                top: 1rem;
+                left: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .nav-item {
+                font-size: 2.5rem;
+            }
+            
+            .vertical-stack {
+                padding: 5rem 1rem 6rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .follow-footer {
+                width: 92%;
+                max-width: 350px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+                bottom: 0.8rem;
+            }
+            
+            .follow-footer .social-icons {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .copyright {
+                font-size: 0.55rem;
+                color: #bbb; /* Even lighter for mobile */
+            }
+            
+            .stat-card,
+            .floating-card,
+            .about-content,
+            .project-card,
+            .skill-dial-container,
+            .competency-card {
+                padding: 1.5rem;
+            }
+            
+            body {
+                font-size: 14px; /* Legibility threshold */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic Mouse Shadow -->
+    <div id="cursor-shadow"></div>
+    <div id="cursor-inner"></div>
+    
+    <!-- PRESERVED WebGL Background -->
+    <canvas id="webgl-bg"></canvas>
+    
+    <!-- Fitt's Law Optimized Menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- Navigation Menu with Video Previews -->
+    <div class="nav-menu" id="navMenu">
+        <div class="nav-items">
+            <!-- Home with preview -->
+            <a href="index.html" class="nav-item" data-preview="home">
+                <span class="nav-text">Home</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/index.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Experience with preview -->
+            <a href="experience.html" class="nav-item" data-preview="experience">
+                <span class="nav-text">Experience</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/experience.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Contact with preview -->
+            <a href="contact.html" class="nav-item" data-preview="contact">
+                <span class="nav-text">Contact</span>
+                <div class="nav-preview">
+                    <video class="preview-video" muted loop preload="auto">
+                        <source src="images/contact.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hick's Law Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-dots">
+            <div class="progress-dot active" data-section="hero"></div>
+            <div class="progress-dot" data-section="about"></div>
+            <div class="progress-dot" data-section="projects"></div>
+            <div class="progress-dot" data-section="skills"></div>
+            <div class="progress-dot" data-section="competencies"></div>
+        </div>
+    </div>
+    
+    <!-- VERTICAL CONTENT STACK -->
+    <div class="vertical-stack">
+        <!-- Section 1: Hero (Above the Fold) -->
+        <section class="hero-section" id="section-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Nishant Parwani</h1>
+                <div class="hero-subtitle">
+                    Second-year dual degree (MBA + BTech) Computer Science student passionate about 
+                    innovative technology solutions and real-world applications.
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-card" data-delay="0.1">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-title">Education</div>
+                        <div class="stat-value">Dual Degree CS</div>
+                    </div>
+                    
+                    <div class="stat-card" data-delay="0.2">
+                        <div class="stat-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="stat-title">Location</div>
+                        <div class="stat-value">Mumbai, India</div>
+                    </div>
+                    
+                    <div class="stat-card" data-delay="0.3">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-title">Focus Areas</div>
+                        <div class="stat-value">AI/ML, Web Dev</div>
+                    </div>
+                    
+                    <div class="stat-card" data-delay="0.4">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-title">Status</div>
+                        <div class="stat-value">Seeking Internships</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <h3 class="card-title">Innovation Driven</h3>
+                    <div class="card-content">
+                        Passionate about turning complex problems into elegant technological solutions. 
+                        Currently exploring the intersection of AI, web technologies, and real-world applications.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 2: About (200px Scroll) -->
+        <section class="about-section" id="section-about">
+            <div class="about-container">
+                <div class="about-visual">
+                    <div class="visual-card" data-delay="0.1">
+                        <div class="visual-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="visual-title">Fast Learner</h4>
+                        <div class="visual-desc">Quickly adapt to new technologies and methodologies</div>
+                    </div>
+                    
+                    <div class="visual-card" data-delay="0.2">
+                        <div class="visual-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="visual-title">Problem Solver</h4>
+                        <div class="visual-desc">Analytical approach to complex challenges</div>
+                    </div>
+                    
+                    <div class="visual-card" data-delay="0.3">
+                        <div class="visual-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="visual-title">Team Player</h4>
+                        <div class="visual-desc">Collaborative mindset with leadership skills</div>
+                    </div>
+                    
+                    <div class="visual-card" data-delay="0.4">
+                        <div class="visual-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="visual-title">Growth Oriented</h4>
+                        <div class="visual-desc">Continuously expanding skills and knowledge</div>
+                    </div>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-header">
+                        <div class="about-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h2 class="about-title">My Journey</h2>
+                            <div class="section-subtitle">From curiosity to creation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <p>Hi! I am a Second-year dual degree (MBA + BTech) Computer Science student with a keen interest in using technology to solve practical problems.</p>
+                        
+                        <p>My studies have helped me build a strong foundation in Python, RegX, HTML, CSS, and C++. I love applying these skills to real-world projects.</p>
+                        
+                        <p>I'm especially passionate about data analysis and AI. I've explored using data for predictions, such as stock market trends, and I'm always eager to learn more about tech applications in real life.</p>
+                        
+                        <p>I'm actively seeking work internships/research internships in software engineering, AI/ML, and cloud computing to gain hands-on experience.</p>
+                        
+                        <p>Let's connect! I'm always open to discussing projects, internships, or just tech trends in general.</p>
+                    </div>
+                    
+                    <a href="./images/resume.pdf" download class="download-btn" aria-label="Download Resume">
+                        <i class="fas fa-file-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Projects (400px Scroll) -->
+        <section class="projects-section" id="section-projects">
+            <div class="section-header">
+                <h2 class="section-title">Projects & Development</h2>
+                <div class="section-subtitle">Turning ideas into reality through innovative solutions</div>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Arduino Projects -->
+                <div class="project-card" data-delay="0.1">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="tech-tag">Arduino</div>
+                    </div>
+                    <h3 class="project-name">Radar using SONAR</h3>
+                    <p class="project-desc">Ultrasonic distance measurement with real-time spatial mapping and visualization.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Sensors</span>
+                        <span class="tech-tag">Embedded</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-delay="0.2">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="tech-tag">ESP32</div>
+                    </div>
+                    <h3 class="project-name">Heartbeat Sensor</h3>
+                    <p class="project-desc">Live abnormality detection and alert system for health monitoring with IoT integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">Healthcare</span>
+                        <span class="tech-tag">ESP32</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-delay="0.3">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-vote-yea"></i>
+                        </div>
+                        <div class="tech-tag">Blockchain</div>
+                    </div>
+                    <h3 class="project-name">Secure Voting System</h3>
+                    <p class="project-desc">Blockchain-based voting machine with Firebase integration for enhanced security.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Blockchain</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Security</span>
+                    </div>
+                </div>
+                
+                <!-- Python Projects -->
+                <div class="project-card" data-delay="0.4">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="tech-tag">Python</div>
+                    </div>
+                    <h3 class="project-name">Stock Predictor</h3>
+                    <p class="project-desc">Machine learning models for financial market analysis using real-time API data.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">ML</span>
+                        <span class="tech-tag">APIs</span>
+                        <span class="tech-tag">Finance</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-delay="0.5">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="tech-tag">Data Science</div>
+                    </div>
+                    <h3 class="project-name">Land Price Predictor</h3>
+                    <p class="project-desc">Property valuation system with predictive modeling and comprehensive data analysis.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Regression</span>
+                        <span class="tech-tag">Analysis</span>
+                        <span class="tech-tag">Real Estate</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-delay="0.6">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tech-tag">Web Dev</div>
+                    </div>
+                    <h3 class="project-name">Interactive Portfolio</h3>
+                    <p class="project-desc">Modern portfolio with Three.js animations, GSAP transitions, and responsive design.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">GSAP</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: Skills (600px Scroll) -->
+        <section class="skills-section" id="section-skills">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="section-subtitle">Tools & technologies I work with</div>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-dial-container" data-delay="0.1">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="90"></div>
+                        </div>
+                        <div class="dial-value">90%</div>
+                    </div>
+                    <h3 class="skill-name">Python</h3>
+                    <div class="skill-category">Programming</div>
+                </div>
+                
+                <div class="skill-dial-container" data-delay="0.2">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="85"></div>
+                        </div>
+                        <div class="dial-value">85%</div>
+                    </div>
+                    <h3 class="skill-name">C++</h3>
+                    <div class="skill-category">Programming</div>
+                </div>
+                
+                <div class="skill-dial-container" data-delay="0.3">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="80"></div>
+                        </div>
+                        <div class="dial-value">80%</div>
+                    </div>
+                    <h3 class="skill-name">JavaScript</h3>
+                    <div class="skill-category">Web Development</div>
+                </div>
+                
+                <div class="skill-dial-container" data-delay="0.4">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="75"></div>
+                        </div>
+                        <div class="dial-value">75%</div>
+                    </div>
+                    <h3 class="skill-name">HTML/CSS</h3>
+                    <div class="skill-category">Web Development</div>
+                </div>
+                
+                <div class="skill-dial-container" data-delay="0.5">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="70"></div>
+                        </div>
+                        <div class="dial-value">70%</div>
+                    </div>
+                    <h3 class="skill-name">Three.js</h3>
+                    <div class="skill-category">WebGL & 3D</div>
+                </div>
+                
+                <div class="skill-dial-container" data-delay="0.6">
+                    <div class="skill-dial">
+                        <div class="dial-bg">
+                            <div class="dial-fill" data-percent="65"></div>
+                        </div>
+                        <div class="dial-value">65%</div>
+                    </div>
+                    <h3 class="skill-name">MySQL</h3>
+                    <div class="skill-category">Database</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: Competencies (800px Scroll) -->
+        <section class="competencies-section" id="section-competencies">
+            <div class="section-header">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="section-subtitle">Beyond technical skills</div>
+            </div>
+            
+            <div class="competencies-grid">
+                <div class="competency-card" data-delay="0.1">
+                    <div class="competency-number">I</div>
+                    <div class="competency-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="competency-name">Communication</h3>
+                    <p class="competency-desc">Multilingual proficiency in Hindi, English, Gujarati, Sindhi, Punjabi (A2), and French (A2). Effective in technical and cross-cultural communication.</p>
+                </div>
+                
+                <div class="competency-card" data-delay="0.2">
+                    <div class="competency-number">II</div>
+                    <div class="competency-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="competency-name">Adaptability</h3>
+                    <p class="competency-desc">Dynamic thinking and quick learning ability for new tasks and situations. Flexible approach to evolving methodologies and technologies.</p>
+                </div>
+                
+                <div class="competency-card" data-delay="0.3">
+                    <div class="competency-number">III</div>
+                    <div class="competency-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="competency-name">Leadership</h3>
+                    <p class="competency-desc">Proven leadership in student organizations, managing teams, and driving initiatives to successful completion.</p>
+                </div>
+                
+                <div class="competency-card" data-delay="0.4">
+                    <div class="competency-number">IV</div>
+                    <div class="competency-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="competency-name">Team Collaboration</h3>
+                    <p class="competency-desc">Excellent team player with experience in cross-functional collaboration, understanding team dynamics, and contributing to collective goals.</p>
+                </div>
+                
+                <div class="competency-card" data-delay="0.5">
+                    <div class="competency-number">V</div>
+                    <div class="competency-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="competency-name">Creative Development</h3>
+                    <p class="competency-desc">Ability to deploy innovative approaches and vivid textures during frontend development and problem-solving scenarios.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- UPDATED FOOTER (FROM PROVIDED CODE) -->
+    <footer class="follow-footer" id="followFooter" aria-label="Follow Nishant">
+        <div class="follow-text">FOLLOW NISHANT</div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/nishant_parwani/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:nishantparwani2007@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://x.com/nishant_parwani" target="_blank" rel="noopener noreferrer" aria-label="X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Nishant Parwani. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+    // ========== NAVIGATION VIDEO PREVIEWS ==========
+    function initNavVideoPreviews() {
+        const navItems = document.querySelectorAll('.nav-item');
+        let currentVideo = null;
+        let hoverTimer = null;
+        
+        navItems.forEach(item => {
+            const preview = item.querySelector('.nav-preview');
+            const video = item.querySelector('.preview-video');
+            
+            if (!preview || !video) return;
+            
+            // Mouse enter handler
+            item.addEventListener('mouseenter', () => {
+                // Clear any existing timer
+                clearTimeout(hoverTimer);
+                
+                // Pause current video if playing
+                if (currentVideo && currentVideo !== video) {
+                    currentVideo.pause();
+                    currentVideo.currentTime = 0;
+                }
+                
+                // Set hover timer for slight delay
+                hoverTimer = setTimeout(() => {
+                    // Play video
+                    video.currentTime = 0;
+                    video.play().catch(e => {
+                        console.log('Video play failed:', e);
+                        // If autoplay fails, mute and try again
+                        video.muted = true;
+                        video.play().catch(e => console.log('Muted play also failed:', e));
+                    });
+                    
+                    currentVideo = video;
+                }, 100); // 100ms delay before playing
+            });
+            
+            // Mouse leave handler
+            item.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimer);
+                
+                // Pause video
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        });
+        
+        // Pause all videos when menu closes
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                if (!navMenu.classList.contains('active')) {
+                    navItems.forEach(item => {
+                        const video = item.querySelector('.preview-video');
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    // ========== PRESERVED WEBGL BACKGROUND ==========
+    function initWebGLBackground() {
+        try {
+            const canvas = document.getElementById('webgl-bg');
+            if (!canvas) {
+                console.warn("WebGL canvas not found");
+                return;
+            }
+            
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) {
+                console.warn("WebGL not supported");
+                canvas.style.display = 'none';
+                return;
+            }
+            
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                canvas, 
+                alpha: true,
+                antialias: true
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Grid
+            const gridHelper = new THREE.GridHelper(200, 200, 0x4d5afe, 0x4d5afe);
+            gridHelper.material.opacity = 0.08;
+            gridHelper.material.transparent = true;
+            scene.add(gridHelper);
+            
+            // Pyramids - 70% blue, 30% red
+            const pyramids = [];
+            const pyramidCount = 40;
+            
+            for (let i = 0; i < pyramidCount; i++) {
+                const geometry = new THREE.ConeGeometry(0.6, 1.2, 4);
+                const isRed = i < Math.floor(pyramidCount * 0.3);
+                const color = isRed ? 0xfe4dae : 0x4d5afe;
+                
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: color,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.15 + Math.random() * 0.25
+                });
+                
+                const pyramid = new THREE.Mesh(geometry, material);
+                
+                pyramid.position.x = (Math.random() - 0.5) * 80;
+                pyramid.position.y = (Math.random() - 0.5) * 30;
+                pyramid.position.z = (Math.random() - 0.5) * 80;
+                
+                pyramid.rotation.x = Math.random() * Math.PI;
+                pyramid.rotation.y = Math.random() * Math.PI;
+                pyramid.rotation.z = Math.random() * Math.PI;
+                
+                pyramid.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.008,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.008,
+                    floatSpeed: 0.5 + Math.random() * 1,
+                    floatAmplitude: 0.2 + Math.random() * 0.6
+                };
+                
+                scene.add(pyramid);
+                pyramids.push(pyramid);
+            }
+            
+            // Cubes - all blue
+            const cubes = [];
+            const cubeCount = 25;
+            
+            for (let i = 0; i < cubeCount; i++) {
+                const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x6d7cff,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.08
+                });
+                
+                const cube = new THREE.Mesh(geometry, material);
+                
+                cube.position.x = (Math.random() - 0.5) * 90;
+                cube.position.y = (Math.random() - 0.5) * 30;
+                cube.position.z = (Math.random() - 0.5) * 90;
+                
+                cube.rotation.x = Math.random() * Math.PI;
+                cube.rotation.y = Math.random() * Math.PI;
+                
+                cube.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.006,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.006
+                };
+                
+                scene.add(cube);
+                cubes.push(cube);
+            }
+            
+            // Particles
+            const particleCount = 150;
+            const particleGeometry = new THREE.BufferGeometry();
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.04,
+                transparent: true,
+                opacity: 0.2,
+                blending: THREE.AdditiveBlending,
+                vertexColors: true
+            });
+            
+            const particlePositions = new Float32Array(particleCount * 3);
+            const particleColors = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                particlePositions[i] = (Math.random() - 0.5) * 200;
+                particlePositions[i + 1] = (Math.random() - 0.5) * 40;
+                particlePositions[i + 2] = (Math.random() - 0.5) * 200;
+                
+                const particleIndex = i / 3;
+                const isRed = Math.random() < 0.3;
+                
+                if (isRed) {
+                    particleColors[i] = 0.99;
+                    particleColors[i + 1] = 0.30;
+                    particleColors[i + 2] = 0.68;
+                } else {
+                    particleColors[i] = 0.30;
+                    particleColors[i + 1] = 0.35;
+                    particleColors[i + 2] = 1.00;
+                }
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+            
+            camera.position.z = 40;
+            camera.position.y = 10;
+            
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const time = Date.now() * 0.001;
+                
+                gridHelper.rotation.y += 0.0002;
+                
+                pyramids.forEach((pyramid, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ, floatSpeed, floatAmplitude } = pyramid.userData;
+                    
+                    pyramid.rotation.x += rotationSpeedX;
+                    pyramid.rotation.y += rotationSpeedY;
+                    pyramid.rotation.z += rotationSpeedZ;
+                    
+                    pyramid.position.y += Math.sin(time * floatSpeed + i) * 0.006 * floatAmplitude;
+                });
+                
+                cubes.forEach((cube, i) => {
+                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ } = cube.userData;
+                    
+                    cube.rotation.x += rotationSpeedX;
+                    cube.rotation.y += rotationSpeedY;
+                    cube.rotation.z += rotationSpeedZ;
+                    
+                    cube.position.y += Math.sin(time * 0.5 + i) * 0.003;
+                });
+                
+                particles.rotation.y += 0.00015;
+                
+                camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 8 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+        } catch (error) {
+            console.error("WebGL initialization error:", error);
+            const canvas = document.getElementById('webgl-bg');
+            if (canvas) canvas.style.display = 'none';
+        }
+    }
+
+    // ========== PRESERVED MENU TOGGLE ==========
+    function initMenuToggle() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        if (!menuToggle || !navMenu) {
+            console.warn("Menu elements not found");
+            return;
+        }
+        
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                navItems.forEach((item, index) => {
+                    gsap.to(item, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: index * 0.15,
+                        ease: "power3.out"
+                    });
+                });
+            } else {
+                navItems.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.4,
+                        ease: "power2.in"
+                    });
+                });
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                navItems.forEach((navItem) => {
+                    gsap.to(navItem, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        ease: "power2.in"
+                    });
+                });
+                
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 300);
+                
+                const href = item.getAttribute('href');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 400);
+            });
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                
+                navItems.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        ease: "power2.in"
+                    });
+                });
+                
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 300);
+            }
+        });
+    }
+
+    // ========== PSYCHOLOGY-DRIVEN SCROLL ANIMATIONS ==========
+    function initPsychologyAnimations() {
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Progress bar and dots
+        const progressBar = document.getElementById('progressBar');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const sections = document.querySelectorAll('section[id^="section-"]');
+        
+        // Update progress on scroll
+        function updateProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = `${scrollPercent}%`;
+            
+            // Update active dot based on current section
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+                    progressDots.forEach(dot => dot.classList.remove('active'));
+                    if (progressDots[index]) {
+                        progressDots[index].classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Click progress dots to navigate
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (sections[index]) {
+                    sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Scroll event
+        window.addEventListener('scroll', updateProgress);
+        
+        // Initial progress update
+        updateProgress();
+        
+        // ========== HERO SECTION ANIMATIONS (Above the Fold) ==========
+        const heroContent = document.querySelector('.hero-content');
+        const heroVisual = document.querySelector('.hero-visual');
+        const statCards = document.querySelectorAll('.stat-card');
+        
+        // Hero entrance animation
+        gsap.fromTo(heroContent,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: heroContent,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        gsap.fromTo(heroVisual,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                delay: 0.3,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: heroVisual,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        // Stat cards stagger animation
+        statCards.forEach((card, index) => {
+            const delay = parseFloat(card.dataset.delay) || index * 0.1;
+            
+            gsap.fromTo(card,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: delay,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // ========== ABOUT SECTION ANIMATIONS (200px Scroll) ==========
+        const aboutSection = document.getElementById('section-about');
+        const visualCards = document.querySelectorAll('.visual-card');
+        
+        // About section entrance
+        gsap.fromTo(aboutSection,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: aboutSection,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        // Visual cards scale animation
+        visualCards.forEach((card, index) => {
+            const delay = parseFloat(card.dataset.delay) || index * 0.1;
+            
+            gsap.fromTo(card,
+                { opacity: 0, scale: 0.9 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    delay: delay,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // ========== PROJECTS SECTION ANIMATIONS (400px Scroll) ==========
+        const projectsSection = document.getElementById('section-projects');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        // Projects section entrance
+        gsap.fromTo(projectsSection,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: projectsSection,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        // Project cards stagger animation
+        projectCards.forEach((card, index) => {
+            const delay = parseFloat(card.dataset.delay) || index * 0.1;
+            
+            gsap.fromTo(card,
+                { opacity: 0, y: 20, rotationY: 5 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotationY: 0,
+                    duration: 0.8,
+                    delay: delay,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // ========== SKILLS SECTION ANIMATIONS (600px Scroll) ==========
+        const skillsSection = document.getElementById('section-skills');
+        const skillDials = document.querySelectorAll('.skill-dial-container');
+        const dialFills = document.querySelectorAll('.dial-fill');
+        
+        // Skills section entrance
+        gsap.fromTo(skillsSection,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: skillsSection,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        // Skill dials scale animation
+        skillDials.forEach((dial, index) => {
+            const delay = parseFloat(dial.dataset.delay) || index * 0.1;
+            
+            gsap.fromTo(dial,
+                { opacity: 0, scale: 0.9 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.8,
+                    delay: delay,
+                    ease: "back.out(1.7)",
+                    scrollTrigger: {
+                        trigger: dial,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // Animate dial fills on scroll proximity
+        dialFills.forEach((fill) => {
+            const percent = parseInt(fill.dataset.percent);
+            
+            ScrollTrigger.create({
+                trigger: fill,
+                start: "top 90%",
+                onEnter: () => {
+                    gsap.to(fill, {
+                        rotation: percent * 3.6,
+                        duration: 1.5,
+                        ease: "power2.out",
+                        onUpdate: function() {
+                            const currentPercent = Math.min(percent, Math.round(this.progress() * percent));
+                            const valueElement = fill.closest('.skill-dial').querySelector('.dial-value');
+                            if (valueElement) {
+                                valueElement.textContent = `${currentPercent}%`;
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        
+        // ========== COMPETENCIES SECTION ANIMATIONS (800px Scroll) ==========
+        const competenciesSection = document.getElementById('section-competencies');
+        const competencyCards = document.querySelectorAll('.competency-card');
+        
+        // Competencies section entrance
+        gsap.fromTo(competenciesSection,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: competenciesSection,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        // Competency cards flip animation
+        competencyCards.forEach((card, index) => {
+            const delay = parseFloat(card.dataset.delay) || index * 0.1;
+            
+            gsap.fromTo(card,
+                { opacity: 0, rotationY: 15 },
+                {
+                    opacity: 1,
+                    rotationY: 0,
+                    duration: 0.8,
+                    delay: delay,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // ========== MICRO-INTERACTION HOVER EFFECTS ==========
+        
+        // 3D tilt effect for cards
+        const tiltCards = document.querySelectorAll('.stat-card, .project-card, .competency-card, .floating-card');
+        
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = ((x - centerX) / centerX) * 3;
+                const rotateX = ((centerY - y) / centerY) * 3;
+                
+                gsap.to(card, {
+                    rotationY: rotateY,
+                    rotationX: rotateX,
+                    duration: 0.3,
+                    ease: "power1.out",
+                    transformStyle: "preserve-3d"
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    duration: 0.5,
+                    ease: "power3.out"
+                });
+            });
+        });
+        
+        // Download button animation
+        const downloadBtn = document.querySelector('.download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('mouseenter', () => {
+                gsap.to(downloadBtn, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            downloadBtn.addEventListener('mouseleave', () => {
+                gsap.to(downloadBtn, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        }
+        
+        // Progress dot hover effects
+        progressDots.forEach(dot => {
+            dot.addEventListener('mouseenter', () => {
+                gsap.to(dot, {
+                    scale: 1.2,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+            
+            dot.addEventListener('mouseleave', () => {
+                if (!dot.classList.contains('active')) {
+                    gsap.to(dot, {
+                        scale: 1,
+                        duration: 0.2,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+        
+        // Tech tag hover effects
+        const techTags = document.querySelectorAll('.tech-tag');
+        techTags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                gsap.to(tag, {
+                    y: -2,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+            
+            tag.addEventListener('mouseleave', () => {
+                gsap.to(tag, {
+                    y: 0,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+        });
+    }
+
+    // ========== ANIMATE FOOTER ==========
+    function animateFooter() {
+        const footer = document.getElementById('followFooter');
+        gsap.to(footer, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+    }
+
+    // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
+    function initDynamicMouseShadow() {
+        const cursorShadow = document.getElementById('cursor-shadow');
+        const cursorInner = document.getElementById('cursor-inner');
+        
+        if (!cursorShadow || !cursorInner) return;
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let shadowX = 0;
+        let shadowY = 0;
+        let innerX = 0;
+        let innerY = 0;
+        
+        // Function to get complementary color
+        function getComplementaryColor(rgb) {
+            if (!rgb) return { r: 255, g: 255, b: 255 };
+            
+            // Convert to complementary
+            return {
+                r: 255 - rgb.r,
+                g: 255 - rgb.g,
+                b: 255 - rgb.b
+            };
+        }
+        
+        // Function to get color from element
+        function getColorFromElement(element) {
+            if (!element) return { r: 255, g: 255, b: 255 };
+            
+            // Try to get computed color
+            const style = window.getComputedStyle(element);
+            let color = style.color || style.backgroundColor || '#ffffff';
+            
+            // Parse color to RGB
+            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (match) {
+                return {
+                    r: parseInt(match[1]),
+                    g: parseInt(match[2]),
+                    b: parseInt(match[3])
+                };
+            }
+            
+            // Try hex color
+            const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
+            if (hexMatch) {
+                return {
+                    r: parseInt(hexMatch[1], 16),
+                    g: parseInt(hexMatch[2], 16),
+                    b: parseInt(hexMatch[3], 16)
+                };
+            }
+            
+            // Default white
+            return { r: 255, g: 255, b: 255 };
+        }
+        
+        // Function to update cursor colors
+        function updateCursorColors(color) {
+            const complementary = getComplementaryColor(color);
+            
+            // Update CSS variables
+            document.documentElement.style.setProperty(
+                '--current-color',
+                `rgb(${color.r}, ${color.g}, ${color.b})`
+            );
+            document.documentElement.style.setProperty(
+                '--complementary-color',
+                `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
+            );
+        }
+        
+        // Mouse move handler
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Get element under cursor
+            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+            
+            if (elementUnderCursor) {
+                // Skip cursor elements themselves
+                if (elementUnderCursor.id === 'cursor-shadow' || 
+                    elementUnderCursor.id === 'cursor-inner') return;
+                
+                // Get color from element
+                const color = getColorFromElement(elementUnderCursor);
+                
+                // Update cursor colors
+                updateCursorColors(color);
+                
+                // Size based on element type
+                const tagName = elementUnderCursor.tagName.toLowerCase();
+                const isInteractive = elementUnderCursor.onclick || 
+                                     elementUnderCursor.tagName === 'A' || 
+                                     elementUnderCursor.tagName === 'BUTTON';
+                
+                if (isInteractive) {
+                    cursorShadow.style.width = '80px';
+                    cursorShadow.style.height = '80px';
+                } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+                    cursorShadow.style.width = '70px';
+                    cursorShadow.style.height = '70px';
+                } else {
+                    cursorShadow.style.width = '60px';
+                    cursorShadow.style.height = '60px';
+                }
+            }
+        });
+        
+        // Animation loop
+        function animateCursor() {
+            // Smooth shadow movement (slower)
+            shadowX += (mouseX - shadowX) * 0.08;
+            shadowY += (mouseY - shadowY) * 0.08;
+            
+            // Smooth inner movement (faster)
+            innerX += (mouseX - innerX) * 0.2;
+            innerY += (mouseY - innerY) * 0.2;
+            
+            // Apply positions
+            cursorShadow.style.left = shadowX + 'px';
+            cursorShadow.style.top = shadowY + 'px';
+            
+            cursorInner.style.left = innerX + 'px';
+            cursorInner.style.top = innerY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        // Initialize cursor positions
+        cursorShadow.style.left = mouseX + 'px';
+        cursorShadow.style.top = mouseY + 'px';
+        cursorInner.style.left = mouseX + 'px';
+        cursorInner.style.top = mouseY + 'px';
+        
+        // Hide cursor on elements that don't need it
+        const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
+        noCursorElements.forEach(el => {
+            el.style.cursor = 'none';
+        });
+        
+        // Hide default cursor on entire page
+        document.body.style.cursor = 'none';
+        
+        // Start animation
+        animateCursor();
+        
+        // Handle mouse leave window
+        document.addEventListener('mouseleave', () => {
+            cursorShadow.style.opacity = '0';
+            cursorInner.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursorShadow.style.opacity = '1';
+            cursorInner.style.opacity = '1';
+        });
+    }
+
+    // ========== INITIALIZE EVERYTHING ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("Initializing psychology-optimized UI...");
+        
+        // Initialize WebGL background (preserved)
+        initWebGLBackground();
+        
+        // Initialize menu toggle (preserved)
+        initMenuToggle();
+        
+        // Initialize video previews
+        initNavVideoPreviews();
+        
+        // Initialize dynamic mouse shadow
+        initDynamicMouseShadow();
+        
+        // Initialize psychology-driven animations
+        initPsychologyAnimations();
+        
+        // Animate footer on load
+        setTimeout(animateFooter, 500);
+        
+        console.log("Psychology-driven UI initialized successfully");
+    });
+
+    // Fallback for WebGL
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWebGLBackground);
+    } else {
+        initWebGLBackground();
+    }
+    </script>
+</body>
+</html>
