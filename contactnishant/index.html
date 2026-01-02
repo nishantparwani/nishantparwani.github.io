@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="https://www.google.com/recaptcha/enterprise.js?render=6Le9rj0sAAAAABCSUP61VVtY0jIATpr_iggcX-0m"></script>
+<head>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     
     <style>
         /* ========== PSYCHOLOGY-OPTIMIZED BASE ========== */
@@ -491,12 +490,7 @@
             opacity: 0.8;
         }
 
-        /* reCAPTCHA Styling */
-        .g-recaptcha {
-            margin: 1.5rem 0;
-            transform: scale(0.95);
-            transform-origin: 0 0;
-        }
+
 
         /* Submit Button */
         .submit-btn {
@@ -721,9 +715,7 @@
                 font-size: 0.6rem;
             }
             
-            .g-recaptcha {
-                transform: scale(0.85);
-            }
+            
         }
 
         @media (max-width: 480px) {
@@ -773,9 +765,7 @@
                 font-size: 14px;
             }
             
-            .g-recaptcha {
-                transform: scale(0.75);
-            }
+            
         }
     </style>
 </head>
@@ -936,7 +926,6 @@
                         ></textarea>
                     </div>
                     
-                    <div class="g-recaptcha" data-sitekey="6Le9rj0sAAAAABCSUP61VVtY0jIATpr_iggcX-0m"></div>
 
                     
                     <button type="submit" class="submit-btn">
@@ -1293,13 +1282,7 @@
         
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Validate reCAPTCHA
-            const captchaResponse = grecaptcha.getResponse();
-            if (!captchaResponse) {
-                showResponse('Please complete the Google reCAPTCHA first.', 'error');
-                return;
-            }
+
             
             // Validate phone number
             const phoneInput = document.getElementById('phone');
@@ -1330,7 +1313,7 @@
                 if (response.ok) {
                     showResponse('Thanks for getting in touch! I\'ll get back to you soon.', 'success');
                     contactForm.reset();
-                    grecaptcha.reset();
+                    
                 } else {
                     throw new Error('Network response was not ok');
                 }
