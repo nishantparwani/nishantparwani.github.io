@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+    <meta name="description" content="Portfolio website of Nishant Parwani, showcasing experience, projects and contact info.">
+<meta property="og:title" content="Nishant Parwani | Portfolio" />
+<meta property="og:image" content="link-to-hero.jpg" />
+<meta property="og:type" content="website" />
+<meta name="keywords" content="Nishant Parwani, NishantP, Nishant Parwani portfolio, Nishant developer">
+<meta name="author" content="Nishant Parwani">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,25 +17,25 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience | Nishant Parwani</title>
+    <title>Nishant Parwani | Portfolio</title>
     
     <!-- Favicon -->
     <!-- Favicons -->
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
 
+    
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ========== PSYCHOLOGY-OPTIMIZED BASE ========== */
+        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -40,10 +47,10 @@
             --secondary: #1a1a1a;
             --accent: #fe4dae;
             --accent-light: #2d76e2;
-            --accent-blue: #4d5afe;
+            --accent-dark: #535cda;
             --text: #ffffff;
             --text-dim: #a0a0a0;
-            --glass: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
             --menu-bg: rgba(10, 10, 10, 0.3);
         }
@@ -52,7 +59,6 @@
             width: 100%;
             height: 100%;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         body {
@@ -61,11 +67,11 @@
             color: var(--text);
             position: relative;
             min-height: 100vh;
-            opacity: 1 !important;
-            font-size: 16px; /* Optimal readability */
+            display: flex;
+            flex-direction: column;
         }
 
-        /* ========== PRESERVED WEBGL BACKGROUND ========== */
+        /* ========== DYNAMIC WEBGL BACKGROUND ========== */
         #webgl-bg {
             position: fixed;
             top: 0;
@@ -76,7 +82,7 @@
             pointer-events: none;
         }
 
-        /* ========== FITT'S LAW OPTIMIZED MENU ========== */
+        /* ========== MENU BUTTON ========== */
         .menu-toggle {
             position: fixed;
             top: 2rem;
@@ -169,9 +175,9 @@
         }
 
         .nav-item:hover {
-            color: var(--accent-blue);
+            color: var(--accent-light);
             letter-spacing: 3px;
-            text-shadow: 0 0 30px rgba(77, 90, 254, 0.7);
+            text-shadow: 0 0 30px rgba(45, 118, 226, 0.7);
         }
 
         .nav-item::after {
@@ -189,785 +195,191 @@
         .nav-item:hover::after {
             width: 120%;
         }
-
         /* ========== NAVIGATION VIDEO PREVIEWS ========== */
-        /* Adjust nav items for previews */
-        .nav-item {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-right: 200px; /* Space for preview on right side */
-        }
+/* Adjust nav items for previews */
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 280px; /* Space for preview on right side */
+}
 
-        .nav-text {
-            position: relative;
-            z-index: 1;
-        }
+.nav-text {
+    position: relative;
+    z-index: 1;
+}
 
-        /* Preview container - hidden by default */
-        .nav-preview {
+/* Preview container - hidden by default */
+.nav-preview {
+    position: absolute;
+    right: -300px; /* Position to the right of text */
+    top: 50%;
+    transform: translateY(-50%) scale(0.9);
+    width: 250px;
+    height: 180px;
+    background: var(--primary);
+    border-radius: 14px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--accent-light);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+}
+
+/* Video styling */
+.preview-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: brightness(1.05) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+/* Overlay for better visibility */
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(10, 10, 10, 0.3) 0%,
+        rgba(10, 10, 10, 0.1) 50%,
+        rgba(10, 10, 10, 0.4) 100%
+    );
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+/* Hover effects - show preview */
+.nav-item:hover .nav-preview {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+    right: -280px;
+}
+
+.nav-item:hover .preview-video {
+    filter: brightness(1.15) contrast(1.2);
+}
+
+/* Add play indicator */
+.nav-preview::before {
+    content: '▶ Preview';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+/* Glow effect on active preview */
+.nav-item:hover .nav-preview {
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(45, 118, 226, 0.4);
+}
+
+/* Hide previews on mobile/tablet */
+@media (max-width: 1024px) {
+    .nav-item {
+        padding-right: 0 !important;
+    }
+    
+    .nav-preview {
+        display: none !important;
+    }
+}
+
+/* Adjust for responsive sizes */
+@media (max-width: 768px) {
+    .nav-preview {
+        width: 240px;
+        height: 150px;
+        right: -260px;
+    }
+    
+    .nav-item:hover .nav-preview {
+        right: -240px;
+    }
+}
+        /* ========== HERO SECTION ========== */
+        .hero {
             position: absolute;
-            right: -50px; /* Position to the right of text */
             top: 50%;
-            transform: translateY(-50%) scale(0.9);
-            width: 250px;
-            height: 180px;
-            background: var(--primary);
-            border-radius: 14px;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--accent-light);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            z-index: 1001;
-        }
-
-        /* Video styling */
-        .preview-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            filter: brightness(1.05) contrast(1.1);
-            transition: filter 0.3s ease;
-        }
-
-        /* Overlay for better visibility */
-        .preview-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                45deg,
-                rgba(10, 10, 10, 0.3) 0%,
-                rgba(10, 10, 10, 0.1) 50%,
-                rgba(10, 10, 10, 0.4) 100%
-            );
-            border-radius: 12px;
-            pointer-events: none;
-        }
-
-        /* Hover effects - show preview */
-        .nav-item:hover .nav-preview {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(-50%) scale(1);
-            right: -350px;
-        }
-
-        .nav-item:hover .preview-video {
-            filter: brightness(1.15) contrast(1.2);
-        }
-
-        /* Add play indicator */
-        .nav-preview::before {
-            content: '▶ Preview';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            opacity: 0.9;
-            z-index: 2;
-        }
-
-        /* Glow effect on active preview */
-        .nav-item:hover .nav-preview {
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.6),
-                0 0 25px rgba(45, 118, 226, 0.4);
-        }
-
-        /* Hide previews on mobile/tablet */
-        @media (max-width: 1024px) {
-            .nav-item {
-                padding-right: 0 !important;
-            }
-            
-            .nav-preview {
-                display: none !important;
-            }
-        }
-
-        /* Adjust for responsive sizes */
-        @media (max-width: 768px) {
-            .nav-preview {
-                width: 240px;
-                height: 150px;
-                right: -260px;
-            }
-            
-            .nav-item:hover .nav-preview {
-                right: -240px;
-            }
-        }
-
-        /* ========== VERTICAL CONTENT STACK ========== */
-        .vertical-stack {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 8rem 2rem 10rem;
-            position: relative;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             z-index: 1;
+            width: 90%;
+            max-width: 1200px;
         }
 
-        /* ========== SECTION 1: EXPERIENCE HERO ========== */
-        .hero-section {
-            min-height: calc(100vh - 8rem);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .hero-content {
-            opacity: 1;
-            transform: none;
+        .greeting {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-size: clamp(4rem, 10vw, 8rem);
             font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            max-width: 500px;
-        }
-
-        /* Experience Stats */
-        .experience-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .stat-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 1.8rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 1;
-            transform: none;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 30px rgba(77, 90, 254, 0.2);
-        }
-
-        .stat-card:hover::before {
-            left: 100%;
-        }
-
-        .stat-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .stat-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            color: var(--accent-blue);
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        /* Hero Visual */
-        .hero-visual {
-            opacity: 1;
-            transform: none;
-            perspective: 1000px;
-        }
-
-        .floating-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 3rem;
-            transform-style: preserve-3d;
-            transform: rotateY(-8deg) rotateX(4deg);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .floating-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-weight: 400;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transform: translateY(20px);
+            letter-spacing: 0.5px;
         }
 
-        .floating-card:hover {
-            transform: rotateY(0deg) rotateX(0deg);
-            border-color: var(--accent-blue);
-        }
-
-        .floating-card:hover::after {
-            opacity: 1;
-        }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+        .subtitle-separator {
             color: var(--text);
+            margin: 0 1rem;
+            font-weight: 300;
         }
 
-        .card-content {
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        /* ========== TIMELINE SECTION ========== */
-        .timeline-section {
-            margin-bottom: 6rem;
-            opacity: 1;
-            transform: none;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Timeline Container */
-        .timeline-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Timeline Line */
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+        /* ========== TYPEWRITER CURSOR ========== */
+        .typewriter-cursor {
+            display: inline-block;
             width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent), var(--accent-blue));
-            z-index: 1;
+            height: 1.2em;
+            background: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
         }
 
-        /* Timeline Items */
-        .timeline-items {
-            position: relative;
-            z-index: 2;
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4rem;
-            opacity: 1;
-            transform: none;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        /* UPDATED TIMELINE DOT - No pink background, aligned properly */
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--accent-blue); /* Changed from pink to blue */
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            z-index: 3;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(77, 90, 254, 0.5); /* Blue glow instead of pink */
-        }
-
-        .timeline-dot:hover {
-            transform: translateX(-50%) scale(1.3);
-            box-shadow: 0 0 20px var(--accent-blue); /* Blue glow on hover */
-        }
-
-        /* Timeline Content */
-        .timeline-content {
-            width: 45%;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(77, 90, 254, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue); /* Changed from pink to blue */
-        }
-
-        .timeline-content:hover::before {
-            left: 100%;
-        }
-
-        /* Timeline Header */
-        .timeline-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-logo {
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
-
-        .timeline-logo img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .timeline-org-info h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: var(--text);
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-org-info .org-role {
-            color: var(--accent-blue); /* Changed from pink to blue */
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        /* Timeline Details */
-        .timeline-details {
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-date {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            padding: 0.4rem 1rem;
-            background: rgba(77, 90, 254, 0.1);
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .timeline-date i {
-            font-size: 0.8rem;
-        }
-
-        .timeline-location {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-left: 1rem;
-        }
-
-        .timeline-description {
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        /* External Link Styling */
-        .external-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.4rem 1rem;
-            background: rgba(77, 90, 254, 0.1);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-        }
-
-        .external-link:hover {
-            background: rgba(77, 90, 254, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .external-link i {
-            font-size: 0.8rem;
-        }
-
-        /* Timeline Achievements */
-        .timeline-achievements {
-            margin-top: 1.5rem;
-        }
-
-        .achievement-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            color: var(--text);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .achievement-title i {
-            color: var(--accent-blue); /* Changed from pink to blue */
-        }
-
-        .achievement-list {
-            list-style: none;
-            padding-left: 1.5rem;
-        }
-
-        .achievement-item {
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .achievement-item::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-
-        /* ========== LEADERSHIP SECTION ========== */
-        .leadership-section {
-            margin-bottom: 6rem;
-            opacity: 1;
-            transform: none;
-        }
-
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .leadership-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 1;
-            transform: none;
-        }
-
-        .leadership-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(77, 90, 254, 0.1), transparent); /* Blue instead of pink */
-            transition: left 0.6s ease;
-        }
-
-        .leadership-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-blue); /* Blue instead of pink */
-            box-shadow: 0 15px 30px rgba(77, 90, 254, 0.15); /* Blue shadow */
-        }
-
-        .leadership-card:hover::before {
-            left: 100%;
-        }
-
-        .leadership-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .leadership-icon {
-            font-size: 2rem;
-            color: var(--accent-blue); /* Blue instead of pink */
-            background: rgba(77, 90, 254, 0.1); /* Blue background */
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .leadership-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.6rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .leadership-subtitle {
-            color: var(--accent-blue);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .leadership-duration {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            padding: 0.4rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-        }
-
-        .leadership-description {
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .leadership-impact {
-            margin-top: 1.5rem;
-        }
-
-        .impact-list {
-            list-style: none;
-        }
-
-        .impact-item {
-            color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .impact-item::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue); /* Blue instead of pink */
-            font-weight: bold;
-        }
-
-        /* ========== SKILLS TIMELINE ========== */
-        .skills-timeline-section {
-            margin-bottom: 6rem;
-            opacity: 1;
-            transform: none;
-        }
-
-        .skills-timeline {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-timeline-item {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 1;
-            transform: none;
-        }
-
-        .skill-timeline-item:nth-child(even) {
-            transform: none;
-        }
-
-        .skill-timeline-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
-        }
-
-        .skill-date {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            min-width: 120px;
-            font-weight: 600;
-        }
-
-        .skill-content h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-content p {
-            color: var(--text-dim);
-            line-height: 1.6;
-        }
-
-        /* ========== HICK'S LAW PROGRESS INDICATOR ========== */
-        .scroll-progress {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            z-index: 1000;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-blue));
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .progress-dots {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-
-        .progress-dot {
-            width: 12px;
-            height: 12px;
-            background: var(--text-dim);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            pointer-events: auto;
-        }
-
-        .progress-dot.active {
-            background: var(--accent-blue); /* Blue instead of pink */
-            transform: scale(1.3);
-            box-shadow: 0 0 10px var(--accent-blue); /* Blue glow */
-        }
-
-        .progress-dot:hover {
-            background: var(--accent-blue);
-            transform: scale(1.2);
-        }
-
-        /* ========== UPDATED FOOTER ========== */
+        /* ========== FOOTER ========== */
         .follow-footer {
             position: fixed;
             bottom: 1.5rem;
@@ -976,7 +388,7 @@
             margin: 0 auto;
             width: 80%;
             max-width: 500px;
-            background: rgba(71, 70, 70, 0);
+            background: rgba(71, 70, 70, 0); /* 85% transparent */
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             color: #fff;
@@ -990,7 +402,7 @@
             letter-spacing: 4px;
             font-weight: 700;
             font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Lighter border */
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
             z-index: 100;
@@ -1017,93 +429,44 @@
         }
 
         .follow-footer .social-icons a:hover {
-            color: var(--accent-blue); /* Blue instead of pink */
+            color: #e75454;
         }
 
         .copyright {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.65rem;
-            color: #aaa;
+            color: #aaa; /* Lighter color for more visibility on transparent background */
             text-align: center;
             padding: 0.4rem 0 0;
             user-select: none;
         }
 
-        /* ========== DYNAMIC MOUSE SHADOW ========== */
-        #cursor-shadow {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: radial-gradient(
-            circle,
-            transparent 0%,
-            var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
-            var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
-        );
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
-            mix-blend-mode: difference;
-        }
-
-        #cursor-inner {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--current-color, #ffffff);
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            transition: background 0.5s ease;
-            box-shadow: 0 0 10px var(--current-color, #ffffff);
-        }
-
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media (max-width: 1200px) {
-            .leadership-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* ========== ANIMATIONS ========== */
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
             }
         }
 
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .nav-item {
                 font-size: 4rem;
             }
             
-            .hero-section {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            .hero-title {
+                font-size: clamp(3.5rem, 9vw, 6rem);
             }
             
-            .hero-visual {
-                order: -1;
+            .greeting {
+                font-size: 1.8rem;
             }
             
-            .vertical-stack {
-                padding: 7rem 1.5rem 8rem;
-            }
-            
-            /* Timeline adjustments */
-            .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-                margin-left: 60px;
-            }
-            
-            .timeline-content {
-                width: 100%;
-                margin-left: 0;
-            }
-            
-            .timeline-line {
-                left: 30px;
-            }
-            
-            .timeline-dot {
-                left: 30px;
+            .hero-subtitle {
+                font-size: 1.3rem;
             }
             
             .follow-footer {
@@ -1127,40 +490,22 @@
                 font-size: 3rem;
             }
             
-            .vertical-stack {
-                padding: 6rem 1rem 7rem;
-            }
-            
             .hero-title {
-                font-size: clamp(2.5rem, 6vw, 3.5rem);
+                font-size: clamp(3rem, 11vw, 4.5rem);
+                margin-bottom: 1rem;
             }
             
-            .experience-stats {
-                grid-template-columns: 1fr;
+            .greeting {
+                font-size: 1.5rem;
             }
             
-            .leadership-grid {
-                grid-template-columns: 1fr;
+            .hero-subtitle {
+                font-size: 1.1rem;
+                line-height: 1.3;
             }
             
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .timeline-item {
-                margin-left: 40px;
-            }
-            
-            .timeline-line {
-                left: 20px;
-            }
-            
-            .timeline-dot {
-                left: 20px;
-            }
-            
-            .scroll-progress {
-                width: 200px;
+            .subtitle-separator {
+                margin: 0 0.5rem;
             }
             
             .follow-footer {
@@ -1194,35 +539,21 @@
                 font-size: 2.5rem;
             }
             
-            .vertical-stack {
-                padding: 5rem 1rem 6rem;
-            }
-            
             .hero-title {
-                font-size: 2.2rem;
+                font-size: clamp(2.5rem, 13vw, 3.5rem);
             }
             
-            .section-title {
-                font-size: 2rem;
+            .greeting {
+                font-size: 1.2rem;
             }
             
-            .stat-card,
-            .floating-card,
-            .timeline-content,
-            .leadership-card,
-            .skill-timeline-item {
-                padding: 1.5rem;
+            .hero-subtitle {
+                font-size: 0.9rem;
             }
             
-            .timeline-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .timeline-logo {
-                width: 50px;
-                height: 50px;
+            .subtitle-separator {
+                display: block;
+                margin: 0.3rem 0;
             }
             
             .follow-footer {
@@ -1241,53 +572,60 @@
             
             .copyright {
                 font-size: 0.55rem;
-                color: #bbb;
-            }
-            
-            body {
-                font-size: 14px;
+                color: #bbb; /* Even lighter for mobile */
             }
         }
+        /* ========== DYNAMIC MOUSE SHADOW ========== */
+#cursor-shadow {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(
+    circle,
+    transparent 0%,
+    var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
+    var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
+);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
+    mix-blend-mode: difference;
+}
+
+#cursor-inner {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--current-color, #ffffff);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: background 0.5s ease;
+    box-shadow: 0 0 10px var(--current-color, #ffffff);
+}
     </style>
 </head>
 <body>
     <!-- Dynamic Mouse Shadow -->
-    <div id="cursor-shadow"></div>
-    <div id="cursor-inner"></div>
-    
-    <!-- PRESERVED WebGL Background -->
+<div id="cursor-shadow"></div>
+<div id="cursor-inner"></div>
+    <!-- WebGL Background -->
     <canvas id="webgl-bg"></canvas>
     
-    <!-- Fitt's Law Optimized Menu -->
+    <!-- Menu Button -->
     <div class="menu-toggle" id="menuToggle">
         <span></span>
         <span></span>
         <span></span>
     </div>
     
-    <!-- Navigation Menu with Video Previews -->
-    <div class="nav-menu" id="navMenu">
-        <div class="nav-items">
-            <!-- Home with preview -->
-            <a href="/indexx" class="nav-item" data-preview="home">
-                <span class="nav-text">Home</span>
-                <div class="nav-preview">
-                    <video
-  class="preview-video"
-  muted
-  autoplay
-  loop
-  playsinline
-  preload="auto">
-
-                        <source src="/images/index.mp4" type="video/mp4">
-                    </video>
-                    <div class="preview-overlay"></div>
-                </div>
-            </a>
-            
-            <!-- About with preview -->
-            <a href="/aboutnishant" class="nav-item" data-preview="about">
+        <!-- Navigation Menu -->
+<div class="nav-menu" id="navMenu">
+    <div class="nav-items">
+        <a href="/aboutnishant" class="nav-item" data-preview="about">
                 <span class="nav-text">About</span>
                 <div class="nav-preview">
                     <video
@@ -1298,7 +636,25 @@
   playsinline
   preload="auto">
 
-                        <source src="/images/about.mp4" type="video/mp4">
+                        <source src="images/about.mp4" type="video/mp4">
+                    </video>
+                    <div class="preview-overlay"></div>
+                </div>
+            </a>
+            
+            <!-- Experience with preview -->
+            <a href="/nishantsexperience" class="nav-item" data-preview="experience">
+                <span class="nav-text">Experience</span>
+                <div class="nav-preview">
+                    <video
+  class="preview-video"
+  muted
+  autoplay
+  loop
+  playsinline
+  preload="auto">
+
+                        <source src="images/experience.mp4" type="video/mp4">
                     </video>
                     <div class="preview-overlay"></div>
                 </div>
@@ -1316,7 +672,7 @@
   playsinline
   preload="auto">
 
-                        <source src="/images/contact.mp4" type="video/mp4">
+                        <source src="images/contact.mp4" type="video/mp4">
                     </video>
                     <div class="preview-overlay"></div>
                 </div>
@@ -1324,523 +680,20 @@
         </div>
     </div>
     
-    <!-- Hick's Law Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress">
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="progress-dots">
-            <div class="progress-dot active" data-section="hero"></div>
-            <div class="progress-dot" data-section="timeline"></div>
-            <div class="progress-dot" data-section="leadership"></div>
-            <div class="progress-dot" data-section="skills-timeline"></div>
+    <!-- Hero Content -->
+    <div class="hero">
+        <div class="greeting" id="greetingText">Hi I am,</div>
+        <h1 class="hero-title" id="nameText">Nishant Parwani</h1>
+        <div class="hero-subtitle" id="subtitleText">
+            <span id="line1">Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai</span>
+            <span class="subtitle-separator">|</span>
+            <span id="line2">Student Council Contingent Leader</span>
+            <span class="subtitle-separator">|</span>
+            <span id="line3">USFC '24</span>
         </div>
     </div>
     
-    <!-- VERTICAL CONTENT STACK -->
-    <div class="vertical-stack">
-        <!-- Section 1: Experience Hero -->
-        <section class="hero-section" id="section-hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Experience & Leadership</h1>
-                <div class="hero-subtitle">
-                    From tech fest leadership to marketing initiatives, discover my journey through 
-                    diverse roles that shaped my professional growth and leadership capabilities.
-                </div>
-                
-                <div class="experience-stats">
-                    <div class="stat-card" data-delay="0.1">
-                        <div class="stat-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="stat-title">Total Experience</div>
-                        <div class="stat-value">1.5+ Years</div>
-                    </div>
-                    
-                    <div class="stat-card" data-delay="0.2">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-title">Leadership Roles</div>
-                        <div class="stat-value">4+ Positions</div>
-                    </div>
-                    
-                    <div class="stat-card" data-delay="0.3">
-                        <div class="stat-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="stat-title">Key Achievements</div>
-                        <div class="stat-value">2000+ Registrations</div>
-                    </div>
-                    
-                    <div class="stat-card" data-delay="0.4">
-                        <div class="stat-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="stat-title">Location</div>
-                        <div class="stat-value">Mumbai, India</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="floating-card">
-                    <h3 class="card-title">Leadership Philosophy</h3>
-                    <!-- UPDATED LEADERSHIP PHILOSOPHY - No em dash -->
-                    <div class="card-content">
-                        I believe leadership is not just about position. It's about influence, impact, and initiative. 
-                        Through diverse roles from tech fests to marketing cells, I've learned that effective 
-                        leadership combines strategic vision with hands-on execution.
-                    </div>
-                    <div class="timeline-date">
-                        <i class="far fa-calendar"></i>
-                        2024-2029
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 2: Experience Timeline -->
-        <section class="timeline-section" id="section-timeline">
-            <div class="section-header">
-                <h2 class="section-title">Professional Journey</h2>
-                <div class="section-subtitle">A chronological timeline of my leadership roles and professional experiences</div>
-            </div>
-            
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-items">
-                    <!-- TAQNEEQ TECH FEST -->
-                    <div class="timeline-item" data-delay="0.1">
-                        <div class="timeline-content">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-header">
-                                <div class="timeline-logo">
-                                    <img src="images/taqneeq.jpg" alt="TAQNEEQ TECH FEST" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TQ'">
-                                </div>
-                                <div class="timeline-org-info">
-                                    <h3>TAQNEEQ TECH FEST</h3>
-                                    <div class="org-role">Outreach Core · Logistics Executive</div>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-details">
-                                <div class="timeline-date">
-                                    <i class="far fa-calendar"></i>
-                                    Oct 2024 - Present · 1 yr 3 mos
-                                </div>
-                                <div class="timeline-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Mumbai, Maharashtra, India · On-site
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-description">
-                                Full-time leadership role managing outreach and logistics for one of Mumbai's largest tech fests. 
-                                Currently serving as Outreach Core while previously handling logistics operations.
-                            </div>
-                            
-                            <!-- ADDED LINK -->
-                            <a href="https://cybercypher.taqneeqfest.com/" target="_blank" class="external-link" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i>
-                                Visit Cyber Cypher Website
-                            </a>
-                            
-                            <div class="timeline-achievements">
-                                <div class="achievement-title">
-                                    <i class="fas fa-trophy"></i>
-                                    Key Achievements
-                                </div>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">Currently serving as Outreach Core for TQ 18.0</li>
-                                    <li class="achievement-item">Previously handled departmental and overall logistics requirements as Logistics Executive for Techfest 17th Edition</li>
-                                    <li class="achievement-item">In-situ management of complex logistical operations</li>
-                                    <li class="achievement-item">Coordinated multi-departmental outreach strategies</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 4C - The Marketing Cell -->
-                    <div class="timeline-item" data-delay="0.2">
-                        <div class="timeline-content">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-header">
-                                <div class="timeline-logo">
-                                    <img src="images/4c.jpg" alt="4C - The Marketing Cell" onerror="this.src='https://via.placeholder.com/70x70/fe4dae/ffffff?text=4C'">
-                                </div>
-                                <div class="timeline-org-info">
-                                    <h3>4C - The Marketing Cell</h3>
-                                    <div class="org-role">Public Relations Sub-Head · Volunteer PR Executive</div>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-details">
-                                <div class="timeline-date">
-                                    <i class="far fa-calendar"></i>
-                                    Dec 2024 - Present · 1 yr 1 mo
-                                </div>
-                                <div class="timeline-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Mumbai, Maharashtra, India · On-site
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-description">
-                                Public Relations leadership role in NMIMS' premier marketing cell. Currently serving as 
-                                PR Sub-Head after starting as a Volunteer PR Executive.
-                            </div>
-                            
-                            <!-- ADDED LINK TO NMIMS -->
-                            <a href="https://nmims.edu/" target="_blank" class="external-link" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i>
-                                Visit NMIMS Website
-                            </a>
-                            
-                            <div class="timeline-achievements">
-                                <div class="achievement-title">
-                                    <i class="fas fa-trophy"></i>
-                                    Key Achievements
-                                </div>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">Brought around 2000+ registrations in PR department for event wings and roots</li>
-                                    <li class="achievement-item">Currently serving as Public Relations Core since June 2025</li>
-                                    <li class="achievement-item">Started as Volunteer Public Relations Executive in Dec 2024</li>
-                                    <li class="achievement-item">Developed and executed comprehensive PR strategies</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Sattva NMIMS -->
-                    <div class="timeline-item" data-delay="0.3">
-                        <div class="timeline-content">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-header">
-                                <div class="timeline-logo">
-                                    <img src="images/sattva.jpg" alt="Sattva NMIMS" onerror="this.src='https://via.placeholder.com/70x70/535cda/ffffff?text=ST'">
-                                </div>
-                                <div class="timeline-org-info">
-                                    <h3>Sattva NMIMS</h3>
-                                    <div class="org-role">Outreach Executive</div>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-details">
-                                <div class="timeline-date">
-                                    <i class="far fa-calendar"></i>
-                                    Nov 2024 - May 2025 · 7 mos
-                                </div>
-                                <div class="timeline-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Mumbai, Maharashtra, India
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-description">
-                                Full-time outreach role for NMIMS' cultural fest, representing the college at external 
-                                events and managing inter-college relations.
-                            </div>
-                            
-                            <!-- ADDED LINK -->
-                            <a href="https://www.sattvafest.in/" target="_blank" class="external-link" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i>
-                                Visit Sattva Fest Website
-                            </a>
-                            
-                            <div class="timeline-achievements">
-                                <div class="achievement-title">
-                                    <i class="fas fa-trophy"></i>
-                                    Key Achievements
-                                </div>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">Got opportunity to participate in multiple colleges' cultural fests</li>
-                                    <li class="achievement-item">Enhanced Sattva's presence and participation in external events</li>
-                                    <li class="achievement-item">Built strong network with other college fest organizers</li>
-                                    <li class="achievement-item">Contributed to increased inter-college collaboration</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- ADDED: Sant Hirdaram Swami Basantram Sewa Trust -->
-                    <div class="timeline-item" data-delay="0.4">
-                        <div class="timeline-content">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-header">
-                                <div class="timeline-logo">
-                                    <img src="images/trust.jpg" alt="Sant Hirdaram Swami Basantram Sewa Trust" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TR'">
-                                </div>
-                                <div class="timeline-org-info">
-                                    <h3>Sant Hirdaram Swami Basantram Sewa Trust</h3>
-                                    <div class="org-role">Community Volunteer</div>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-details">
-                                <div class="timeline-date">
-                                    <i class="far fa-calendar"></i>
-                                    May 2025 - Jun 2025 · 2 mos
-                                </div>
-                                <div class="timeline-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Ahmedabad, Gujarat, India · On-site
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-description">
-                                Volunteered at Sant Hirdaram Swami Basantram Sewa Trust, providing technical 
-                                solutions, media exposure, and education for underprivileged communities.
-                            </div>
-                            
-                            <!-- ADDED LINK -->
-                            <a href="https://www.santhirdaram.in/" target="_blank" class="external-link" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i>
-                                Visit Trust Website
-                            </a>
-                            
-                            <div class="timeline-achievements">
-                                <div class="achievement-title">
-                                    <i class="fas fa-trophy"></i>
-                                    Key Achievements
-                                </div>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">Handled beneficiaries registrations and management</li>
-                                    <li class="achievement-item">Implemented technical solutions for the trust</li>
-                                    <li class="achievement-item">Enhanced media exposure for community programs</li>
-                                    <li class="achievement-item">Educated 100+ underprivileged individuals</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Student Council Outreach -->
-                    <div class="timeline-item" data-delay="0.5">
-                        <div class="timeline-content">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-header">
-                                <div class="timeline-logo">
-                                    <img src="images/nmims.jpg" alt="NMIMS Student Council" onerror="this.src='https://via.placeholder.com/70x70/2d76e2/ffffff?text=SC'">
-                                </div>
-                                <div class="timeline-org-info">
-                                    <h3>Student Council Outreach</h3>
-                                    <div class="org-role">Outreach Representative</div>
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-details">
-                                <div class="timeline-date">
-                                    <i class="far fa-calendar"></i>
-                                    Jul 2025 - Present · 6 mos
-                                </div>
-                                <div class="timeline-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Mumbai, Maharashtra, India · On-site
-                                </div>
-                            </div>
-                            
-                            <div class="timeline-description">
-                                Full-time outreach role representing SVKM's Narsee Monjee Institute of Management Studies 
-                                student body and managing inter-college relations.
-                            </div>
-                            
-                            <div class="timeline-achievements">
-                                <div class="achievement-title">
-                                    <i class="fas fa-trophy"></i>
-                                    Key Achievements
-                                </div>
-                                <ul class="achievement-list">
-                                    <li class="achievement-item">Represented college at other colleges' fest and contingent leader meets</li>
-                                    <li class="achievement-item">Managed inter-college relationships and collaborations</li>
-                                    <li class="achievement-item">Coordinated student council outreach initiatives</li>
-                                    <li class="achievement-item">Enhanced college representation in external events</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 3: Leadership Roles -->
-        <section class="leadership-section" id="section-leadership">
-            <div class="section-header">
-                <h2 class="section-title">Leadership Impact</h2>
-                <div class="section-subtitle">Key leadership positions and their measurable impact</div>
-            </div>
-            
-            <div class="leadership-grid">
-                <!-- 4C Leadership Card -->
-                <div class="leadership-card" data-delay="0.1">
-                    <div class="leadership-header">
-                        <div class="leadership-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div>
-                            <h3 class="leadership-title">4C - PR Sub-Head</h3>
-                            <div class="leadership-subtitle">Public Relations Leadership</div>
-                        </div>
-                    </div>
-                    
-                    <div class="leadership-duration">
-                        <i class="far fa-calendar"></i>
-                        Jun 2025 - Present
-                    </div>
-                    
-                    <div class="leadership-description">
-                        Leading the Public Relations department of NMIMS' premier marketing cell, 
-                        managing brand visibility and event promotions across multiple platforms.
-                    </div>
-                    
-                    <!-- ADDED LINK TO NMIMS -->
-                    <a href="https://nmims.edu/" target="_blank" class="external-link" rel="noopener">
-                        <i class="fas fa-external-link-alt"></i>
-                        NMIMS University
-                    </a>
-                    
-                    <div class="leadership-impact">
-                        <div class="achievement-title">
-                            <i class="fas fa-chart-line"></i>
-                            Impact & Metrics
-                        </div>
-                        <ul class="impact-list">
-                            <li class="impact-item">Generated 2000+ registrations for events</li>
-                            <li class="impact-item">Increased department efficiency by 40%</li>
-                            <li class="impact-item">Developed 5+ successful PR campaigns</li>
-                            <li class="impact-item">Mentored 15+ volunteer executives</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Taqneeq Leadership Card -->
-                <div class="leadership-card" data-delay="0.2">
-                    <div class="leadership-header">
-                        <div class="leadership-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div>
-                            <h3 class="leadership-title">Taqneeq Outreach Core</h3>
-                            <div class="leadership-subtitle">Tech Fest Leadership</div>
-                        </div>
-                    </div>
-                    
-                    <div class="leadership-duration">
-                        <i class="far fa-calendar"></i>
-                        Aug 2025 - Present
-                    </div>
-                    
-                    <div class="leadership-description">
-                        Leading outreach operations for TQ 18.0, one of Mumbai's largest tech fests, 
-                        managing participant engagement and inter-college collaborations.
-                    </div>
-                    
-                    <!-- ADDED LINK -->
-                    <a href="https://cybercypher.taqneeqfest.com/" target="_blank" class="external-link" rel="noopener">
-                        <i class="fas fa-external-link-alt"></i>
-                        Cyber Cypher Event
-                    </a>
-                    
-                    <div class="leadership-impact">
-                        <div class="achievement-title">
-                            <i class="fas fa-chart-line"></i>
-                            Impact & Metrics
-                        </div>
-                        <ul class="impact-list">
-                            <li class="impact-item">Expanded participant base by 35%</li>
-                            <li class="impact-item">Managed 50+ college collaborations</li>
-                            <li class="impact-item">Increased social media engagement by 60%</li>
-                            <li class="impact-item">Streamlined outreach operations</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Community Service Card -->
-                <div class="leadership-card" data-delay="0.3">
-                    <div class="leadership-header">
-                        <div class="leadership-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <div>
-                            <h3 class="leadership-title">Community Service Leadership</h3>
-                            <div class="leadership-subtitle">Sant Hirdaram Sewa Trust</div>
-                        </div>
-                    </div>
-                    
-                    <div class="leadership-duration">
-                        <i class="far fa-calendar"></i>
-                        May 2025 - Jun 2025
-                    </div>
-                    
-                    <div class="leadership-description">
-                        Volunteered at Sant Hirdaram Sewa Trust in Ahmedabad, providing technical 
-                        solutions, media exposure, and education for underprivileged communities.
-                    </div>
-                    
-                    <!-- ADDED LINK -->
-                    <a href="https://www.santhirdaram.in/" target="_blank" class="external-link" rel="noopener">
-                        <i class="fas fa-external-link-alt"></i>
-                        Sant Hirdaram Trust
-                    </a>
-                    
-                    <div class="leadership-impact">
-                        <div class="achievement-title">
-                            <i class="fas fa-chart-line"></i>
-                            Impact & Metrics
-                        </div>
-                        <ul class="impact-list">
-                            <li class="impact-item">Handled beneficiaries registrations and management</li>
-                            <li class="impact-item">Implemented technical solutions for the trust</li>
-                            <li class="impact-item">Enhanced media exposure for community programs</li>
-                            <li class="impact-item">Educated 100+ underprivileged individuals</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 4: Skills Timeline -->
-        <section class="skills-timeline-section" id="section-skills-timeline">
-            <div class="section-header">
-                <h2 class="section-title">Skills Development Timeline</h2>
-                <div class="section-subtitle">Progressive skill acquisition through various roles</div>
-            </div>
-            
-            <div class="skills-timeline">
-                <div class="skill-timeline-item" data-delay="0.1">
-                    <div class="skill-date">Dec 2024 - Present</div>
-                    <div class="skill-content">
-                        <h4>Public Relations & Marketing</h4>
-                        <p>Developed advanced PR strategies, event marketing, and brand management through 4C leadership role. Mastered registration systems and outreach analytics.</p>
-                    </div>
-                </div>
-                
-                <div class="skill-timeline-item" data-delay="0.2">
-                    <div class="skill-date">Oct 2024 - Present</div>
-                    <div class="skill-content">
-                        <h4>Logistics & Operations Management</h4>
-                        <p>Gained expertise in large-scale event logistics, resource allocation, and operational efficiency through Taqneeq Tech Fest leadership roles.</p>
-                    </div>
-                </div>
-                
-                <div class="skill-timeline-item" data-delay="0.3">
-                    <div class="skill-date">May 2025 - Jun 2025</div>
-                    <div class="skill-content">
-                        <h4>Community Engagement & Social Impact</h4>
-                        <p>Developed skills in community service management, beneficiary relations, and social impact measurement through work with Sant Hirdaram Sewa Trust.</p>
-                    </div>
-                </div>
-                
-                <div class="skill-timeline-item" data-delay="0.4">
-                    <div class="skill-date">Oct 2024 - April 2025</div>
-                    <div class="skill-content">
-                        <h4>Inter-College Relations & Networking</h4>
-                        <p>Enhanced networking skills, inter-college collaboration, and cultural exchange management through Sattva outreach role and student council participation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- UPDATED FOOTER -->
+    <!-- Footer -->
     <footer class="follow-footer" id="followFooter" aria-label="Follow Nishant">
         <div class="follow-text">FOLLOW NISHANT</div>
         <div class="social-icons">
@@ -1863,32 +716,10 @@
     </footer>
 
     <script>
-    function initNavVideoPreviews() {
-    const videos = document.querySelectorAll('.preview-video');
-
-    videos.forEach(video => {
-        video.muted = true;        // required for autoplay
-        video.loop = true;
-        video.autoplay = true;
-        video.playsInline = true;  // iOS support
-    });
-}
-
-    // ========== PRESERVED WEBGL BACKGROUND ==========
-    function initWebGLBackground() {
-        try {
+        // ========== INFINITE WEBGL BACKGROUND ==========
+        function initWebGLBackground() {
             const canvas = document.getElementById('webgl-bg');
-            if (!canvas) {
-                console.warn("WebGL canvas not found");
-                return;
-            }
-            
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-            if (!gl) {
-                console.warn("WebGL not supported");
-                canvas.style.display = 'none';
-                return;
-            }
+            if (!canvas) return;
             
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -1901,20 +732,22 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             
-            // Grid
+            // Grid back to blue
             const gridHelper = new THREE.GridHelper(200, 200, 0x4d5afe, 0x4d5afe);
             gridHelper.material.opacity = 0.08;
             gridHelper.material.transparent = true;
             scene.add(gridHelper);
             
-            // Pyramids - 70% blue, 30% red
+            // Create pyramids - 70% blue, 30% red
             const pyramids = [];
             const pyramidCount = 40;
             
             for (let i = 0; i < pyramidCount; i++) {
                 const geometry = new THREE.ConeGeometry(0.6, 1.2, 4);
-                const isRed = i < Math.floor(pyramidCount * 0.3);
-                const color = isRed ? 0xfe4dae : 0x4d5afe;
+                
+                // 70% blue, 30% red
+                const isRed = i < Math.floor(pyramidCount * 0.3); // 30% red
+                const color = isRed ? 0xfe4dae : 0x4d5afe; // Red for 30%, Blue for 70%
                 
                 const material = new THREE.MeshBasicMaterial({ 
                     color: color,
@@ -1945,14 +778,14 @@
                 pyramids.push(pyramid);
             }
             
-            // Cubes - all blue
+            // Add floating cubes - all blue
             const cubes = [];
             const cubeCount = 25;
             
             for (let i = 0; i < cubeCount; i++) {
                 const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
                 const material = new THREE.MeshBasicMaterial({ 
-                    color: 0x6d7cff,
+                    color: 0x6d7cff, // Blue
                     wireframe: true,
                     transparent: true,
                     opacity: 0.08
@@ -1977,7 +810,7 @@
                 cubes.push(cube);
             }
             
-            // Particles
+            // Add floating particles - mix of blue and red
             const particleCount = 150;
             const particleGeometry = new THREE.BufferGeometry();
             const particleMaterial = new THREE.PointsMaterial({
@@ -1985,28 +818,32 @@
                 transparent: true,
                 opacity: 0.2,
                 blending: THREE.AdditiveBlending,
-                vertexColors: true
+                vertexColors: true // Enable vertex colors
             });
             
             const particlePositions = new Float32Array(particleCount * 3);
             const particleColors = new Float32Array(particleCount * 3);
             
             for (let i = 0; i < particleCount * 3; i += 3) {
+                // Position
                 particlePositions[i] = (Math.random() - 0.5) * 200;
                 particlePositions[i + 1] = (Math.random() - 0.5) * 40;
                 particlePositions[i + 2] = (Math.random() - 0.5) * 200;
                 
+                // Color - 70% blue, 30% red
                 const particleIndex = i / 3;
-                const isRed = Math.random() < 0.3;
+                const isRed = Math.random() < 0.3; // 30% chance red
                 
                 if (isRed) {
-                    particleColors[i] = 0.99;
-                    particleColors[i + 1] = 0.30;
-                    particleColors[i + 2] = 0.68;
+                    // Red particles
+                    particleColors[i] = 0.99;     // R
+                    particleColors[i + 1] = 0.30; // G
+                    particleColors[i + 2] = 0.68; // B
                 } else {
-                    particleColors[i] = 0.30;
-                    particleColors[i + 1] = 0.35;
-                    particleColors[i + 2] = 1.00;
+                    // Blue particles
+                    particleColors[i] = 0.30;     // R
+                    particleColors[i + 1] = 0.35; // G
+                    particleColors[i + 2] = 1.00; // B
                 }
             }
             
@@ -2033,8 +870,10 @@
                 
                 const time = Date.now() * 0.001;
                 
+                // Rotate grid slowly
                 gridHelper.rotation.y += 0.0002;
                 
+                // Animate pyramids
                 pyramids.forEach((pyramid, i) => {
                     const { rotationSpeedX, rotationSpeedY, rotationSpeedZ, floatSpeed, floatAmplitude } = pyramid.userData;
                     
@@ -2045,6 +884,7 @@
                     pyramid.position.y += Math.sin(time * floatSpeed + i) * 0.006 * floatAmplitude;
                 });
                 
+                // Animate cubes
                 cubes.forEach((cube, i) => {
                     const { rotationSpeedX, rotationSpeedY, rotationSpeedZ } = cube.userData;
                     
@@ -2055,8 +895,10 @@
                     cube.position.y += Math.sin(time * 0.5 + i) * 0.003;
                 });
                 
+                // Rotate particles
                 particles.rotation.y += 0.00015;
                 
+                // Camera movement based on mouse
                 camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
                 camera.position.y += (mouseY * 8 - camera.position.y) * 0.05;
                 camera.lookAt(scene.position);
@@ -2066,35 +908,27 @@
             
             animate();
             
+            // Handle resize
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            
-        } catch (error) {
-            console.error("WebGL initialization error:", error);
-            const canvas = document.getElementById('webgl-bg');
-            if (canvas) canvas.style.display = 'none';
         }
-    }
 
-    // ========== PRESERVED MENU TOGGLE ==========
-    function initMenuToggle() {
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        if (!menuToggle || !navMenu) {
-            console.warn("Menu elements not found");
-            return;
-        }
-        
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (navMenu.classList.contains('active')) {
+        // ========== MENU TOGGLE ==========
+        function initMenuToggle() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            if (!menuToggle || !navMenu) return;
+            
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
     const videos = document.querySelectorAll('.preview-video');
     videos.forEach(video => {
         video.currentTime = 0;
@@ -2105,465 +939,353 @@
     });
 }
 
-            
-            if (navMenu.classList.contains('active')) {
-                navItems.forEach((item, index) => {
-                    gsap.to(item, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.6,
-                        delay: index * 0.15,
-                        ease: "power3.out"
-                    });
-                });
-            } else {
-                navItems.forEach((item) => {
-                    gsap.to(item, {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.4,
-                        ease: "power2.in"
-                    });
-                });
-            }
-        });
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
                 
-                navItems.forEach((navItem) => {
-                    gsap.to(navItem, {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.3,
-                        ease: "power2.in"
+                if (navMenu.classList.contains('active')) {
+                    navItems.forEach((item, index) => {
+                        gsap.to(item, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.6,
+                            delay: index * 0.15,
+                            ease: "power3.out"
+                        });
                     });
-                });
-                
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }, 300);
-                
-                const href = item.getAttribute('href');
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 400);
+                } else {
+                    navItems.forEach((item) => {
+                        gsap.to(item, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.4,
+                            ease: "power2.in"
+                        });
+                    });
+                }
             });
-        });
-        
-        document.addEventListener('click', (e) => {
-            if (navMenu.classList.contains('active') && 
-                !navMenu.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                
-                navItems.forEach((item) => {
-                    gsap.to(item, {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.3,
-                        ease: "power2.in"
+            
+            // Close menu when clicking on nav items
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    navItems.forEach((navItem) => {
+                        gsap.to(navItem, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
                     });
+                    
+                    setTimeout(() => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }, 300);
+                    
+                    const href = item.getAttribute('href');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 400);
                 });
-                
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }, 300);
-            }
-        });
-    }
-
-    // ========== PSYCHOLOGY-DRIVEN SCROLL ANIMATIONS ==========
-    function initPsychologyAnimations() {
-        // Initialize GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Progress bar and dots
-        const progressBar = document.getElementById('progressBar');
-        const progressDots = document.querySelectorAll('.progress-dot');
-        const sections = document.querySelectorAll('section[id^="section-"]');
-        
-        // Update progress on scroll
-        function updateProgress() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
+            });
             
-            progressBar.style.width = `${scrollPercent}%`;
-            
-            // Update active dot based on current section
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                
-                if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
-                    progressDots.forEach(dot => dot.classList.remove('active'));
-                    if (progressDots[index]) {
-                        progressDots[index].classList.add('active');
-                    }
+            // Close menu when clicking anywhere
+            document.addEventListener('click', (e) => {
+                if (navMenu.classList.contains('active') && 
+                    !navMenu.contains(e.target) && 
+                    !menuToggle.contains(e.target)) {
+                    
+                    navItems.forEach((item) => {
+                        gsap.to(item, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
+                    });
+                    
+                    setTimeout(() => {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }, 300);
                 }
             });
         }
-        
-        // Click progress dots to navigate
-        progressDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                if (sections[index]) {
-                    sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-        
-        // Scroll event
-        window.addEventListener('scroll', updateProgress);
-        
-        // Initial progress update
-        updateProgress();
-        
-        // ========== HERO SECTION ANIMATIONS ==========
-        const heroContent = document.querySelector('.hero-content');
-        const heroVisual = document.querySelector('.hero-visual');
-        const statCards = document.querySelectorAll('.stat-card');
-        
-        // Remove GSAP fade animations for hero content
-        heroContent.style.opacity = '1';
-        heroContent.style.transform = 'none';
-        
-        heroVisual.style.opacity = '1';
-        heroVisual.style.transform = 'none';
-        
-        // Remove fade animations for stat cards
-        statCards.forEach((card) => {
-            card.style.opacity = '1';
-            card.style.transform = 'none';
-        });
-        
-        // ========== TIMELINE SECTION ANIMATIONS ==========
-        const timelineSection = document.getElementById('section-timeline');
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        // Remove fade animations for timeline section
-        timelineSection.style.opacity = '1';
-        timelineSection.style.transform = 'none';
-        
-        // Remove fade animations for timeline items
-        timelineItems.forEach((item) => {
-            item.style.opacity = '1';
-            item.style.transform = 'none';
-        });
-        
-        // ========== LEADERSHIP SECTION ANIMATIONS ==========
-        const leadershipSection = document.getElementById('section-leadership');
-        const leadershipCards = document.querySelectorAll('.leadership-card');
-        
-        // Remove fade animations for leadership section
-        leadershipSection.style.opacity = '1';
-        leadershipSection.style.transform = 'none';
-        
-        // Remove fade animations for leadership cards
-        leadershipCards.forEach((card) => {
-            card.style.opacity = '1';
-            card.style.transform = 'none';
-        });
-        
-        // ========== SKILLS TIMELINE ANIMATIONS ==========
-        const skillsTimelineSection = document.getElementById('section-skills-timeline');
-        const skillItems = document.querySelectorAll('.skill-timeline-item');
-        
-        // Remove fade animations for skills timeline section
-        skillsTimelineSection.style.opacity = '1';
-        skillsTimelineSection.style.transform = 'none';
-        
-        // Remove fade animations for skill items
-        skillItems.forEach((item) => {
-            item.style.opacity = '1';
-            item.style.transform = 'none';
-        });
-        
-        // ========== MICRO-INTERACTION HOVER EFFECTS ==========
-        
-        // 3D tilt effect for cards
-        const tiltCards = document.querySelectorAll('.stat-card, .floating-card, .timeline-content, .leadership-card, .skill-timeline-item');
-        
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = ((x - centerX) / centerX) * 3;
-                const rotateX = ((centerY - y) / centerY) * 3;
-                
-                gsap.to(card, {
-                    rotationY: rotateY,
-                    rotationX: rotateX,
-                    duration: 0.3,
-                    ease: "power1.out",
-                    transformStyle: "preserve-3d"
-                });
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    rotationY: 0,
-                    rotationX: 0,
-                    duration: 0.5,
-                    ease: "power3.out"
-                });
-            });
-        });
-        
-        // Timeline dot hover effects
-        const timelineDots = document.querySelectorAll('.timeline-dot');
-        timelineDots.forEach(dot => {
-            dot.addEventListener('mouseenter', () => {
-                gsap.to(dot, {
-                    scale: 1.3,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-            
-            dot.addEventListener('mouseleave', () => {
-                gsap.to(dot, {
-                    scale: 1,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-        });
-        
-        // Progress dot hover effects
-        progressDots.forEach(dot => {
-            dot.addEventListener('mouseenter', () => {
-                gsap.to(dot, {
-                    scale: 1.2,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-            
-            dot.addEventListener('mouseleave', () => {
-                if (!dot.classList.contains('active')) {
-                    gsap.to(dot, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: "power2.out"
-                    });
-                }
-            });
-        });
-    }
 
-    // ========== ANIMATE FOOTER ==========
-    function animateFooter() {
-        const footer = document.getElementById('followFooter');
-        gsap.to(footer, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: 0.3,
-            ease: "power3.out"
-        });
-    }
-
-    // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
-    function initDynamicMouseShadow() {
-        const cursorShadow = document.getElementById('cursor-shadow');
-        const cursorInner = document.getElementById('cursor-inner');
-        
-        if (!cursorShadow || !cursorInner) return;
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let shadowX = 0;
-        let shadowY = 0;
-        let innerX = 0;
-        let innerY = 0;
-        
-        // Function to get complementary color
-        function getComplementaryColor(rgb) {
-            if (!rgb) return { r: 255, g: 255, b: 255 };
+        // ========== TYPEWRITER EFFECT ==========
+        function initTypewriter() {
+            const greetingText = "Hi I am,";
+            const nameText = "Nishant Parwani";
+            const subtitleText = "Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai | Student Council Contingent Leader | USFC '24";
             
-            // Convert to complementary
+            // Type greeting first
+            setTimeout(() => {
+                const element = document.getElementById('greetingText');
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < greetingText.length) {
+                        element.innerHTML = greetingText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = greetingText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Start typing name after greeting
+                        setTimeout(typeName, 150);
+                    }
+                }, 100);
+            }, 500);
+            
+            function typeName() {
+                const element = document.getElementById('nameText');
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < nameText.length) {
+                        element.innerHTML = nameText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = nameText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Start typing subtitle after name
+                        setTimeout(typeSubtitle, 150);
+                    }
+                }, 120);
+            }
+            
+            function typeSubtitle() {
+                const element = document.getElementById('subtitleText');
+                element.style.opacity = 1;
+                
+                // Type the full subtitle in one go
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < subtitleText.length) {
+                        element.innerHTML = subtitleText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
+                        i++;
+                    } else {
+                        element.innerHTML = subtitleText;
+                        clearInterval(typeInterval);
+                        
+                        gsap.to(element, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out"
+                        });
+                        
+                        // Animate footer after subtitle
+                        setTimeout(animateFooter, 300);
+                    }
+                }, 40);
+            }
+        }
+
+        // ========== ANIMATE FOOTER ==========
+        function animateFooter() {
+            const footer = document.getElementById('followFooter');
+            gsap.to(footer, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+        }
+
+        // ========== INITIALIZE ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            initWebGLBackground();
+            initMenuToggle();
+            // In the DOMContentLoaded event or initialization function:
+initDynamicMouseShadow();
+initNavVideoPreviews();
+            // Start typewriter after everything loads
+            setTimeout(initTypewriter, 250);
+        });
+        // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
+function initDynamicMouseShadow() {
+    const cursorShadow = document.getElementById('cursor-shadow');
+    const cursorInner = document.getElementById('cursor-inner');
+    
+    if (!cursorShadow || !cursorInner) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let shadowX = 0;
+    let shadowY = 0;
+    let innerX = 0;
+    let innerY = 0;
+    
+    // Function to get complementary color
+    function getComplementaryColor(rgb) {
+        if (!rgb) return { r: 255, g: 255, b: 255 };
+        
+        // Convert to complementary
+        return {
+            r: 255 - rgb.r,
+            g: 255 - rgb.g,
+            b: 255 - rgb.b
+        };
+    }
+    
+    // Function to get color from element
+    function getColorFromElement(element) {
+        if (!element) return { r: 255, g: 255, b: 255 };
+        
+        // Try to get computed color
+        const style = window.getComputedStyle(element);
+        let color = style.color || style.backgroundColor || '#ffffff';
+        
+        // Parse color to RGB
+        const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        if (match) {
             return {
-                r: 255 - rgb.r,
-                g: 255 - rgb.g,
-                b: 255 - rgb.b
+                r: parseInt(match[1]),
+                g: parseInt(match[2]),
+                b: parseInt(match[3])
             };
         }
         
-        // Function to get color from element
-        function getColorFromElement(element) {
-            if (!element) return { r: 255, g: 255, b: 255 };
-            
-            // Try to get computed color
-            const style = window.getComputedStyle(element);
-            let color = style.color || style.backgroundColor || '#ffffff';
-            
-            // Parse color to RGB
-            const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-            if (match) {
-                return {
-                    r: parseInt(match[1]),
-                    g: parseInt(match[2]),
-                    b: parseInt(match[3])
-                };
-            }
-            
-            // Try hex color
-            const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
-            if (hexMatch) {
-                return {
-                    r: parseInt(hexMatch[1], 16),
-                    g: parseInt(hexMatch[2], 16),
-                    b: parseInt(hexMatch[3], 16)
-                };
-            }
-            
-            // Default white
-            return { r: 255, g: 255, b: 255 };
+        // Try hex color
+        const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
+        if (hexMatch) {
+            return {
+                r: parseInt(hexMatch[1], 16),
+                g: parseInt(hexMatch[2], 16),
+                b: parseInt(hexMatch[3], 16)
+            };
         }
         
-        // Function to update cursor colors
-        function updateCursorColors(color) {
-            const complementary = getComplementaryColor(color);
-            
-            // Update CSS variables
-            document.documentElement.style.setProperty(
-                '--current-color',
-                `rgb(${color.r}, ${color.g}, ${color.b})`
-            );
-            document.documentElement.style.setProperty(
-                '--complementary-color',
-                `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
-            );
-        }
-        
-        // Mouse move handler
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Get element under cursor
-            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
-            
-            if (elementUnderCursor) {
-                // Skip cursor elements themselves
-                if (elementUnderCursor.id === 'cursor-shadow' || 
-                    elementUnderCursor.id === 'cursor-inner') return;
-                
-                // Get color from element
-                const color = getColorFromElement(elementUnderCursor);
-                
-                // Update cursor colors
-                updateCursorColors(color);
-                
-                // Size based on element type
-                const tagName = elementUnderCursor.tagName.toLowerCase();
-                const isInteractive = elementUnderCursor.onclick || 
-                                     elementUnderCursor.tagName === 'A' || 
-                                     elementUnderCursor.tagName === 'BUTTON';
-                
-                if (isInteractive) {
-                    cursorShadow.style.width = '80px';
-                    cursorShadow.style.height = '80px';
-                } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
-                    cursorShadow.style.width = '70px';
-                    cursorShadow.style.height = '70px';
-                } else {
-                    cursorShadow.style.width = '60px';
-                    cursorShadow.style.height = '60px';
-                }
-            }
-        });
-        
-        // Animation loop
-        function animateCursor() {
-            // Smooth shadow movement (slower)
-            shadowX += (mouseX - shadowX) * 0.08;
-            shadowY += (mouseY - shadowY) * 0.08;
-            
-            // Smooth inner movement (faster)
-            innerX += (mouseX - innerX) * 0.2;
-            innerY += (mouseY - innerY) * 0.2;
-            
-            // Apply positions
-            cursorShadow.style.left = shadowX + 'px';
-            cursorShadow.style.top = shadowY + 'px';
-            
-            cursorInner.style.left = innerX + 'px';
-            cursorInner.style.top = innerY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        
-        // Initialize cursor positions
-        cursorShadow.style.left = mouseX + 'px';
-        cursorShadow.style.top = mouseY + 'px';
-        cursorInner.style.left = mouseX + 'px';
-        cursorInner.style.top = mouseY + 'px';
-        
-        // Hide cursor on elements that don't need it
-        const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
-        noCursorElements.forEach(el => {
-            el.style.cursor = 'none';
-        });
-        
-        // Hide default cursor on entire page
-        document.body.style.cursor = 'none';
-        
-        // Start animation
-        animateCursor();
-        
-        // Handle mouse leave window
-        document.addEventListener('mouseleave', () => {
-            cursorShadow.style.opacity = '0';
-            cursorInner.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', () => {
-            cursorShadow.style.opacity = '1';
-            cursorInner.style.opacity = '1';
-        });
+        // Default white
+        return { r: 255, g: 255, b: 255 };
     }
-
-    // ========== INITIALIZE EVERYTHING ==========
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log("Initializing Experience page...");
+    
+    // Function to update cursor colors
+    function updateCursorColors(color) {
+        const complementary = getComplementaryColor(color);
         
-        // Initialize WebGL background (preserved)
-        initWebGLBackground();
+        // Update CSS variables
+        document.documentElement.style.setProperty(
+            '--current-color',
+            `rgb(${color.r}, ${color.g}, ${color.b})`
+        );
+        document.documentElement.style.setProperty(
+            '--complementary-color',
+            `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
+        );
+    }
+    
+    // Mouse move handler
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         
-        // Initialize menu toggle (preserved)
-        initMenuToggle();
+        // Get element under cursor
+        const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
         
-        // Initialize video previews
-        initNavVideoPreviews();
-        
-        // Initialize dynamic mouse shadow
-        initDynamicMouseShadow();
-        
-        // Initialize psychology-driven animations
-        initPsychologyAnimations();
-        
-        // Animate footer on load
-        setTimeout(animateFooter, 500);
-        
-        console.log("Experience page initialized successfully");
+        if (elementUnderCursor) {
+            // Skip cursor elements themselves
+            if (elementUnderCursor.id === 'cursor-shadow' || 
+                elementUnderCursor.id === 'cursor-inner') return;
+            
+            // Get color from element
+            const color = getColorFromElement(elementUnderCursor);
+            
+            // Update cursor colors
+            updateCursorColors(color);
+            
+            // Size based on element type
+            const tagName = elementUnderCursor.tagName.toLowerCase();
+            const isInteractive = elementUnderCursor.onclick || 
+                                 elementUnderCursor.tagName === 'A' || 
+                                 elementUnderCursor.tagName === 'BUTTON';
+            
+            if (isInteractive) {
+                cursorShadow.style.width = '80px';
+                cursorShadow.style.height = '80px';
+            } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+                cursorShadow.style.width = '70px';
+                cursorShadow.style.height = '70px';
+            } else {
+                cursorShadow.style.width = '60px';
+                cursorShadow.style.height = '60px';
+            }
+        }
     });
-
-    // Fallback for WebGL
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initWebGLBackground);
-    } else {
-        initWebGLBackground();
+    
+    // Animation loop
+    function animateCursor() {
+        // Smooth shadow movement (slower)
+        shadowX += (mouseX - shadowX) * 0.08;
+        shadowY += (mouseY - shadowY) * 0.08;
+        
+        // Smooth inner movement (faster)
+        innerX += (mouseX - innerX) * 0.2;
+        innerY += (mouseY - innerY) * 0.2;
+        
+        // Apply positions
+        cursorShadow.style.left = shadowX + 'px';
+        cursorShadow.style.top = shadowY + 'px';
+        
+        cursorInner.style.left = innerX + 'px';
+        cursorInner.style.top = innerY + 'px';
+        
+        requestAnimationFrame(animateCursor);
     }
+    
+    // Initialize cursor positions
+    cursorShadow.style.left = mouseX + 'px';
+    cursorShadow.style.top = mouseY + 'px';
+    cursorInner.style.left = mouseX + 'px';
+    cursorInner.style.top = mouseY + 'px';
+    
+    // Hide cursor on elements that don't need it
+    const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
+    noCursorElements.forEach(el => {
+        el.style.cursor = 'none';
+    });
+    
+    // Hide default cursor on entire page
+    document.body.style.cursor = 'none';
+    
+    // Start animation
+    animateCursor();
+    
+    // Handle mouse leave window
+    document.addEventListener('mouseleave', () => {
+        cursorShadow.style.opacity = '0';
+        cursorInner.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursorShadow.style.opacity = '1';
+        cursorInner.style.opacity = '1';
+    });
+}function initNavVideoPreviews() {
+    const videos = document.querySelectorAll('.preview-video');
+
+    videos.forEach(video => {
+        video.muted = true;        // required for autoplay
+        video.loop = true;
+        video.autoplay = true;
+        video.playsInline = true;  // iOS support
+    });
+}
+
     </script>
 </body>
 </html>
