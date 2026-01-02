@@ -1,27 +1,58 @@
-Copyright © Nishant Parwani 2025
-All Rights Reserved.
-
+ULTRA-PREMIUM LEGAL COPYRIGHT AND LICENSE AGREEMENT
+Copyright © 2026–2027 Nishant Parwani. All Rights Reserved.
 Website: https://nishantparwani.com
 
-1. Ownership
-This website, including all content, design, code, graphics, text, images, videos, and any other materials (collectively, the “Content”), is the sole property of Nishant Parwani.
+THIS AGREEMENT governs your access to, and use of, the website and all materials therein (collectively, the “Protected Content”). Accessing this website constitutes acceptance of this License and all terms herein.
 
-2. Restricted Use
-You may NOT copy, reproduce, distribute, modify, display, publish, transmit, or create derivative works from any part of this website or its Content, in whole or in part, for any purpose, including personal, educational, or academic purposes, WITHOUT PRIOR WRITTEN PERMISSION from Nishant Parwani.
+1. DEFINITIONS
+- Protected Content: All content available on or through this website, including but not limited to code, source files, HTML, CSS, JavaScript, images, animations, graphics, layout, audiovisual materials, text, data, and any derivative arrangement, compilation, or selection thereof.
+- User: Any person or entity accessing this website by any means.
+- Written Permission: Explicit authorization issued by Nishant Parwani via email to nishantparwani2007@gmail.com specifying scope, duration, and purpose of authorized use.
 
-3. Prohibited Actions
-Without limiting the generality of Section 2, the following actions are strictly prohibited:
-- Downloading, storing, or using the Content for offline use.
-- Reproducing the Content on other websites, blogs, social media, or any digital or print media.
-- Creating modified versions or derivative works of the Content.
-- Using the Content for academic, research, commercial, or personal projects.
+2. OWNERSHIP
+All Protected Content is the exclusive property of Nishant Parwani, protected under the Copyright Act, 1957 (India), the Berne Convention, TRIPS Agreement, WIPO Copyright Treaty, and any applicable foreign laws.
 
-4. Enforcement
-Any unauthorized use of the Content will constitute a violation of Indian copyright law. Violators may be subject to civil and criminal penalties under the Copyright Act, 1957, and other applicable Indian laws.
+No rights, title, or interest in any Protected Content is granted or implied by access to this website except as explicitly provided in this License.
 
-5. Governing Law and Jurisdiction
-This License shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with this License shall be subject to the exclusive jurisdiction of the courts in **Mumbai or Ahmedabad, India**, at the sole discretion of Nishant Parwani.
+3. LIMITED LICENSE TO VIEW
+Users are granted a revocable, non-transferable, non-sublicensable, limited license solely to access and view the Protected Content temporarily via standard web browsers for the purpose of informational browsing. No further rights are granted.
 
-6. Contact
-For permission requests, please contact:
-nishantparwani2007@gmail.com
+4. PROHIBITED ACTIONS
+Without Written Permission, Users shall not:
+1. Copy, download, store, reproduce, mirror, scrape, extract, or archive any Protected Content.
+2. Publish, republish, redistribute, transmit, display, or communicate any Protected Content in any form or medium, including print, digital, or social media.
+3. Modify, adapt, translate, create derivative works from, or attempt to reconstruct the Protected Content or its design, layout, or code.
+4. Utilize any Protected Content in machine learning, AI training datasets, academic submissions, commercial projects, or personal projects.
+5. Reverse-engineer, decompile, disassemble, or otherwise attempt to access the underlying structure, source code, or architecture of any Protected Content beyond what is technically required for browser rendering.
+
+Technical Access Exception: Temporary caching or buffering required for normal website rendering in a browser does not constitute permission to store, reuse, or distribute any content.
+
+5. FAIR DEALING CLAUSE
+Nothing in this License is intended to limit rights granted by Indian law, including fair dealing for criticism, review, research, private study, or reporting. Any use outside such statutory exceptions is strictly prohibited and constitutes infringement.
+
+6. ENFORCEMENT AND REMEDIES
+Any unauthorized use of Protected Content constitutes a willful violation of copyright law. Nishant Parwani reserves the right to pursue:
+- Injunctive relief
+- Monetary damages, including statutory, actual, and punitive damages
+- Recovery of legal fees, investigation costs, and enforcement expenses
+- Criminal remedies under the Copyright Act, 1957, or applicable foreign law
+
+Failure to enforce any provision shall not be construed as waiver of rights.
+
+7. JURISDICTION AND GOVERNING LAW
+This License and all disputes arising hereunder shall be governed exclusively by the laws of India. All claims must be brought only in the competent courts of Mumbai, Maharashtra, India. Any attempt to bring proceedings elsewhere is expressly prohibited.
+
+8. SEVERABILITY
+If any provision of this License is held invalid, illegal, or unenforceable, the remaining provisions shall continue in full force and effect.
+
+9. CONTACT AND PERMISSIONS
+All requests for Written Permission must be sent to:
+Email: nishantparwani2007@gmail.com
+
+No other form of permission (oral, social media, or third-party authorization) shall be valid.
+
+10. NOTICE OF COPYRIGHT
+The website contains a copyright notice on all pages. Absence of the notice does not constitute waiver of rights. All Protected Content is timestamped through version control, commit history, and public record.
+
+11. EFFECTIVE DATE
+This License is effective from 1 January 2026 and applies to all access or use of the Protected Content thereafter.
