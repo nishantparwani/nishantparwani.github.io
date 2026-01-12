@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -10,7 +11,7 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Nishant</title>
+    <title>Nishant Voting Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -117,7 +118,6 @@
         .logo:hover::after {
             width: 100%;
         }
-
 
         /* Main Content */
         .main-content {
@@ -650,8 +650,6 @@
             width: 100%;
         }
 
-        
-
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
@@ -844,29 +842,28 @@
     <!-- Confetti Canvas -->
     <canvas id="confetti-canvas"></canvas>
 
-
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-    <h1>
-        <a href="https://nishantparwani.com" target="_blank" rel="noopener noreferrer">
-            Nishant
-        </a>
-    </h1>
-    <div class="glow-bar"></div>
-    <p>Real-time protocol voting statistics</p>
-</div>
-
+                <h1>
+                    <a href="https://nishantparwani.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                        Nishant Voting Dashboard
+                    </a>
+                </h1>
+                <div class="glow-bar"></div>
+                <p>Real-time protocol voting statistics</p>
+            </div>
 
             <div class="controls">
                 <a href="https://nishantp.netlify.app" class="btn btn-primary">
                     <i class="fas fa-arrow-left"></i> Back to Home
                 </a>
                 <button class="btn btn-primary" onclick="openArchitectureModal()">
-    <i class="fas fa-diagram-project"></i> View System Architecture
-</button>
-
-
+                    <i class="fas fa-diagram-project"></i> View System Architecture
+                </button>
+                <button class="btn btn-danger" onclick="openResetModal()">
+                    <i class="fas fa-trash"></i> Reset All Votes
+                </button>
             </div>
 
             <div id="loading" class="loading">
@@ -910,13 +907,17 @@
         </div>
     </main>
 
+    <!-- Reset Modal -->
     <div id="resetModal" class="modal">
         <div class="modal-content">
             <h3><i class="fas fa-exclamation-triangle"></i> Reset All Votes</h3>
             <p>Enter the admin password to confirm deleting all voting data. This action cannot be undone.</p>
-
-
-
+            <div style="position: relative; margin-bottom: 1.5rem;">
+                <input type="password" id="deletePassword" placeholder="Enter admin password">
+                <button class="reveal-btn" onclick="togglePassword()">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-cancel" onclick="closeResetModal()">Cancel</button>
                 <button class="modal-btn modal-btn-confirm" onclick="verifyPasswordAndDelete()">
@@ -926,13 +927,97 @@
         </div>
     </div>
 
+    <!-- Architecture Modal -->
+    <div id="architectureModal" class="modal">
+        <div class="modal-content" style="max-width: 800px; text-align: left;">
+            <h3 style="color: var(--accent-cyan); text-align:center;">
+                <i class="fas fa-microchip"></i> INNOVOTE SYSTEM ARCHITECTURE
+            </h3>
+
+            <pre style="
+                margin-top: 1.5rem;
+                font-family: 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                white-space: pre-wrap;
+                color: var(--text-secondary);
+                background: rgba(255,255,255,0.03);
+                padding: 1.2rem;
+                border-radius: 10px;
+                border: 1px solid var(--border-color);
+            ">
+==========================================================
+              INNOVOTE SYSTEM ARCHITECTURE
+==========================================================
+
+[ PHASE 1: HARDWARE ENTRY NODE (ESP32) ]
+----------------------------------------
+   |
+   |[1] PHYSICAL INPUT : Voter presses candidate button.
+   |[2] FEEDBACK       : Buzzer & LED trigger (Confirmation).
+   |[3] DATA PACKAGING : ESP32 generates a unique Payload.
+   |
+   ▼
+[ PHASE 2: CRYPTOGRAPHIC LAYER ]
+----------------------------------------
+   |
+   |[4] SHA-256 HASHING: Vote data is transformed into a 
+   |                     unique 64-character hash.
+   |                     *Ensures Tamper-Evidence*
+   |
+   ▼
+[ PHASE 3: NETWORK BROADCAST ]
+----------------------------------------
+   |
+   |[5] SECURE UPLOAD  : Encrypted packet sent via Wi-Fi.
+   |[6] STOCHASTIC DELAY: Random 3-15s "Proof of Validation"
+   |                     wait period.
+   |                     *Simulates Block Confirmation Time*
+   |
+   ▼
+[ PHASE 4: DISTRIBUTED LEDGER (FIREBASE) ]
+----------------------------------------
+   |
+   |[7] IMMUTABLE ENTRY: Data stored in "Append-Only" mode.
+   |[8] PERMANENT AUDIT: Transactions cannot be edited or 
+   |                     deleted once committed.
+   |
+   ▼
+[ PHASE 5: TRANSPARENCY DASHBOARD ]
+----------------------------------------
+   |
+   |[9] REAL-TIME SYNC : Web Dashboard reflects ledger state.
+   |[10] PUBLIC VERIFY : Results displayed instantly to voters.
+
+==========================================================
+        "MATHEMATICAL TRUST THROUGH TECHNOLOGY"
+==========================================================
+            </pre>
+
+            <!-- IMAGE -->
+            <img 
+                src="images/votinng.png"
+                alt="Innovote System Architecture"
+                style="
+                    width: 100%;
+                    margin-top: 1.5rem;
+                    border-radius: 12px;
+                    border: 1px solid var(--border-color);
+                "
+                onerror="this.style.display='none'; console.log('Image not found: images/votinng.png')"
+            >
+
+            <div class="modal-buttons" style="margin-top: 1.5rem;">
+                <button class="modal-btn modal-btn-cancel" onclick="closeArchitectureModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-content">
             <a href="https://nishantparwani.com" class="logo">NISHANT</a>
-            
-            
-        
-
             <div class="copyright">
                 &copy; 2025-2026 Nishant. All rights reserved.
             </div>
@@ -971,6 +1056,15 @@
 
         function closeResetModal() {
             document.getElementById('resetModal').style.display = 'none';
+            document.getElementById('deletePassword').value = '';
+        }
+
+        function openArchitectureModal() {
+            document.getElementById('architectureModal').style.display = 'flex';
+        }
+
+        function closeArchitectureModal() {
+            document.getElementById('architectureModal').style.display = 'none';
         }
 
         // Reset all votes function
@@ -983,12 +1077,19 @@
 
             try {
                 const response = await fetch(`${firebaseConfig.databaseURL}/votes.json`, {
-                    method: 'DELETE'
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        "Abhik_Sengupta": 0,
+                        "Harsh_Pujara": 0,
+                        "Vraj_Parikh": 0,
+                        "Yashwardhan_Prasad": 0
+                    })
                 });
 
                 if (response.ok) {
                     closeResetModal();
                     showNotification('All votes have been reset successfully!', 'success');
+                    triggerConfetti();
                     setTimeout(fetchVotes, 1000);
                 } else {
                     throw new Error('Failed to reset votes');
@@ -1049,16 +1150,18 @@
             }, 3000);
         }
 
-        // Initialize Firebase
+        // Initialize Firebase and fetch votes
         async function fetchVotes() {
             try {
                 const response = await fetch(`${firebaseConfig.databaseURL}/votes.json`);
                 const data = await response.json();
                 
-                if (data) {
+                console.log("Fetched data:", data); // Debug log
+                
+                if (data && typeof data === 'object') {
                     updateDisplay(data);
                 } else {
-                    // Initialize with zeros if no data exists
+                    // Initialize with sample data if no data exists
                     const initialData = {
                         "Abhik_Sengupta": 8,
                         "Harsh_Pujara": 9,
@@ -1074,11 +1177,24 @@
             } catch (error) {
                 console.error('Error fetching data:', error);
                 document.getElementById('loading').innerHTML = 
-                    '<i class="fas fa-exclamation-triangle"></i> Error loading data. Please refresh.';
+                    '<i class="fas fa-exclamation-triangle"></i> Error loading data. Please check connection.';
+                
+                // Show fallback data
+                const fallbackData = {
+                    "Abhik_Sengupta": 8,
+                    "Harsh_Pujara": 9,
+                    "Vraj_Parikh": 12,
+                    "Yashwardhan_Prasad": 17
+                };
+                updateDisplay(fallbackData);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('statsGrid').style.display = 'flex';
             }
         }
 
         function updateDisplay(voteData) {
+            console.log("Updating display with:", voteData); // Debug log
+            
             totalVotes = Object.values(voteData).reduce((sum, votes) => sum + votes, 0);
             const statsGrid = document.getElementById('statsGrid');
             statsGrid.innerHTML = '';
@@ -1235,54 +1351,24 @@
             drawConfetti();
         }
 
-        // Simulate a vote (for demonstration)
-        function simulateVote() {
-            // Randomly select a candidate
-            const randomIndex = Math.floor(Math.random() * protocols.length);
-            const candidate = protocols[randomIndex].name;
-            
-            // Trigger confetti
-            triggerConfetti();
-            
-            // Show notification
-            showNotification(`Vote recorded for ${protocols[randomIndex].displayName}!`, 'success');
-            
-            // In a real implementation, you would update Firebase here
-            // For demo purposes, we'll just refetch the data
-            setTimeout(fetchVotes, 500);
+        // Fetch votes and refresh after a random interval between 3 and 15 seconds
+        function startAutoRefresh() {
+            function refresh() {
+                fetchVotes();
+
+                // Generate a random number between 3 and 15 seconds
+                const randomSeconds = Math.floor(Math.random() * (15 - 3 + 1)) + 3;
+                const randomMilliseconds = randomSeconds * 1000;
+
+                console.log(`Next refresh in ${randomSeconds} seconds`);
+
+                // Schedule the next refresh
+                setTimeout(refresh, randomMilliseconds);
+            }
+
+            // Start the first refresh
+            refresh();
         }
-// Fetch votes and refresh after a random interval between 3 and 15 seconds
-function startAutoRefresh() {
-    function refresh() {
-        fetchVotes();
-
-        // Generate a random number between 3 and 15 seconds
-        const randomSeconds = Math.floor(Math.random() * (15 - 3 + 1)) + 3;
-        const randomMilliseconds = randomSeconds * 1000;
-
-        console.log(`Next refresh in ${randomSeconds} seconds`);
-
-        // Schedule the next refresh
-        setTimeout(refresh, randomMilliseconds);
-    }
-
-    // Start the first refresh
-    refresh();
-}
-
-        // Start the application
-        startAutoRefresh();
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-    const resetModal = document.getElementById('resetModal');
-    const archModal = document.getElementById('architectureModal');
-
-    if (event.target === resetModal) closeResetModal();
-    if (event.target === archModal) closeArchitectureModal();
-};
-
-
 
         function togglePassword() {
             const passwordInput = document.getElementById("deletePassword");
@@ -1317,104 +1403,21 @@ function startAutoRefresh() {
                 voteChart.resize();
             }
         });
-      function openArchitectureModal() {
-    document.getElementById('architectureModal').style.display = 'flex';
-}
 
-function closeArchitectureModal() {
-    document.getElementById('architectureModal').style.display = 'none';
-}
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const resetModal = document.getElementById('resetModal');
+            const archModal = document.getElementById('architectureModal');
 
- 
-          <div id="architectureModal" class="modal">
-    <div class="modal-content" style="max-width: 800px; text-align: left;">
-        <h3 style="color: var(--accent-cyan); text-align:center;">
-            <i class="fas fa-microchip"></i> INNOVOTE SYSTEM ARCHITECTURE
-        </h3>
+            if (event.target === resetModal) closeResetModal();
+            if (event.target === archModal) closeArchitectureModal();
+        };
 
-        <pre style="
-            margin-top: 1.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.4;
-            white-space: pre-wrap;
-            color: var(--text-secondary);
-            background: rgba(255,255,255,0.03);
-            padding: 1.2rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        ">
-==========================================================
-              INNOVOTE SYSTEM ARCHITECTURE
-==========================================================
-
-[ PHASE 1: HARDWARE ENTRY NODE (ESP32) ]
-----------------------------------------
-   |
-   |[1] PHYSICAL INPUT : Voter presses candidate button.
-   |[2] FEEDBACK       : Buzzer & LED trigger (Confirmation).
-   |[3] DATA PACKAGING : ESP32 generates a unique Payload.
-   |
-   ▼
-[ PHASE 2: CRYPTOGRAPHIC LAYER ]
-----------------------------------------
-   |
-   |[4] SHA-256 HASHING: Vote data is transformed into a 
-   |                     unique 64-character hash.
-   |                     *Ensures Tamper-Evidence*
-   |
-   ▼
-[ PHASE 3: NETWORK BROADCAST ]
-----------------------------------------
-   |
-   |[5] SECURE UPLOAD  : Encrypted packet sent via Wi-Fi.
-   |[6] STOCHASTIC DELAY: Random 3-15s "Proof of Validation"
-   |                     wait period.
-   |                     *Simulates Block Confirmation Time*
-   |
-   ▼
-[ PHASE 4: DISTRIBUTED LEDGER (FIREBASE) ]
-----------------------------------------
-   |
-   |[7] IMMUTABLE ENTRY: Data stored in "Append-Only" mode.
-   |[8] PERMANENT AUDIT: Transactions cannot be edited or 
-   |                     deleted once committed.
-   |
-   ▼
-[ PHASE 5: TRANSPARENCY DASHBOARD ]
-----------------------------------------
-   |
-   |[9] REAL-TIME SYNC : Web Dashboard reflects ledger state.
-   |[10] PUBLIC VERIFY : Results displayed instantly to voters.
-
-==========================================================
-        "MATHEMATICAL TRUST THROUGH TECHNOLOGY"
-==========================================================
-        </pre>
-
-        <!-- IMAGE -->
-        <img 
-           
-    src="images/votinng.png"
-    alt="Innovote System Architecture"
-    style="
-        width: 100%;
-        margin-top: 1.5rem;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-    "
->
-
-
-        <div class="modal-buttons" style="margin-top: 1.5rem;">
-            <button class="modal-btn modal-btn-cancel" onclick="closeArchitectureModal()">
-                Close
-            </button>
-        </div>
-    </div>
-</div>
-   </script>
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchVotes();
+            startAutoRefresh();
+        });
+    </script>
 </body>
-
 </html>
-
