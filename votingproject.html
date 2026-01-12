@@ -650,29 +650,7 @@
             width: 100%;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-cyan);
-            background: rgba(0, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
+        
 
         .copyright {
             color: var(--text-secondary);
@@ -870,21 +848,25 @@
     <main class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1>Nishant</h1>
-                <div class="glow-bar"></div>
-                <p>Real-time protocol voting statistics</p>
-            </div>
+    <h1>
+        <a href="https://nishantparwani.com" target="_blank" rel="noopener noreferrer">
+            Nishant
+        </a>
+    </h1>
+    <div class="glow-bar"></div>
+    <p>Real-time protocol voting statistics</p>
+</div>
+
 
             <div class="controls">
                 <a href="https://nishantp.netlify.app" class="btn btn-primary">
                     <i class="fas fa-arrow-left"></i> Back to Home
                 </a>
-                <button class="btn btn-danger" onclick="openResetModal()">
-                    <i class="fas fa-trash"></i> Delete All Votes
-                </button>
-                <button class="btn btn-primary" onclick="simulateVote()">
-                    <i class="fas fa-vote-yea"></i> Simulate Vote
-                </button>
+                <button class="btn btn-primary" onclick="openArchitectureModal()">
+    <i class="fas fa-diagram-project"></i> View System Architecture
+</button>
+
+
             </div>
 
             <div id="loading" class="loading">
@@ -933,12 +915,7 @@
             <h3><i class="fas fa-exclamation-triangle"></i> Reset All Votes</h3>
             <p>Enter the admin password to confirm deleting all voting data. This action cannot be undone.</p>
 
-            <div style="position:relative; margin-bottom:1.5rem;">
-                <input type="password" id="deletePassword" placeholder="Enter password">
-                <button class="reveal-btn" onclick="togglePassword()">
-                    <i class="fas fa-eye"></i>
-                </button>
-            </div>
+
 
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-cancel" onclick="closeResetModal()">Cancel</button>
@@ -951,17 +928,13 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <a href="https://nishantp.netlify.app" class="logo">NISHANT</a>
+            <a href="https://nishantparwani.com" class="logo">NISHANT</a>
             
             
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
+        
 
             <div class="copyright">
-                &copy; 2025 Nishant. All rights reserved.
+                &copy; 2025-2026 Nishant. All rights reserved.
             </div>
         </div>
     </footer>
@@ -1278,19 +1251,37 @@
             // For demo purposes, we'll just refetch the data
             setTimeout(fetchVotes, 500);
         }
+// Fetch votes and refresh after a random interval between 3 and 15 seconds
+function startAutoRefresh() {
+    function refresh() {
+        fetchVotes();
 
-        // Refresh data every 5 seconds
-        function startAutoRefresh() {
-            fetchVotes();
-            setInterval(fetchVotes, 5000);
-        }
+        // Generate a random number between 3 and 15 seconds
+        const randomSeconds = Math.floor(Math.random() * (15 - 3 + 1)) + 3;
+        const randomMilliseconds = randomSeconds * 1000;
+
+        console.log(`Next refresh in ${randomSeconds} seconds`);
+
+        // Schedule the next refresh
+        setTimeout(refresh, randomMilliseconds);
+    }
+
+    // Start the first refresh
+    refresh();
+}
 
         // Start the application
         startAutoRefresh();
 
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('resetModal');
+    const resetModal = document.getElementById('resetModal');
+    const archModal = document.getElementById('architectureModal');
+
+    if (event.target === resetModal) closeResetModal();
+    if (event.target === archModal) closeArchitectureModal();
+};
+
             if (event.target === modal) {
                 closeResetModal();
             }
@@ -1329,6 +1320,103 @@
                 voteChart.resize();
             }
         });
+      function openArchitectureModal() {
+    document.getElementById('architectureModal').style.display = 'flex';
+}
+
+function closeArchitectureModal() {
+    document.getElementById('architectureModal').style.display = 'none';
+}
+
     </script>
+          <div id="architectureModal" class="modal">
+    <div class="modal-content" style="max-width: 800px; text-align: left;">
+        <h3 style="color: var(--accent-cyan); text-align:center;">
+            <i class="fas fa-microchip"></i> INNOVOTE SYSTEM ARCHITECTURE
+        </h3>
+
+        <pre style="
+            margin-top: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.03);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        ">
+==========================================================
+              INNOVOTE SYSTEM ARCHITECTURE
+==========================================================
+
+[ PHASE 1: HARDWARE ENTRY NODE (ESP32) ]
+----------------------------------------
+   |
+   |[1] PHYSICAL INPUT : Voter presses candidate button.
+   |[2] FEEDBACK       : Buzzer & LED trigger (Confirmation).
+   |[3] DATA PACKAGING : ESP32 generates a unique Payload.
+   |
+   ▼
+[ PHASE 2: CRYPTOGRAPHIC LAYER ]
+----------------------------------------
+   |
+   |[4] SHA-256 HASHING: Vote data is transformed into a 
+   |                     unique 64-character hash.
+   |                     *Ensures Tamper-Evidence*
+   |
+   ▼
+[ PHASE 3: NETWORK BROADCAST ]
+----------------------------------------
+   |
+   |[5] SECURE UPLOAD  : Encrypted packet sent via Wi-Fi.
+   |[6] STOCHASTIC DELAY: Random 3-15s "Proof of Validation"
+   |                     wait period.
+   |                     *Simulates Block Confirmation Time*
+   |
+   ▼
+[ PHASE 4: DISTRIBUTED LEDGER (FIREBASE) ]
+----------------------------------------
+   |
+   |[7] IMMUTABLE ENTRY: Data stored in "Append-Only" mode.
+   |[8] PERMANENT AUDIT: Transactions cannot be edited or 
+   |                     deleted once committed.
+   |
+   ▼
+[ PHASE 5: TRANSPARENCY DASHBOARD ]
+----------------------------------------
+   |
+   |[9] REAL-TIME SYNC : Web Dashboard reflects ledger state.
+   |[10] PUBLIC VERIFY : Results displayed instantly to voters.
+
+==========================================================
+        "MATHEMATICAL TRUST THROUGH TECHNOLOGY"
+==========================================================
+        </pre>
+
+        <!-- IMAGE -->
+        <img 
+           <img 
+    src="images/votinng.png"
+    alt="Innovote System Architecture"
+    style="
+        width: 100%;
+        margin-top: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+    "
+>
+
+
+        <div class="modal-buttons" style="margin-top: 1.5rem;">
+            <button class="modal-btn modal-btn-cancel" onclick="closeArchitectureModal()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
 </body>
+
 </html>
