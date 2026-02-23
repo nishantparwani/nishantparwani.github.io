@@ -2698,5 +2698,212 @@ function initNavVideoPreviews() {
         </div>
     </div>
 </footer>
+  <!-- ===== GLOBAL FOOTER ===== -->
+<style>
+:root {
+  --primary: #0a0a0a;
+  --secondary: #1a1a1a;
+  --accent: #fe4dae;
+  --accent-blue: #4d5afe;
+  --text: #ffffff;
+  --text-dim: #a0a0a0;
+  --glass-border: rgba(255,255,255,0.05);
+}
+
+.follow-footer {
+  position: relative;
+  margin: 5rem auto 2rem;
+  width: 95%;
+  max-width: 800px;
+  background: rgba(10, 10, 10, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 60px;
+  padding: 1.2rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  border: 1px solid transparent;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.footer-link i {
+  font-size: 1.2rem;
+  color: var(--accent-blue);
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+  background: rgba(77, 90, 254, 0.05);
+}
+
+.footer-link:hover i {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.footer-link.resources-link {
+  background: linear-gradient(135deg, rgba(77, 90, 254, 0.1), rgba(254, 77, 174, 0.1));
+  border-color: var(--accent-blue);
+}
+
+.footer-link.resources-link i {
+  color: var(--accent);
+}
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.follow-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a {
+  color: var(--text-dim);
+  font-size: 1.4rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-3px);
+  background: rgba(77, 90, 254, 0.05);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .footer-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+  .footer-link {
+    width: 100%;
+    justify-content: center;
+  }
+  .follow-footer {
+    padding: 1.2rem 1rem;
+    border-radius: 30px;
+  }
+  .social-icons {
+    gap: 1rem;
+  }
+}
+</style>
+
+<footer class="follow-footer">
+  <div class="footer-content">
+
+    <div class="footer-nav">
+      <a href="/indexx" class="footer-link">
+        <i class="fas fa-home"></i> Home
+      </a>
+
+      <a href="/aboutnishant" class="footer-link">
+        <i class="fas fa-user"></i> About
+      </a>
+
+      <a href="/nishantsexperience" class="footer-link">
+        <i class="fas fa-briefcase"></i> Experience
+      </a>
+
+      <a href="/Media/index.html" class="footer-link resources-link">
+        <i class="fas fa-book"></i> Resources
+      </a>
+    </div>
+
+    <div class="social-section">
+      <div class="follow-text">FOLLOW NISHANT</div>
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com/nishant_parwani/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+
+        <a href="mailto:nishantparwani2007@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+
+        <a href="https://x.com/nishant_parwani" target="_blank">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © 2026 Nishant Parwani. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<!-- ===== END FOOTER ===== -->
 </body>
 </html>
