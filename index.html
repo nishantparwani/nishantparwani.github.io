@@ -1288,55 +1288,91 @@ function initDynamicMouseShadow() {
 
     </script>
     <!-- UPDATED FOOTER WITH BOOK BUTTON - COPY THIS EXACT CODE -->
+<!-- FIXED FOOTER WITH VISIBLE NAVIGATION LINKS & FORCE BOTTOM POSITIONING -->
 <style>
+/* ===== FORCE FOOTER TO BOTTOM - ADDED ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Target the main content section - adjust selector based on your page */
+section:first-of-type, 
+main, 
+.hero-section,
+.resources-hero,
+.contact-hero,
+.experience-hero,
+.about-hero,
+.home-hero {
+    flex: 1 0 auto;
+}
+
 /* ===== FOOTER STYLES - INLINE CSS ===== */
 .follow-footer {
     position: relative;
-    margin: 5rem auto 2rem;
     width: 95%;
-    max-width: 800px;
-    background: rgba(10, 10, 10, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 60px;
-    padding: 1.2rem 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    margin: 2rem auto 2rem; /* Reduced top margin */
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 70px;
+    padding: 1.8rem 2.2rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     font-family: 'Inter', sans-serif;
+    z-index: 100;
+    clear: both;
+    flex-shrink: 0; /* Prevents footer from shrinking */
 }
 
 .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .footer-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
 .footer-link {
     color: #ffffff;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 40px;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
     border: 1px solid transparent;
     font-family: 'Space Grotesk', sans-serif;
+    background: transparent;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .footer-link i {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #4d5afe;
     transition: all 0.3s ease;
 }
@@ -1344,18 +1380,19 @@ function initDynamicMouseShadow() {
 .footer-link:hover {
     color: #4d5afe;
     border-color: #4d5afe;
-    transform: translateY(-2px);
-    background: rgba(77, 90, 254, 0.05);
+    transform: translateY(-3px);
+    background: rgba(77, 90, 254, 0.1);
 }
 
 .footer-link:hover i {
     color: #fe4dae;
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .footer-link.resources-link {
-    background: linear-gradient(135deg, rgba(77, 90, 254, 0.1), rgba(254, 77, 174, 0.1));
+    background: linear-gradient(135deg, rgba(77, 90, 254, 0.15), rgba(254, 77, 174, 0.15));
     border-color: #4d5afe;
+    box-shadow: 0 5px 15px rgba(77, 90, 254, 0.2);
 }
 
 .footer-link.resources-link i {
@@ -1366,34 +1403,38 @@ function initDynamicMouseShadow() {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     width: 100%;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .follow-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 4px;
+    font-size: 0.95rem;
+    letter-spacing: 5px;
     color: #a0a0a0;
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 .social-icons {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
     align-items: center;
 }
 
 .social-icons a {
     color: #a0a0a0;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: 1px solid transparent;
 }
@@ -1401,31 +1442,45 @@ function initDynamicMouseShadow() {
 .social-icons a:hover {
     color: #4d5afe;
     border-color: #4d5afe;
-    transform: translateY(-3px);
-    background: rgba(77, 90, 254, 0.05);
+    transform: translateY(-4px);
+    background: rgba(77, 90, 254, 0.08);
 }
 
 .copyright {
-    font-size: 0.8rem;
-    color: #a0a0a0;
+    font-size: 0.85rem;
+    color: #888;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    opacity: 0.7;
-    margin-top: 0.5rem;
+    opacity: 0.8;
+    margin-top: 0.8rem;
+    letter-spacing: 0.5px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .follow-footer {
-        padding: 1.2rem 1rem;
-        border-radius: 30px;
+        padding: 1.5rem 1.2rem;
+        border-radius: 40px;
+        margin: 1.5rem auto 1.5rem;
     }
     .footer-nav {
         gap: 1rem;
     }
     .footer-link {
         font-size: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.6rem 1rem;
+        gap: 0.5rem;
+    }
+    .footer-link i {
+        font-size: 1.1rem;
+    }
+    .social-icons {
+        gap: 1.5rem;
+    }
+    .social-icons a {
+        font-size: 1.4rem;
+        width: 42px;
+        height: 42px;
     }
 }
 
@@ -1433,28 +1488,39 @@ function initDynamicMouseShadow() {
     .footer-nav {
         flex-direction: column;
         width: 100%;
+        gap: 0.8rem;
     }
     .footer-link {
         width: 100%;
         justify-content: center;
+        padding: 0.8rem 1rem;
     }
-    .social-icons {
-        gap: 1rem;
-    }
-    .social-icons a {
-        font-size: 1.2rem;
-        width: 35px;
-        height: 35px;
+    .follow-footer {
+        padding: 1.2rem 1rem;
+        margin: 1rem auto 1rem;
     }
     .follow-text {
         font-size: 0.8rem;
         letter-spacing: 3px;
     }
+    .social-icons a {
+        font-size: 1.3rem;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Force visibility */
+.footer-link, .footer-nav, .footer-content {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 </style>
 
 <footer class="follow-footer">
     <div class="footer-content">
+        <!-- Navigation Links - These WILL show now -->
         <div class="footer-nav">
             <a href="/indexx" class="footer-link">
                 <i class="fas fa-home"></i> Home
@@ -1470,6 +1536,7 @@ function initDynamicMouseShadow() {
             </a>
         </div>
         
+        <!-- Social Section -->
         <div class="social-section">
             <div class="follow-text">FOLLOW NISHANT</div>
             <div class="social-icons">
@@ -1482,17 +1549,17 @@ function initDynamicMouseShadow() {
                 <a href="mailto:nishantparwani2007@gmail.com" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://x.com/nishant_parwani" target="_blank" aria-label="X (Twitter)">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
+                <!-- X/Twitter REMOVED as requested -->
             </div>
         </div>
         
+        <!-- Copyright -->
         <div class="copyright">
-            &copy; 2024 Nishant Parwani. All rights reserved.
+            &copy; 2026 Nishant Parwani. All rights reserved.
         </div>
     </div>
 </footer>
 </body>
 </html>
+
 
