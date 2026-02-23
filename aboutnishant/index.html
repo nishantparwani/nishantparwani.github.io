@@ -1011,68 +1011,6 @@
             transform: scale(1.2);
         }
 
-        /* ========== UPDATED FOOTER (FROM PROVIDED CODE) ========== */
-        .follow-footer {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 80%;
-            max-width: 500px;
-            background: rgba(71, 70, 70, 0); /* 85% transparent */
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            color: #fff;
-            text-align: center;
-            padding: 0.7rem 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            user-select: none;
-            letter-spacing: 4px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.08); /* Lighter border */
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .follow-footer .follow-text {
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
-        }
-
-        .follow-footer .social-icons {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 1.2rem;
-            align-items: center;
-        }
-
-        .follow-footer .social-icons a {
-            color: #fff;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-
-        .follow-footer .social-icons a:hover {
-            color: #e75454;
-        }
-
-        .copyright {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            color: #aaa; /* Lighter color for more visibility on transparent background */
-            text-align: center;
-            padding: 0.4rem 0 0;
-            user-select: none;
-        }
-
         /* ========== DYNAMIC MOUSE SHADOW ========== */
         #cursor-shadow {
             position: fixed;
@@ -1706,8 +1644,6 @@
         </section>
     </div>
     
-    <!-- UPDATED FOOTER (FROM PROVIDED CODE) -->
-  
     <script>
 function initNavVideoPreviews() {
     const videos = document.querySelectorAll('.preview-video');
@@ -2269,14 +2205,16 @@ function initNavVideoPreviews() {
 
     // ========== ANIMATE FOOTER ==========
     function animateFooter() {
-        const footer = document.getElementById('followFooter');
-        gsap.to(footer, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: 0.3,
-            ease: "power3.out"
-        });
+        const footer = document.querySelector('.follow-footer');
+        if (footer) {
+            gsap.to(footer, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+        }
     }
 
     // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
@@ -2472,172 +2410,6 @@ function initNavVideoPreviews() {
         initWebGLBackground();
     }
     </script>
-  <!-- UPDATED FOOTER WITH BOOK BUTTON - COPY THIS EXACT CODE -->
-<style>
-/* ===== FOOTER STYLES - INLINE CSS ===== */
-.follow-footer {
-    position: relative;
-    margin: 5rem auto 2rem;
-    width: 95%;
-    max-width: 800px;
-    background: rgba(10, 10, 10, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 60px;
-    padding: 1.2rem 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    font-family: 'Inter', sans-serif;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-.footer-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.footer-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 40px;
-    border: 1px solid transparent;
-    font-family: 'Space Grotesk', sans-serif;
-}
-
-.footer-link i {
-    font-size: 1.2rem;
-    color: #4d5afe;
-    transition: all 0.3s ease;
-}
-
-.footer-link:hover {
-    color: #4d5afe;
-    border-color: #4d5afe;
-    transform: translateY(-2px);
-    background: rgba(77, 90, 254, 0.05);
-}
-
-.footer-link:hover i {
-    color: #fe4dae;
-    transform: scale(1.1);
-}
-
-.footer-link.resources-link {
-    background: linear-gradient(135deg, rgba(77, 90, 254, 0.1), rgba(254, 77, 174, 0.1));
-    border-color: #4d5afe;
-}
-
-.footer-link.resources-link i {
-    color: #fe4dae;
-}
-
-.social-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    width: 100%;
-}
-
-.follow-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 4px;
-    color: #a0a0a0;
-    text-transform: uppercase;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: center;
-}
-
-.social-icons a {
-    color: #a0a0a0;
-    font-size: 1.4rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid transparent;
-}
-
-.social-icons a:hover {
-    color: #4d5afe;
-    border-color: #4d5afe;
-    transform: translateY(-3px);
-    background: rgba(77, 90, 254, 0.05);
-}
-
-.copyright {
-    font-size: 0.8rem;
-    color: #a0a0a0;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    opacity: 0.7;
-    margin-top: 0.5rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .follow-footer {
-        padding: 1.2rem 1rem;
-        border-radius: 30px;
-    }
-    .footer-nav {
-        gap: 1rem;
-    }
-    .footer-link {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .footer-nav {
-        flex-direction: column;
-        width: 100%;
-    }
-    .footer-link {
-        width: 100%;
-        justify-content: center;
-    }
-    .social-icons {
-        gap: 1rem;
-    }
-    .social-icons a {
-        font-size: 1.2rem;
-        width: 35px;
-        height: 35px;
-    }
-    .follow-text {
-        font-size: 0.8rem;
-        letter-spacing: 3px;
-    }
-}
-</style>
-
 
   <!-- ===== GLOBAL FOOTER ===== -->
 <style>
