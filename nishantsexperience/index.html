@@ -1415,7 +1415,7 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-header">
                                 <div class="timeline-logo">
-                                    <img src="images/taqneeq.jpg" alt="TAQNEEQ TECH FEST" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TQ'">
+                                    <img src="/images/taqneeq.jpg" alt="TAQNEEQ TECH FEST" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TQ'">
                                 </div>
                                 <div class="timeline-org-info">
                                     <h3>TAQNEEQ TECH FEST</h3>
@@ -1466,7 +1466,7 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-header">
                                 <div class="timeline-logo">
-                                    <img src="images/4c.jpg" alt="4C - The Marketing Cell" onerror="this.src='https://via.placeholder.com/70x70/fe4dae/ffffff?text=4C'">
+                                    <img src="/images/4c.jpg" alt="4C - The Marketing Cell" onerror="this.src='https://via.placeholder.com/70x70/fe4dae/ffffff?text=4C'">
                                 </div>
                                 <div class="timeline-org-info">
                                     <h3>4C - The Marketing Cell</h3>
@@ -1517,7 +1517,7 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-header">
                                 <div class="timeline-logo">
-                                    <img src="images/sattva.jpg" alt="Sattva NMIMS" onerror="this.src='https://via.placeholder.com/70x70/535cda/ffffff?text=ST'">
+                                    <img src="/images/sattva.jpg" alt="Sattva NMIMS" onerror="this.src='https://via.placeholder.com/70x70/535cda/ffffff?text=ST'">
                                 </div>
                                 <div class="timeline-org-info">
                                     <h3>Sattva NMIMS</h3>
@@ -1568,7 +1568,7 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-header">
                                 <div class="timeline-logo">
-                                    <img src="images/trust.jpg" alt="Sant Hirdaram Swami Basantram Sewa Trust" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TR'">
+                                    <img src="/images/trust.jpg" alt="Sant Hirdaram Swami Basantram Sewa Trust" onerror="this.src='https://via.placeholder.com/70x70/4d5afe/ffffff?text=TR'">
                                 </div>
                                 <div class="timeline-org-info">
                                     <h3>Sant Hirdaram Swami Basantram Sewa Trust</h3>
@@ -1619,7 +1619,7 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-header">
                                 <div class="timeline-logo">
-                                    <img src="images/nmims.jpg" alt="NMIMS Student Council" onerror="this.src='https://via.placeholder.com/70x70/2d76e2/ffffff?text=SC'">
+                                    <img src="/images/nmims.jpg" alt="NMIMS Student Council" onerror="this.src='https://via.placeholder.com/70x70/2d76e2/ffffff?text=SC'">
                                 </div>
                                 <div class="timeline-org-info">
                                     <h3>Student Council Outreach</h3>
@@ -2563,6 +2563,11 @@
     } else {
         initWebGLBackground();
     }
+      event.respondWith(
+  caches.match(event.request).then(res => {
+    return res || fetch(event.request)
+  })
+)
     </script>
   <!-- UPDATED FOOTER WITH BOOK BUTTON - COPY THIS EXACT CODE -->
 <style>
