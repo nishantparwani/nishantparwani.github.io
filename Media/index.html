@@ -1,1 +1,205 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joint Library | Nishant Parwani</title>
+
+<link rel="icon" href="/images/logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0a0a0a;
+    --accent: #fe4dae;
+    --accent-blue: #4d5afe;
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --glass: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary);
+    color: var(--text);
+    margin: 0;
+}
+
+.vertical-stack {
+    max-width: 1200px;
+    margin: auto;
+    padding: 8rem 2rem;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    margin: 1rem auto 3rem;
+    max-width: 700px;
+}
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.library-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: 0.3s;
+}
+
+.library-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 30px rgba(77,90,254,0.2);
+}
+
+.file-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.file-actions a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--accent-blue);
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.notice-box {
+    margin-top: 5rem;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+}
+
+.notice-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.disclaimer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="vertical-stack">
+
+<h1 class="section-title">Joint Library</h1>
+
+<p class="section-subtitle">
+A curated collection of research papers, analyses, and presentations.  
+All submissions are reviewed for ingenuity, originality, and correctness before publication.
+</p>
+
+<div class="library-grid">
+
+<div class="library-card">
+<div class="file-title">Vodafone ZooZoos</div>
+<div class="file-actions">
+<a href="VodafoneZooZoos.pdf" target="_blank">Preview</a>
+<a href="VodafoneZooZoos.pdf" download>Download</a>
+</div>
+</div>
+
+<div class="library-card">
+<div class="file-title">Environmental Impact Assessment</div>
+<div class="file-actions">
+<a href="Environmental Impact Assessment.pdf" target="_blank">Preview</a>
+<a href="Environmental Impact Assessment.pdf" download>Download</a>
+</div>
+</div>
+
+<div class="library-card">
+<div class="file-title">Combinatorics and Graph Theory</div>
+<div class="file-actions">
+<a href="CombinatoricsandGraphTheory.pdf" target="_blank">Preview</a>
+<a href="CombinatoricsandGraphTheory.pdf" download>Download</a>
+</div>
+</div>
+
+<div class="library-card">
+<div class="file-title">Mumbai Transport Satisfaction Insights</div>
+<div class="file-actions">
+<a href="Mumbai_Transport_Satisfaction_Insights.pptx" target="_blank">Preview</a>
+<a href="Mumbai_Transport_Satisfaction_Insights.pptx" download>Download</a>
+</div>
+</div>
+
+<div class="library-card">
+<div class="file-title">Cancer Immunotherapy</div>
+<div class="file-actions">
+<a href="CancerImmunotherapy.pptx" target="_blank">Preview</a>
+<a href="CancerImmunotherapy.pptx" download>Download</a>
+</div>
+</div>
+
+<div class="library-card">
+<div class="file-title">Energy Crisis</div>
+<div class="file-actions">
+<a href="EnergyCrisis.pdf" target="_blank">Preview</a>
+<a href="EnergyCrisis.pdf" download>Download</a>
+</div>
+</div>
+
+</div>
+
+<div class="notice-box">
+<div class="notice-title">Submit Your Work</div>
+
+<p>
+You may contribute research or analytical work to this library.  
+Submissions are reviewed for ingenuity, accuracy, and relevance before publication.
+</p>
+
+<p>
+Approved works are typically published within <strong>48 hours</strong>.
+</p>
+
+<p>
+To contribute:
+<br>• Include author name and designation clearly within the document
+<br>• OR email an editable copy to <strong>contact@nishantparwani.com</strong>
+</p>
+
+<div class="disclaimer">
+<strong>Intellectual Property Notice:</strong><br>
+Unless otherwise stated, materials hosted in this library are proprietary intellectual works of Nishant Parwani.  
+Non-commercial use, reference, and academic citation are permitted with appropriate attribution.  
+Any commercial use, redistribution for profit, or derivative commercial application requires prior written permission from Nishant Parwani.
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
