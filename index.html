@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta name="description" content="Portfolio website of Nishant Parwani, showcasing experience, projects and contact info.">
-<meta property="og:title" content="Nishant Parwani | Portfolio" />
-<meta property="og:image" content="link-to-hero.jpg" />
-<meta property="og:type" content="website" />
-<meta name="keywords" content="Nishant Parwani, NishantP, Nishant Parwani portfolio, Nishant developer">
-    <title>Nishant Parwani | Undergraduate Researcher, Finance Enthusiast, Academic Portfolio</title>
-
-<meta name="description" content="Official website of Nishant Parwani — undergraduate student, independent researcher and finance enthusiast. Explore academic research, finance insights, projects, publications and analytical work.">
-
-<meta name="keywords" content="Nishant Parwani, undergraduate researcher, student researcher, finance enthusiast, academic portfolio, research papers, finance research, economics research, student portfolio, financial analysis, academic projects, research publications, university student, independent research">
-
-<meta name="robots" content="index, follow">
-<meta name="author" content="Nishant Parwani">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Nishant Parwani">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q54VJBZQ85');
-</script>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Portfolio website of Nishant Parwani, showcasing experience, projects and contact info.">
+    <meta property="og:title" content="Nishant Parwani | Portfolio" />
+    <meta property="og:image" content="link-to-hero.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="keywords" content="Nishant Parwani, NishantP, Nishant Parwani portfolio, Nishant developer">
+    <meta name="author" content="Nishant Parwani">
     <title>Nishant Parwani | Portfolio</title>
     
-    <!-- Favicon -->
     <!-- Favicons -->
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
-
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54VJBZQ85"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q54VJBZQ85');
+    </script>
     
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -56,7 +46,7 @@
             --secondary: #1a1a1a;
             --accent: #fe4dae;
             --accent-light: #2d76e2;
-            --accent-dark: #535cda;
+            --accent-blue: #4d5afe;
             --text: #ffffff;
             --text-dim: #a0a0a0;
             --glass: rgba(255, 255, 255, 0.05);
@@ -181,6 +171,8 @@
             opacity: 0;
             transform: translateY(20px);
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding-right: 280px;
         }
 
         .nav-item:hover {
@@ -204,127 +196,78 @@
         .nav-item:hover::after {
             width: 120%;
         }
-        /* ========== NAVIGATION VIDEO PREVIEWS ========== */
-/* Adjust nav items for previews */
-.nav-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 280px; /* Space for preview on right side */
-}
 
-.nav-text {
-    position: relative;
-    z-index: 1;
-}
+        .nav-text {
+            position: relative;
+            z-index: 1;
+        }
 
-/* Preview container - hidden by default */
-.nav-preview {
-    position: absolute;
-    right: -300px; /* Position to the right of text */
-    top: 50%;
-    transform: translateY(-50%) scale(0.9);
-    width: 250px;
-    height: 180px;
-    background: var(--primary);
-    border-radius: 14px;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid var(--accent-light);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-    z-index: 1001;
-}
+        .nav-preview {
+            position: absolute;
+            right: -300px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            width: 250px;
+            height: 180px;
+            background: var(--primary);
+            border-radius: 14px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--accent-light);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            z-index: 1001;
+        }
 
-/* Video styling */
-.preview-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    filter: brightness(1.05) contrast(1.1);
-    transition: filter 0.3s ease;
-}
+        .preview-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            filter: brightness(1.05) contrast(1.1);
+        }
 
-/* Overlay for better visibility */
-.preview-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        rgba(10, 10, 10, 0.3) 0%,
-        rgba(10, 10, 10, 0.1) 50%,
-        rgba(10, 10, 10, 0.4) 100%
-    );
-    border-radius: 12px;
-    pointer-events: none;
-}
+        .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.1) 50%, rgba(10, 10, 10, 0.4) 100%);
+            border-radius: 12px;
+            pointer-events: none;
+        }
 
-/* Hover effects - show preview */
-.nav-item:hover .nav-preview {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) scale(1);
-    right: -280px;
-}
+        .nav-item:hover .nav-preview {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) scale(1);
+            right: -280px;
+        }
 
-.nav-item:hover .preview-video {
-    filter: brightness(1.15) contrast(1.2);
-}
+        .nav-preview::before {
+            content: '▶ Preview';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            opacity: 0.9;
+            z-index: 2;
+        }
 
-/* Add play indicator */
-.nav-preview::before {
-    content: '▶ Preview';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 0.7rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    opacity: 0.9;
-    z-index: 2;
-}
+        @media (max-width: 1024px) {
+            .nav-item { padding-right: 0; }
+            .nav-preview { display: none !important; }
+        }
 
-/* Glow effect on active preview */
-.nav-item:hover .nav-preview {
-    box-shadow: 
-        0 15px 40px rgba(0, 0, 0, 0.6),
-        0 0 25px rgba(45, 118, 226, 0.4);
-}
-
-/* Hide previews on mobile/tablet */
-@media (max-width: 1024px) {
-    .nav-item {
-        padding-right: 0 !important;
-    }
-    
-    .nav-preview {
-        display: none !important;
-    }
-}
-
-/* Adjust for responsive sizes */
-@media (max-width: 768px) {
-    .nav-preview {
-        width: 240px;
-        height: 150px;
-        right: -260px;
-    }
-    
-    .nav-item:hover .nav-preview {
-        right: -240px;
-    }
-}
         /* ========== HERO SECTION ========== */
         .hero {
             position: absolute;
@@ -377,7 +320,6 @@
             font-weight: 300;
         }
 
-        /* ========== TYPEWRITER CURSOR ========== */
         .typewriter-cursor {
             display: inline-block;
             width: 3px;
@@ -388,137 +330,222 @@
             vertical-align: middle;
         }
 
-   
-
-        /* ========== ANIMATIONS ========== */
         @keyframes blink {
-            0%, 100% {
-                opacity: 1;
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ========== FOOTER - REDUCED BY 50% ========== */
+        .footer-wrapper {
+            margin-top: auto;
+            padding: 1rem 1rem 1rem 1rem;
+            width: 100%;
+        }
+
+        .follow-footer {
+            position: relative;
+            margin: 0 auto;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 40px;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Inter', sans-serif;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .follow-footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 30px;
+            border: 1px solid transparent;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link i {
+            font-size: 0.7rem;
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+            background: rgba(77, 90, 254, 0.05);
+        }
+
+        .footer-link:hover i {
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            width: 100%;
+        }
+
+        .follow-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 2.5px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            background: rgba(77, 90, 254, 0.05);
+        }
+
+        .copyright {
+            font-size: 0.5rem;
+            color: var(--text-dim);
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0.6;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .footer-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.4rem;
             }
-            50% {
-                opacity: 0;
+            .footer-link {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+            .footer-link i {
+                font-size: 0.65rem;
+            }
+            .follow-footer {
+                padding: 0.5rem 0.8rem;
+                border-radius: 30px;
+                max-width: 95%;
+            }
+            .social-icons {
+                gap: 0.6rem;
+            }
+            .social-icons a {
+                font-size: 0.8rem;
+                width: 24px;
+                height: 24px;
+            }
+            .follow-text {
+                font-size: 0.5rem;
+                letter-spacing: 2px;
+            }
+            .copyright {
+                font-size: 0.45rem;
             }
         }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1024px) {
-            .nav-item {
-                font-size: 4rem;
-            }
-            
-            .hero-title {
-                font-size: clamp(3.5rem, 9vw, 6rem);
-            }
-            
-            .greeting {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-            
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                top: 1.5rem;
-                left: 1.5rem;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .nav-item {
-                font-size: 3rem;
-            }
-            
-            .hero-title {
-                font-size: clamp(3rem, 11vw, 4.5rem);
-                margin-bottom: 1rem;
-            }
-            
-            .greeting {
-                font-size: 1.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-                line-height: 1.3;
-            }
-            
-            .subtitle-separator {
-                margin: 0 0.5rem;
-            }
-            
-      
-        }
-
-        @media (max-width: 480px) {
-            .menu-toggle {
-                top: 1rem;
-                left: 1rem;
-                width: 45px;
-                height: 45px;
-            }
-            
-            .nav-item {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title {
-                font-size: clamp(2.5rem, 13vw, 3.5rem);
-            }
-            
-            .greeting {
-                font-size: 1.2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .subtitle-separator {
-                display: block;
-                margin: 0.3rem 0;
-            }
-    
-        }
         /* ========== DYNAMIC MOUSE SHADOW ========== */
-#cursor-shadow {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: radial-gradient(
-    circle,
-    transparent 0%,
-    var(--complementary-color, rgba(255, 255, 255, 0.3)) 30%,
-    var(--complementary-color, rgba(255, 255, 255, 0.8)) 100%
-);
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
-    mix-blend-mode: difference;
-}
+        #cursor-shadow {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.8) 100%);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.5s ease;
+            mix-blend-mode: difference;
+        }
 
-#cursor-inner {
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--current-color, #ffffff);
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: background 0.5s ease;
-    box-shadow: 0 0 10px var(--current-color, #ffffff);
-}
+        #cursor-inner {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: background 0.5s ease;
+            box-shadow: 0 0 10px #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: clamp(3rem, 9vw, 5rem); }
+            .greeting { font-size: 1.5rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .nav-item { font-size: 3rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: clamp(2.5rem, 13vw, 3.5rem); }
+            .nav-item { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <!-- Dynamic Mouse Shadow -->
-<div id="cursor-shadow"></div>
-<div id="cursor-inner"></div>
+    <!-- Dynamic Mouse Elements -->
+    <div id="cursor-shadow"></div>
+    <div id="cursor-inner"></div>
+    
     <!-- WebGL Background -->
     <canvas id="webgl-bg"></canvas>
     
@@ -529,57 +556,32 @@
         <span></span>
     </div>
     
-        <!-- Navigation Menu -->
-<div class="nav-menu" id="navMenu">
-    <div class="nav-items">
-        <a href="/aboutnishant" class="nav-item" data-preview="about">
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <div class="nav-items">
+            <a href="/aboutnishant" class="nav-item" data-preview="about">
                 <span class="nav-text">About</span>
                 <div class="nav-preview">
-                    <video
-  class="preview-video"
-  muted
-  autoplay
-  loop
-  playsinline
-  preload="auto">
-
-                        <source src="images/about.mp4" type="video/mp4">
+                    <video class="preview-video" muted autoplay loop playsinline preload="auto">
+                        <source src="/images/about.mp4" type="video/mp4">
                     </video>
                     <div class="preview-overlay"></div>
                 </div>
             </a>
-            
-            <!-- Experience with preview -->
             <a href="/nishantsexperience" class="nav-item" data-preview="experience">
                 <span class="nav-text">Experience</span>
                 <div class="nav-preview">
-                    <video
-  class="preview-video"
-  muted
-  autoplay
-  loop
-  playsinline
-  preload="auto">
-
-                        <source src="images/experience.mp4" type="video/mp4">
+                    <video class="preview-video" muted autoplay loop playsinline preload="auto">
+                        <source src="/images/experience.mp4" type="video/mp4">
                     </video>
                     <div class="preview-overlay"></div>
                 </div>
             </a>
-            
-            <!-- Contact with preview -->
             <a href="/contactnishant" class="nav-item" data-preview="contact">
                 <span class="nav-text">Contact</span>
                 <div class="nav-preview">
-                    <video
-  class="preview-video"
-  muted
-  autoplay
-  loop
-  playsinline
-  preload="auto">
-
-                        <source src="images/contact.mp4" type="video/mp4">
+                    <video class="preview-video" muted autoplay loop playsinline preload="auto">
+                        <source src="/images/contact.mp4" type="video/mp4">
                     </video>
                     <div class="preview-overlay"></div>
                 </div>
@@ -599,774 +601,242 @@
             <span id="line3">USFC '24</span>
         </div>
     </div>
-
-
+    
+    <!-- FOOTER WRAPPER - REDUCED SIZE (50% SMALLER) -->
+    <div class="footer-wrapper">
+        <footer class="follow-footer" id="globalFooter">
+            <div class="footer-content">
+                <div class="footer-nav">
+                    <a href="/indexx" class="footer-link">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="/aboutnishant" class="footer-link">
+                        <i class="fas fa-user"></i> About
+                    </a>
+                    <a href="/nishantsexperience" class="footer-link">
+                        <i class="fas fa-briefcase"></i> Experience
+                    </a>
+                    <a href="/Media/index.html" class="footer-link">
+                        <i class="fas fa-book"></i> Resources
+                    </a>
+                </div>
+                <div class="social-section">
+                    <div class="follow-text">FOLLOW NISHANT</div>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/nishant_parwani/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:nishantparwani2007@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://x.com/nishant_parwani" target="_blank" aria-label="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    © 2026 Nishant Parwani. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
         // ========== INFINITE WEBGL BACKGROUND ==========
         function initWebGLBackground() {
             const canvas = document.getElementById('webgl-bg');
             if (!canvas) return;
-            
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas, 
-                alpha: true,
-                antialias: true
-            });
-            
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             
-            // Grid back to blue
             const gridHelper = new THREE.GridHelper(200, 200, 0x4d5afe, 0x4d5afe);
             gridHelper.material.opacity = 0.08;
             gridHelper.material.transparent = true;
             scene.add(gridHelper);
             
-            // Create pyramids - 70% blue, 30% red
             const pyramids = [];
-            const pyramidCount = 40;
-            
-            for (let i = 0; i < pyramidCount; i++) {
+            for (let i = 0; i < 40; i++) {
                 const geometry = new THREE.ConeGeometry(0.6, 1.2, 4);
-                
-                // 70% blue, 30% red
-                const isRed = i < Math.floor(pyramidCount * 0.3); // 30% red
-                const color = isRed ? 0xfe4dae : 0x4d5afe; // Red for 30%, Blue for 70%
-                
-                const material = new THREE.MeshBasicMaterial({ 
-                    color: color,
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.15 + Math.random() * 0.25
-                });
-                
+                const isRed = i < 12;
+                const color = isRed ? 0xfe4dae : 0x4d5afe;
+                const material = new THREE.MeshBasicMaterial({ color: color, wireframe: true, transparent: true, opacity: 0.15 + Math.random() * 0.25 });
                 const pyramid = new THREE.Mesh(geometry, material);
-                
                 pyramid.position.x = (Math.random() - 0.5) * 80;
                 pyramid.position.y = (Math.random() - 0.5) * 30;
                 pyramid.position.z = (Math.random() - 0.5) * 80;
-                
                 pyramid.rotation.x = Math.random() * Math.PI;
                 pyramid.rotation.y = Math.random() * Math.PI;
-                pyramid.rotation.z = Math.random() * Math.PI;
-                
-                pyramid.userData = {
-                    rotationSpeedX: (Math.random() - 0.5) * 0.008,
-                    rotationSpeedY: (Math.random() - 0.5) * 0.008,
-                    rotationSpeedZ: (Math.random() - 0.5) * 0.008,
-                    floatSpeed: 0.5 + Math.random() * 1,
-                    floatAmplitude: 0.2 + Math.random() * 0.6
-                };
-                
+                pyramid.userData = { rotationSpeedX: (Math.random() - 0.5) * 0.008, rotationSpeedY: (Math.random() - 0.5) * 0.008, floatSpeed: 0.5 + Math.random(), floatAmplitude: 0.2 + Math.random() * 0.6 };
                 scene.add(pyramid);
                 pyramids.push(pyramid);
             }
             
-            // Add floating cubes - all blue
             const cubes = [];
-            const cubeCount = 25;
-            
-            for (let i = 0; i < cubeCount; i++) {
+            for (let i = 0; i < 25; i++) {
                 const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-                const material = new THREE.MeshBasicMaterial({ 
-                    color: 0x6d7cff, // Blue
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.08
-                });
-                
+                const material = new THREE.MeshBasicMaterial({ color: 0x6d7cff, wireframe: true, transparent: true, opacity: 0.08 });
                 const cube = new THREE.Mesh(geometry, material);
-                
                 cube.position.x = (Math.random() - 0.5) * 90;
                 cube.position.y = (Math.random() - 0.5) * 30;
                 cube.position.z = (Math.random() - 0.5) * 90;
-                
-                cube.rotation.x = Math.random() * Math.PI;
-                cube.rotation.y = Math.random() * Math.PI;
-                
-                cube.userData = {
-                    rotationSpeedX: (Math.random() - 0.5) * 0.006,
-                    rotationSpeedY: (Math.random() - 0.5) * 0.006,
-                    rotationSpeedZ: (Math.random() - 0.5) * 0.006
-                };
-                
+                cube.userData = { rotationSpeedX: (Math.random() - 0.5) * 0.006, rotationSpeedY: (Math.random() - 0.5) * 0.006 };
                 scene.add(cube);
                 cubes.push(cube);
             }
             
-            // Add floating particles - mix of blue and red
             const particleCount = 150;
             const particleGeometry = new THREE.BufferGeometry();
-            const particleMaterial = new THREE.PointsMaterial({
-                size: 0.04,
-                transparent: true,
-                opacity: 0.2,
-                blending: THREE.AdditiveBlending,
-                vertexColors: true // Enable vertex colors
-            });
-            
-            const particlePositions = new Float32Array(particleCount * 3);
-            const particleColors = new Float32Array(particleCount * 3);
-            
-            for (let i = 0; i < particleCount * 3; i += 3) {
-                // Position
-                particlePositions[i] = (Math.random() - 0.5) * 200;
-                particlePositions[i + 1] = (Math.random() - 0.5) * 40;
-                particlePositions[i + 2] = (Math.random() - 0.5) * 200;
-                
-                // Color - 70% blue, 30% red
-                const particleIndex = i / 3;
-                const isRed = Math.random() < 0.3; // 30% chance red
-                
-                if (isRed) {
-                    // Red particles
-                    particleColors[i] = 0.99;     // R
-                    particleColors[i + 1] = 0.30; // G
-                    particleColors[i + 2] = 0.68; // B
-                } else {
-                    // Blue particles
-                    particleColors[i] = 0.30;     // R
-                    particleColors[i + 1] = 0.35; // G
-                    particleColors[i + 2] = 1.00; // B
-                }
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount; i++) {
+                positions[i*3] = (Math.random() - 0.5) * 200;
+                positions[i*3+1] = (Math.random() - 0.5) * 40;
+                positions[i*3+2] = (Math.random() - 0.5) * 200;
+                const isRedP = Math.random() < 0.3;
+                if (isRedP) { colors[i*3]=0.99; colors[i*3+1]=0.30; colors[i*3+2]=0.68; }
+                else { colors[i*3]=0.30; colors[i*3+1]=0.35; colors[i*3+2]=1.00; }
             }
-            
-            particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-            particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            const particleMaterial = new THREE.PointsMaterial({ size: 0.04, vertexColors: true, transparent: true, opacity: 0.2, blending: THREE.AdditiveBlending });
             const particles = new THREE.Points(particleGeometry, particleMaterial);
             scene.add(particles);
             
             camera.position.z = 40;
             camera.position.y = 10;
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) * 2 - 1; mouseY = -(e.clientY / window.innerHeight) * 2 + 1; });
             
-            // Mouse interaction
-            let mouseX = 0;
-            let mouseY = 0;
-            
-            document.addEventListener('mousemove', (event) => {
-                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            });
-            
-            // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
-                
                 const time = Date.now() * 0.001;
-                
-                // Rotate grid slowly
                 gridHelper.rotation.y += 0.0002;
-                
-                // Animate pyramids
-                pyramids.forEach((pyramid, i) => {
-                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ, floatSpeed, floatAmplitude } = pyramid.userData;
-                    
-                    pyramid.rotation.x += rotationSpeedX;
-                    pyramid.rotation.y += rotationSpeedY;
-                    pyramid.rotation.z += rotationSpeedZ;
-                    
-                    pyramid.position.y += Math.sin(time * floatSpeed + i) * 0.006 * floatAmplitude;
-                });
-                
-                // Animate cubes
-                cubes.forEach((cube, i) => {
-                    const { rotationSpeedX, rotationSpeedY, rotationSpeedZ } = cube.userData;
-                    
-                    cube.rotation.x += rotationSpeedX;
-                    cube.rotation.y += rotationSpeedY;
-                    cube.rotation.z += rotationSpeedZ;
-                    
-                    cube.position.y += Math.sin(time * 0.5 + i) * 0.003;
-                });
-                
-                // Rotate particles
+                pyramids.forEach((p, idx) => { p.rotation.x += p.userData.rotationSpeedX; p.rotation.y += p.userData.rotationSpeedY; p.position.y += Math.sin(time * p.userData.floatSpeed + idx) * 0.006 * p.userData.floatAmplitude; });
+                cubes.forEach((c, idx) => { c.rotation.x += c.userData.rotationSpeedX; c.rotation.y += c.userData.rotationSpeedY; c.position.y += Math.sin(time * 0.5 + idx) * 0.003; });
                 particles.rotation.y += 0.00015;
-                
-                // Camera movement based on mouse
                 camera.position.x += (mouseX * 15 - camera.position.x) * 0.05;
                 camera.position.y += (mouseY * 8 - camera.position.y) * 0.05;
                 camera.lookAt(scene.position);
-                
                 renderer.render(scene, camera);
             }
-            
             animate();
-            
-            // Handle resize
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
+            window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
         }
-
-        // ========== MENU TOGGLE ==========
+        
         function initMenuToggle() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            if (!menuToggle || !navMenu) return;
-            
-            menuToggle.addEventListener('click', (e) => {
+            const toggle = document.getElementById('menuToggle');
+            const menu = document.getElementById('navMenu');
+            const items = document.querySelectorAll('.nav-item');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                menuToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                if (navMenu.classList.contains('active')) {
-    const videos = document.querySelectorAll('.preview-video');
-    videos.forEach(video => {
-        video.currentTime = 0;
-        video.muted = true;
-        video.play().catch(() => {
-            console.log("Autoplay blocked, but muted retry works");
-        });
-    });
-}
-
-                
-                if (navMenu.classList.contains('active')) {
-                    navItems.forEach((item, index) => {
-                        gsap.to(item, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.6,
-                            delay: index * 0.15,
-                            ease: "power3.out"
-                        });
-                    });
+                toggle.classList.toggle('active');
+                menu.classList.toggle('active');
+                if (menu.classList.contains('active')) {
+                    document.querySelectorAll('.preview-video').forEach(v => { v.currentTime = 0; v.play().catch(()=>{}); });
+                    items.forEach((it, idx) => gsap.to(it, { opacity: 1, y: 0, duration: 0.6, delay: idx * 0.15, ease: "power3.out" }));
                 } else {
-                    navItems.forEach((item) => {
-                        gsap.to(item, {
-                            opacity: 0,
-                            y: 20,
-                            duration: 0.4,
-                            ease: "power2.in"
-                        });
-                    });
+                    items.forEach(it => gsap.to(it, { opacity: 0, y: 20, duration: 0.4, ease: "power2.in" }));
                 }
             });
-            
-            // Close menu when clicking on nav items
-            navItems.forEach(item => {
-                item.addEventListener('click', (e) => {
+            items.forEach(it => {
+                it.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    navItems.forEach((navItem) => {
-                        gsap.to(navItem, {
-                            opacity: 0,
-                            y: 20,
-                            duration: 0.3,
-                            ease: "power2.in"
-                        });
-                    });
-                    
-                    setTimeout(() => {
-                        menuToggle.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }, 300);
-                    
-                    const href = item.getAttribute('href');
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 400);
+                    items.forEach(nav => gsap.to(nav, { opacity: 0, y: 20, duration: 0.3 }));
+                    setTimeout(() => { toggle.classList.remove('active'); menu.classList.remove('active'); }, 300);
+                    setTimeout(() => { window.location.href = it.getAttribute('href'); }, 400);
                 });
             });
-            
-            // Close menu when clicking anywhere
             document.addEventListener('click', (e) => {
-                if (navMenu.classList.contains('active') && 
-                    !navMenu.contains(e.target) && 
-                    !menuToggle.contains(e.target)) {
-                    
-                    navItems.forEach((item) => {
-                        gsap.to(item, {
-                            opacity: 0,
-                            y: 20,
-                            duration: 0.3,
-                            ease: "power2.in"
-                        });
-                    });
-                    
-                    setTimeout(() => {
-                        menuToggle.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }, 300);
+                if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                    items.forEach(it => gsap.to(it, { opacity: 0, y: 20, duration: 0.3 }));
+                    setTimeout(() => { toggle.classList.remove('active'); menu.classList.remove('active'); }, 300);
                 }
             });
         }
-
-        // ========== TYPEWRITER EFFECT ==========
+        
         function initTypewriter() {
-            const greetingText = "Hi I am,";
-            const nameText = "Nishant Parwani";
-            const subtitleText = "Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai | Student Council Contingent Leader | USFC '24";
-            
-            // Type greeting first
+            const greetingFull = "Hi I am,";
+            const nameFull = "Nishant Parwani";
+            const subtitleFull = "Sophomore at SVKM's Narsee Monjee Institute of Management Studies, Mumbai | Student Council Contingent Leader | USFC '24";
             setTimeout(() => {
-                const element = document.getElementById('greetingText');
+                const greetEl = document.getElementById('greetingText');
                 let i = 0;
-                const typeInterval = setInterval(() => {
-                    if (i < greetingText.length) {
-                        element.innerHTML = greetingText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
-                        i++;
-                    } else {
-                        element.innerHTML = greetingText;
-                        clearInterval(typeInterval);
-                        
-                        gsap.to(element, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            ease: "power3.out"
-                        });
-                        
-                        // Start typing name after greeting
-                        setTimeout(typeName, 150);
-                    }
+                const t1 = setInterval(() => {
+                    if (i < greetingFull.length) { greetEl.innerHTML = greetingFull.substring(0, i+1) + '<span class="typewriter-cursor"></span>'; i++; }
+                    else { clearInterval(t1); greetEl.innerHTML = greetingFull; gsap.to(greetEl, { opacity:1, y:0, duration:0.8 }); setTimeout(typeName, 150); }
                 }, 100);
             }, 500);
-            
             function typeName() {
-                const element = document.getElementById('nameText');
+                const nameEl = document.getElementById('nameText');
                 let i = 0;
-                const typeInterval = setInterval(() => {
-                    if (i < nameText.length) {
-                        element.innerHTML = nameText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
-                        i++;
-                    } else {
-                        element.innerHTML = nameText;
-                        clearInterval(typeInterval);
-                        
-                        gsap.to(element, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            ease: "power3.out"
-                        });
-                        
-                        // Start typing subtitle after name
-                        setTimeout(typeSubtitle, 150);
-                    }
+                const t2 = setInterval(() => {
+                    if (i < nameFull.length) { nameEl.innerHTML = nameFull.substring(0, i+1) + '<span class="typewriter-cursor"></span>'; i++; }
+                    else { clearInterval(t2); nameEl.innerHTML = nameFull; gsap.to(nameEl, { opacity:1, y:0, duration:0.8 }); setTimeout(typeSub, 150); }
                 }, 120);
             }
-            
-            function typeSubtitle() {
-                const element = document.getElementById('subtitleText');
-                element.style.opacity = 1;
-                
-                // Type the full subtitle in one go
+            function typeSub() {
+                const subEl = document.getElementById('subtitleText');
+                subEl.style.opacity = 1;
                 let i = 0;
-                const typeInterval = setInterval(() => {
-                    if (i < subtitleText.length) {
-                        element.innerHTML = subtitleText.substring(0, i + 1) + '<span class="typewriter-cursor"></span>';
-                        i++;
-                    } else {
-                        element.innerHTML = subtitleText;
-                        clearInterval(typeInterval);
-                        
-                        gsap.to(element, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            ease: "power3.out"
-                        });
-                        
-
-                    }
+                const t3 = setInterval(() => {
+                    if (i < subtitleFull.length) { subEl.innerHTML = subtitleFull.substring(0, i+1) + '<span class="typewriter-cursor"></span>'; i++; }
+                    else { clearInterval(t3); subEl.innerHTML = subtitleFull; gsap.to(subEl, { opacity:1, y:0, duration:0.8 }); }
                 }, 40);
             }
         }
-
-
-        // ========== INITIALIZE ==========
+        
+        function initDynamicMouseShadow() {
+            const shadow = document.getElementById('cursor-shadow');
+            const inner = document.getElementById('cursor-inner');
+            if (!shadow || !inner) return;
+            let mouseX = 0, mouseY = 0, shadowX = 0, shadowY = 0, innerX = 0, innerY = 0;
+            document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+            function animateCursor() {
+                shadowX += (mouseX - shadowX) * 0.08;
+                shadowY += (mouseY - shadowY) * 0.08;
+                innerX += (mouseX - innerX) * 0.2;
+                innerY += (mouseY - innerY) * 0.2;
+                shadow.style.left = shadowX + 'px';
+                shadow.style.top = shadowY + 'px';
+                inner.style.left = innerX + 'px';
+                inner.style.top = innerY + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            document.body.style.cursor = 'none';
+            document.addEventListener('mouseleave', () => { shadow.style.opacity = '0'; inner.style.opacity = '0'; });
+            document.addEventListener('mouseenter', () => { shadow.style.opacity = '1'; inner.style.opacity = '1'; });
+            animateCursor();
+        }
+        
+        function initNavVideoPreviews() {
+            document.querySelectorAll('.preview-video').forEach(v => { v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; });
+        }
+        
+        // ========== FOOTER APPEARS AFTER 5 SECONDS ==========
+        function initFooterDelay() {
+            const footer = document.getElementById('globalFooter');
+            if (footer) {
+                setTimeout(() => {
+                    footer.classList.add('visible');
+                }, 5000);
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', () => {
             initWebGLBackground();
             initMenuToggle();
-            // In the DOMContentLoaded event or initialization function:
-initDynamicMouseShadow();
-initNavVideoPreviews();
-            // Start typewriter after everything loads
-            setTimeout(initTypewriter, 250);
+            initDynamicMouseShadow();
+            initNavVideoPreviews();
+            initTypewriter();
+            initFooterDelay();
         });
-        // ========== DYNAMIC MOUSE SHADOW EFFECT ==========
-function initDynamicMouseShadow() {
-    const cursorShadow = document.getElementById('cursor-shadow');
-    const cursorInner = document.getElementById('cursor-inner');
-    
-    if (!cursorShadow || !cursorInner) return;
-    
-    let mouseX = 0;
-    let mouseY = 0;
-    let shadowX = 0;
-    let shadowY = 0;
-    let innerX = 0;
-    let innerY = 0;
-    
-    // Function to get complementary color
-    function getComplementaryColor(rgb) {
-        if (!rgb) return { r: 255, g: 255, b: 255 };
-        
-        // Convert to complementary
-        return {
-            r: 255 - rgb.r,
-            g: 255 - rgb.g,
-            b: 255 - rgb.b
-        };
-    }
-    
-    // Function to get color from element
-    function getColorFromElement(element) {
-        if (!element) return { r: 255, g: 255, b: 255 };
-        
-        // Try to get computed color
-        const style = window.getComputedStyle(element);
-        let color = style.color || style.backgroundColor || '#ffffff';
-        
-        // Parse color to RGB
-        const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-        if (match) {
-            return {
-                r: parseInt(match[1]),
-                g: parseInt(match[2]),
-                b: parseInt(match[3])
-            };
-        }
-        
-        // Try hex color
-        const hexMatch = color.match(/#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/);
-        if (hexMatch) {
-            return {
-                r: parseInt(hexMatch[1], 16),
-                g: parseInt(hexMatch[2], 16),
-                b: parseInt(hexMatch[3], 16)
-            };
-        }
-        
-        // Default white
-        return { r: 255, g: 255, b: 255 };
-    }
-    
-    // Function to update cursor colors
-    function updateCursorColors(color) {
-        const complementary = getComplementaryColor(color);
-        
-        // Update CSS variables
-        document.documentElement.style.setProperty(
-            '--current-color',
-            `rgb(${color.r}, ${color.g}, ${color.b})`
-        );
-        document.documentElement.style.setProperty(
-            '--complementary-color',
-            `rgba(${complementary.r}, ${complementary.g}, ${complementary.b}, 0.15)`
-        );
-    }
-    
-    // Mouse move handler
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Get element under cursor
-        const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
-        
-        if (elementUnderCursor) {
-            // Skip cursor elements themselves
-            if (elementUnderCursor.id === 'cursor-shadow' || 
-                elementUnderCursor.id === 'cursor-inner') return;
-            
-            // Get color from element
-            const color = getColorFromElement(elementUnderCursor);
-            
-            // Update cursor colors
-            updateCursorColors(color);
-            
-            // Size based on element type
-            const tagName = elementUnderCursor.tagName.toLowerCase();
-            const isInteractive = elementUnderCursor.onclick || 
-                                 elementUnderCursor.tagName === 'A' || 
-                                 elementUnderCursor.tagName === 'BUTTON';
-            
-            if (isInteractive) {
-                cursorShadow.style.width = '80px';
-                cursorShadow.style.height = '80px';
-            } else if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
-                cursorShadow.style.width = '70px';
-                cursorShadow.style.height = '70px';
-            } else {
-                cursorShadow.style.width = '60px';
-                cursorShadow.style.height = '60px';
-            }
-        }
-    });
-    
-    // Animation loop
-    function animateCursor() {
-        // Smooth shadow movement (slower)
-        shadowX += (mouseX - shadowX) * 0.08;
-        shadowY += (mouseY - shadowY) * 0.08;
-        
-        // Smooth inner movement (faster)
-        innerX += (mouseX - innerX) * 0.2;
-        innerY += (mouseY - innerY) * 0.2;
-        
-        // Apply positions
-        cursorShadow.style.left = shadowX + 'px';
-        cursorShadow.style.top = shadowY + 'px';
-        
-        cursorInner.style.left = innerX + 'px';
-        cursorInner.style.top = innerY + 'px';
-        
-        requestAnimationFrame(animateCursor);
-    }
-    
-    // Initialize cursor positions
-    cursorShadow.style.left = mouseX + 'px';
-    cursorShadow.style.top = mouseY + 'px';
-    cursorInner.style.left = mouseX + 'px';
-    cursorInner.style.top = mouseY + 'px';
-    
-    // Hide cursor on elements that don't need it
-    const noCursorElements = document.querySelectorAll('.no-cursor, input, textarea');
-    noCursorElements.forEach(el => {
-        el.style.cursor = 'none';
-    });
-    
-    // Hide default cursor on entire page
-    document.body.style.cursor = 'none';
-    
-    // Start animation
-    animateCursor();
-    
-    // Handle mouse leave window
-    document.addEventListener('mouseleave', () => {
-        cursorShadow.style.opacity = '0';
-        cursorInner.style.opacity = '0';
-    });
-    
-    document.addEventListener('mouseenter', () => {
-        cursorShadow.style.opacity = '1';
-        cursorInner.style.opacity = '1';
-    });
-}function initNavVideoPreviews() {
-    const videos = document.querySelectorAll('.preview-video');
-
-    videos.forEach(video => {
-        video.muted = true;        // required for autoplay
-        video.loop = true;
-        video.autoplay = true;
-        video.playsInline = true;  // iOS support
-    });
-}
-
     </script>
-
-
-  <!-- ===== GLOBAL FOOTER ===== -->
-<style>
-:root {
-  --primary: #0a0a0a;
-  --secondary: #1a1a1a;
-  --accent: #fe4dae;
-  --accent-blue: #4d5afe;
-  --text: #ffffff;
-  --text-dim: #a0a0a0;
-  --glass-border: rgba(255,255,255,0.05);
-}
-
-.follow-footer {
-  position: relative;
-  margin: 5rem auto 2rem;
-  width: 95%;
-  max-width: 800px;
-  background: rgba(10, 10, 10, 0.9);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 60px;
-  padding: 1.2rem 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-.footer-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer-link {
-  color: var(--text);
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 40px;
-  border: 1px solid transparent;
-  font-family: 'Space Grotesk', sans-serif;
-  transition: all 0.3s ease;
-}
-
-.footer-link i {
-  font-size: 1.2rem;
-  color: var(--accent-blue);
-  transition: all 0.3s ease;
-}
-
-.footer-link:hover {
-  color: var(--accent-blue);
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
-  background: rgba(77, 90, 254, 0.05);
-}
-
-.footer-link:hover i {
-  color: var(--accent);
-  transform: scale(1.1);
-}
-
-
-
-.social-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  width: 100%;
-}
-
-.follow-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 4px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-
-.social-icons {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.social-icons a {
-  color: var(--text-dim);
-  font-size: 1.4rem;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: var(--accent-blue);
-  border-color: var(--accent-blue);
-  transform: translateY(-3px);
-  background: rgba(77, 90, 254, 0.05);
-}
-
-.copyright {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  opacity: 0.7;
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .footer-nav {
-    flex-direction: column;
-    width: 100%;
-  }
-  .footer-link {
-    width: 100%;
-    justify-content: center;
-  }
-  .follow-footer {
-    padding: 1.2rem 1rem;
-    border-radius: 30px;
-  }
-  .social-icons {
-    gap: 1rem;
-  }
-}
-</style>
-
-<footer class="follow-footer">
-  <div class="footer-content">
-
-    <div class="footer-nav">
-      <a href="/indexx" class="footer-link">
-        <i class="fas fa-home"></i> Home
-      </a>
-
-      <a href="/aboutnishant" class="footer-link">
-        <i class="fas fa-user"></i> About
-      </a>
-
-      <a href="/nishantsexperience" class="footer-link">
-        <i class="fas fa-briefcase"></i> Experience
-      </a>
-
-      <a href="/Media/index.html" class="footer-link">
-        <i class="fas fa-book"></i> Resources
-      </a>
-    </div>
-
-    <div class="social-section">
-      <div class="follow-text">FOLLOW NISHANT</div>
-
-      <div class="social-icons">
-        <a href="https://www.instagram.com/nishant_parwani/" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="https://www.linkedin.com/in/nishant-parwani/" target="_blank">
-          <i class="fab fa-linkedin"></i>
-        </a>
-
-        <a href="mailto:nishantparwani2007@gmail.com">
-          <i class="fas fa-envelope"></i>
-        </a>
-
-        <a href="https://x.com/nishant_parwani" target="_blank">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="copyright">
-      © 2026 Nishant Parwani. All rights reserved.
-    </div>
-
-  </div>
-</footer>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-<!-- ===== END FOOTER ===== -->
 </body>
 </html>
-
-
-
-
