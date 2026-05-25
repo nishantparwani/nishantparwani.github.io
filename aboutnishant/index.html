@@ -243,6 +243,26 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; gap: 0.5rem;
     }
+    .profile-image {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.12);
+  box-shadow: 0 0 25px rgba(77,90,254,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
     .profile-initial {
       font-family: 'Space Grotesk', sans-serif; font-size: 4.5rem; font-weight: 700;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent));
@@ -399,12 +419,22 @@
       .hero-cta-group { flex-direction: column; align-items: flex-start; }
       .scroll-progress { width: 200px; }
       .edu-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .profile-image {
+  width: 130px;
+  height: 130px;
+}
     }
     @media (max-width: 480px) {
       .menu-toggle { top: 1rem; left: 1rem; width: 45px; height: 45px; }
       .nav-item { font-size: 2.5rem; }
       .vertical-stack { padding: 5rem 1rem 6rem; }
     }
+    @media (max-width: 480px) {
+  .profile-image {
+    width: 110px;
+    height: 110px;
+  }
+}
   </style>
 </head>
 <body>
@@ -507,9 +537,12 @@
             <div class="orbit-dot"></div>
           </div>
           <div class="orbit-ring"></div>
-          <div class="profile-core">
-            <div class="profile-image">
-    <img src="/images/nishant.jpg" alt="Nishant Profile" />
+        <div class="profile-core">
+  <div class="profile-image">
+    <img src="/images/nishant.jpg" alt="Nishant Profile">
+  </div>
+
+  <div class="profile-tag">Mumbai · India</div>
 </div>
           </div>
         </div>
